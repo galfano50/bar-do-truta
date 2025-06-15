@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ficha de Personagem</title>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/ficha.js"></script>
+    <script type="module">
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+      import { app } from "./js/firebase-config.js";
+
+      const auth = getAuth(app);
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // Define global para uso no ficha.js
+          window.currentUID = user.uid;
+        } else {
+          // Redireciona se não estiver logado
+          window.location.href = "index.html";
+        }
+      });
+    </script>
+</head>
+<style>
+    .imagem-personagem {
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .label-imagem {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #f0e6d2; /* tom envelhecido estilo pirata */
+    }
+
+    #preview-imagem {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border: 5px solid #8b5e3c; /* marrom madeira */
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+      display: none;
+      margin-top: 10px;
+      background-color: #fdf5e6;
+    }
+
+    body {
+      background-color: #1b1b1b;
+      color: #e0c097;
+      font-family: 'Georgia', serif;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    input, textarea, select {
+      background-color: #3b2e25;
+      color: #f3e9d2;
+      border: 1px solid #8b5e3c;
+      padding: 4px;
+      border-radius: 4px;
+      width: 100%;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      min-width: 80px; /* ⬅ Evita que fique estreito em telas pequenas */
+    }
+
+    textarea {
+      resize: both;        /* ⬅ permite redimensionar livremente */
+      min-height: 50px;
+      min-width: 100px;
+    }
+
+    /* Garante que setas dos input[type=number] apareçam sempre */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: auto;
+      margin: 0;
+    }
+
+    button {
+      background-color: #8b5e3c;
+      color: #fff6d6;
+      border: none;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      margin: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a86e44;
+    }
+
+    h3, h2 {
+      margin: 6px 0;
+      font-size: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .flex-colunas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .coluna {
+      flex: 1 1 30%;
+      box-sizing: border-box;
+    }
+
+    .pontos-distribuir {
+      font-size: 0.9rem;
+      margin: 6px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    table th, table td {
+      padding: 4px;
+      text-align: left;
+    }
+
+    .dice-roller input {
+      width: calc(100% - 20px);
+    }
+
+    @media (max-width: 768px) {
+      .coluna {
+        flex: 1 1 100%;
+      }
+
+      body {
+        font-size: 0.85rem;
+      }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="imagem-personagem">
+          <label for="upload-imagem" class="label-imagem">Imagem do Personagem:</label><br>
+          <input type="file" id="upload-imagem" accept="image/*"><br><br>
+          <img id="preview-imagem" src="" alt="Prévia da imagem">
+        </div>
+
+        <div class="header flex-colunas">
+            <div class="coluna">
+                <label>Nome: <input type="text" id="nome"></label>
+                <label>Raça:
+                    <select id="raca" onchange="aplicarRaca()">
+                        <option value="">Selecione</option>
+                        <option value="Humano">Humano</option>
+                        <option value="Kujas">Kujas</option>
+                        <option value="Braços Longos">Braços Longos</option>
+                        <option value="Pernas Longas">Pernas Longas</option>
+                        <option value="Tritão Serra">Tritão Serra</option>
+                        <option value="Tritão Polvo">Tritão Polvo</option>
+                        <option value="Tritão Peixe-Espada">Tritão Peixe-Espada</option>
+                        <option value="Tritão Peixe-Elétrico">Tritão Peixe-Elétrico</option>
+                        <option value="Tritão Tubarão-Branco">Tritão Tubarão-Branco</option>
+                        <option value="Tritão Tubarão-Baleia">Tritão Tubarão-Baleia</option>
+                        <option value="Tritão Sereia">Tritão Sereia</option>
+                        <option value="Sky">Sky</option>
+                        <option value="Oni">Oni</option>
+                        <option value="Tontattas">Tontattas</option>
+                        <option value="Cyborg">Cyborg</option>
+                        <option value="Meio Gigante">Meio Gigante</option>
+                        <option value="Minks Ágies">Minks Ágies</option>
+                        <option value="Minks Fortes">Minks Fortes</option>
+                        <option value="Minks Balanceados">Minks Balanceados</option>
+                        <option value="Três olhos">Três olhos</option>
+                        <option value="Gigante">Gigante</option>
+                        <option value="Lunariano">Lunariano</option>
+                        <option value="Bucaneiros">Bucaneiros</option>
+                        <option value="Oz">Oz</option>
+                    </select>
+                </label>
+                <label>Classe: <input type="text" id="classe"></label><br>
+                <label>Individualidades: <input type="text" id="individualidade"></label>
+                <label>Alcunha: <input type="text" id="alcunha"></label>
+            </div>
+            <div class="coluna">
+                <label>Patente: <input type="text" id="patente"></label><br>
+                <label>Estilo: <input type="text" id="estilo"></label>
+                <label>Idade: <input type="number" id="idade" min="0"></label>
+                <label>Altura: <input type="number" id="altura" min="0"></label><br>
+                <label>Nível: <input type="number" id="nivel" min="1" max="30" oninput="atualizarValores()"></label>
+                <label>Xp: <input type="number" id="xp" min="0"></label><br>
+            </div>
+            <div class="coluna">
+                <label>Vida: <input type="number" id="vida" readonly></label>
+                <label>Energia: <input type="number" id="energia" readonly></label>
+                <!--<label>2ª Barra: <input type="number" id="stamina" readonly></label><br>-->
+                <label>Fonte de Energia: <input type="number" id="stamina2" readonly></label><br>
+                <label>Dano Sofrido<input type="number" id="danoSofrido" min="0" value="0" oninput="atualizarVidaEnergia()"></label>
+                <label>Gasto de Energia<input type="number" id="gasto1" value="0" oninput="modificarPontos(); atualizarVidaEnergia()"></label>
+                <!--<label>Gasto da 2ª Barra<input type="number" id="gasto2" value="0" oninput="modificarPontos(); atualizarVidaEnergia()"></label>-->
+                <label>Gasto da Fonte<input type="number" id="gasto3" value="0" oninput="modificarPontos(); atualizarVidaEnergia()"></label>
+            </div>
+        </div>
+
+        <div class="pontos-distribuir" id="pontos">Pontos Atributos: 0</div><br>
+        <div class="pontos-distribuir" id="pontos2">Pontos Perpicia: 0</div>
+
+        <div class="stats flex-colunas">
+            <div class="coluna">
+                <div class="atributos">
+                    <h3>Atributos</h3><br>
+                    <label>Força: <input type="number" id="forca" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('forca'); atualizarTotais()"></label><br>
+                    <label>Constituição: <input type="number" id="constituicao" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('constituicao'); atualizarTotais()"></label><br>
+                    <label>Destreza: <input type="number" id="destreza" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('destreza'); atualizarTotais()"></label><br>
+                    <label>Velocidade: <input type="number" id="velocidade" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('velocidade'); atualizarTotais()"></label><br>
+                    <label>Dano: <input type="number" id="dano" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('dano'); atualizarTotais()"></label><br>
+                    <label>Armadura: <input type="number" id="armadura" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('armadura'); atualizarTotais()"></label><br>
+                    <label>Iniciativa: <input type="number" id="iniciativa" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('iniciativa'); atualizarTotais()"></label><br>
+                    <label>Sabedoria: <input type="number" id="sabedoria" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('sabedoria'); atualizarTotais()"></label><br>
+                    <label>Percepção: <input type="number" id="percepcao" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('percepcao'); atualizarTotais()"></label><br>
+                    <label>Espírito: <input type="number" id="espirito" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('espirito'); atualizarTotais()"></label><br>
+                    <label>Concentração: <input type="number" id="concentracao" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('concentracao'); atualizarTotais()"></label><br>
+                    <label>Precisão: <input type="number" id="precisao" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('precisao'); atualizarTotais()"></label><br>
+                    <label>Recuperação: <input type="number" id="recuperacao" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('recuperacao'); atualizarTotais()"></label><br>
+                    <label>Nado: <input type="number" id="nado" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('nado'); atualizarTotais()"></label><br>
+                    <label>Voo: <input type="number" id="voo" min="0" value="0" data-base="0" oninput="registrarAlteracaoAtributo('voo'); atualizarTotais()"></label><br>
+                </div>
+            </div>
+            <div class="coluna">
+                <div class="Fruta">
+                    <h3>Fruta</h3><br>
+                    <label>Força: <input type="number" id="poder1" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Constituição: <input type="number" id="poder2" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Destreza: <input type="number" id="poder3" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Velocidade: <input type="number" id="poder4" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Dano: <input type="number" id="poder5" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Armadura: <input type="number" id="poder6" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Iniciativa: <input type="number" id="poder7" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Sabedoria: <input type="number" id="poder8" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Percepção: <input type="number" id="poder9" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Espírito: <input type="number" id="poder10" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Concentração: <input type="number" id="poder11" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Precisão: <input type="number" id="poder12" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Recuperação: <input type="number" id="poder13" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Nado: <input type="number" id="poder14" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Voo: <input type="number" id="poder15" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                </div>
+            </div>
+            <div class="coluna">           
+                <div class="Embutir">
+                    <h3>Hakis</h3><br>
+                    <label>Força: <input type="number" id="haki1" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Constituição: <input type="number" id="haki2" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Armadura: <input type="number" id="haki3" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Dano: <input type="number" id="haki4" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Destreza: <input type="number" id="haki5" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Velocidade: <input type="number" id="haki6" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Percepção: <input type="number" id="haki7" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Precisão: <input type="number" id="haki8" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                </div>
+            </div>
+        </div>
+        <div class="flex-colunas">
+            <div class="coluna">
+                <div class="Extra">
+                    <h3>Extras</h3><br>
+                    <label>Força: <input type="number" id="extr1" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Constituição: <input type="number" id="extra2" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Destreza: <input type="number" id="extra3" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Velocidade: <input type="number" id="extra4" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Dano: <input type="number" id="extra5" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Armadura: <input type="number" id="extra6" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Iniciativa: <input type="number" id="extra7" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Sabedoria: <input type="number" id="extra8" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Percepção: <input type="number" id="extra9" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Espírito: <input type="number" id="extra10" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Concentração: <input type="number" id="extra11" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Precisão: <input type="number" id="extra12" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Recuperação: <input type="number" id="extra13" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Nado: <input type="number" id="extra14" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Voo: <input type="number" id="extra15" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                </div>
+            </div>
+            <div class="coluna">
+                <div class="totais">
+                    <h3>Total</h3><br>
+                    <p>Fr Total: <span id="soma1">0</span oninput="modificarPontos()"></p>
+                    <p>Con Total: <span id="soma2">0</span oninput="modificarPontos()"></p>
+                    <p>Des Total: <span id="soma3">0</span oninput="modificarPontos()"></p>
+                    <p>Vel Total: <span id="soma4">0</span oninput="modificarPontos()"></p>
+                    <p>Dano Total: <span id="soma5">0</span oninput="modificarPontos()"></p>
+                    <p>Arm Total: <span id="soma6">0</span oninput="modificarPontos()"></p>
+                    <p>Ini Total: <span id="soma7">0</span oninput="modificarPontos()"></p>
+                    <p>Sab Total: <span id="soma8">0</span oninput="modificarPontos()"></p>
+                    <p>Per Total: <span id="soma9">0</span oninput="modificarPontos()"></p>
+                    <p>Esp Total: <span id="soma10">0</span oninput="modificarPontos()"></p>
+                    <p>Con Total: <span id="soma11">0</span oninput="modificarPontos()"></p>
+                    <p>Pre Total: <span id="soma12">0</span oninput="modificarPontos()"></p>
+                    <p>Rec Total: <span id="soma13">0</span oninput="modificarPontos()"></p>
+                    <p>Nado Total: <span id="soma14">0</span oninput="modificarPontos()"></p>
+                    <p>Voo Total: <span id="soma15">0</span oninput="modificarPontos()"></p>
+                </div>
+            </div>
+            <div class="coluna">
+                <div class="dice-roller">
+                    <h2>Rolador de Dados</h2>
+                    <input type="text" id="diceInput" placeholder="Ex: 1d10+5d20+3d6">
+                    <button type="button" onclick="rollDice()">Rolar</button>
+                    <div id="result" class="result" style="display: block;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sobra flex-colunas">
+            <div class="coluna">
+              <div class="akuma-no-mi">
+                  <h3>Akuma no mi</h3>
+                  <label>Grau: <input type="number" id="grauAkuma" min="1" max="30" oninput="atualizarPontosAkuma()"></label>
+                  <table id="tabelaAkuma">
+                      <tr>
+                          <th>Componentes</th>
+                          <th>Base</th>
+                          <th>Valor</th>
+                          <th>Soma</th>
+                      </tr>
+                      <!-- Linhas geradas dinamicamente -->
+                  </table>
+                  <p id="pontosRestantesAkuma">Pontos restantes: 0</p>
+              </div>
+            </div>
+            <div class="coluna">
+                <div class="mochila-section">
+                    <h3>Mochila</h3>
+                    <table>
+                        <script>
+                            for (let i = 0; i < 20; i++) {
+                                document.write(`
+                                    <tr>
+                                        <textarea oninput="autoResize(this)"></textarea>
+                                    </tr>
+                                `);
+                            }
+                        </script>
+                    </table>
+                </div> 
+            </div> 
+        </div>
+
+        <div class="Haki">
+          <h3>Hakis</h3>
+          <div class="flex-colunas">
+            <!-- PERCEPÇÃO -->
+            <div class="coluna">
+              <label>Percepção Grau: <input type="number" id="grauPercepcao" min="0" max="30" oninput="distribuirHaki()"></label>
+              <label>Foco: 
+                <select id="focoPercepcao" onchange="distribuirHaki()">
+                  <option value="premonicao">Premonição</option>
+                  <option value="previsao">Previsão</option>
+                </select>
+              </label>
+              <label>Premonição: <input type="number" id="premonicao" readonly></label>
+              <label>Previsão: <input type="number" id="previsao" readonly></label>
+              <label>Ver o Futuro: <input type="number" id="verFuturo"></label>
+            </div>
+        
+            <!-- ARMAMENTO -->
+            <div class="coluna">
+              <label>Armamento Grau: <input type="number" id="grauArmamento" min="0" max="30" oninput="distribuirHaki()"></label>
+              <label>Foco: 
+                <select id="focoArmamento" onchange="distribuirHaki()">
+                  <option value="ofensivo">Ofensivo</option>
+                  <option value="defensivo">Defensivo</option>
+                </select>
+              </label>
+              <label>Ofensivo: <input type="number" id="ofensivo" readonly></label>
+              <label>Defensivo: <input type="number" id="defensivo" readonly></label>
+              <label>Avançado: <input type="number" id="avancadoArmamento"></label>
+            </div>
+        
+            <!-- REI -->
+            <div class="coluna">
+              <label>Rei Grau: <input type="number" id="grauRei" min="0" max="30" oninput="distribuirHaki()"></label>
+              <label>Foco: 
+                <select id="focoRei" onchange="distribuirHaki()">
+                  <option value="ordem">Ordem</option>
+                  <option value="presenca">Presença</option>
+                </select>
+              </label>
+              <label>Ordem: <input type="number" id="ordem" readonly></label>
+              <label>Presença: <input type="number" id="presenca" readonly></label>
+              <label>Avançado: <input type="number" id="avancadoRei"></label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="combate flex-colunas">
+            <div class="coluna">
+                <div class="Itens">
+                    <h3>Itens</h3><br>
+                    <label>Cabeça: <textarea id="item1"></textarea></label>
+                    <label>Ombros: <textarea id="item2"></textarea></label>
+                    <label>Peito: <textarea id="item3"></textarea></label><br>
+                    <label>Braços: <textarea id="item4"></textarea></label>
+                    <label>Mãos: <textarea id="item5"></textarea></label>
+                    <label>Pernas: <textarea id="item6"></textarea></label><br>
+                    <label>Pés: <textarea id="item7"></textarea></label>
+                </div>
+            </div>
+            <div class="coluna">                
+                <div class="pericia-section">
+                    <h3>Perícias</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Perícia</th>
+                                <th id="pts">Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pericias-body"></tbody>
+                    </table>
+                </div> 
+            </div>
+            <div class="coluna">
+                <div class="armas">
+                    <h3>Armas</h3> <br>
+                    <label>Primária: <textarea id="primaria"></textarea></label><br>
+                    <label>Secundária: <textarea id="secundaria"></textarea></label>
+                </div>
+            </div>
+        </div>        
+
+        <div class="status flex-colunas">
+            <div class="coluna">
+                <div class="Golpes de Fruta">
+                    <h3>Golpes de Fruta</h3><br>
+                    <label>Golpes: <textarea id="golpes1"></textarea></label><br>
+                </div>
+            </div>
+            <div class="coluna">
+                <div class="Golpes de Haki">
+                    <h3>Golpes de Haki</h3><br>
+                    <label>Golpes: <textarea id="golpes2"></textarea></label><br>
+                </div>
+            </div>
+            <div class="coluna">
+                <div class="Golpes de Estilo">
+                    <h3>Golpes de Estilo</h3><br>
+                    <label>Golpes: <textarea id="golpes3"></textarea></label><br>
+                </div>
+            </div>
+        </div>    
+
+        <div class="botao-container">
+          <label for="personagemId">ID do Personagem:</label>
+          <input type="text" id="personagemId" placeholder="Ex: Personagem1">
+          <button onclick="salvarFicha()">Salvar Ficha</button>
+          <button onclick="carregarFicha()">Carregar Ficha</button>
+          <button onclick="resetarFicha()">Resetar Ficha</button>
+        </div>
+    </div>
+
+<script>
+    // document.getElementById('upload-imagem').addEventListener('change', function (event) {
+    //   const file = event.target.files[0];
+    //   if (!file) return;
+
+    //   const reader = new FileReader();
+    //   reader.onload = function (e) {
+    //     const preview = document.getElementById('preview-imagem');
+    //     preview.src = e.target.result;
+    //     preview.style.display = 'block';
+
+    //     localStorage.setItem('imagemPersonagem', e.target.result);
+    //   };
+    //   reader.readAsDataURL(file);
+    // });
+
+    let bonusRaca = {
+        forca: 0,
+        constituicao: 0,
+        espirito: 0,
+        sabedoria: 0,
+        iniciativa: 0,
+        armadura: 0,
+        destreza: 0,
+        velocidade: 0,
+        dano: 0,
+        percepcao: 0,
+        concentracao: 0,
+        precisao: 0,
+        recuperacao: 0,
+        nado: 0,
+        voo: 0,
+        vida: 0,
+        energia: 0,
+        stamina: 0
+    };
+
+    function aplicarRaca() {
+        const raca = document.getElementById('raca').value;
+        for (let key in bonusRaca) bonusRaca[key] = 0;
+
+        if (raca === 'Humano') {
+            bonusRaca.vida = 17; bonusRaca.energia = 12; bonusRaca.stamina = 12;
+            bonusRaca.forca = 2; bonusRaca.constituicao = 2; bonusRaca.espirito = 2; bonusRaca.sabedoria = 2;
+        }
+        if (raca === 'Kujas') {
+            bonusRaca.vida = 20; bonusRaca.energia = 15; bonusRaca.stamina = 15;
+            bonusRaca.forca = 2; bonusRaca.constituicao = 2; bonusRaca.espirito = 3; bonusRaca.sabedoria = 1;
+        }
+        if (raca === 'Braços Longos') {
+            bonusRaca.vida = 17; bonusRaca.energia = 15; bonusRaca.stamina = 15;
+            bonusRaca.destreza = 5; bonusRaca.forca = 2; bonusRaca.iniciativa = 2;
+        }
+        if (raca === 'Pernas Longas') {
+            bonusRaca.vida = 17; bonusRaca.energia = 15; bonusRaca.stamina = 15;
+            bonusRaca.destreza = 2; bonusRaca.velocidade = 5; bonusRaca.iniciativa = 2;
+        }
+        if (raca === 'Tritão Serra') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 3; bonusRaca.constituicao = 3; bonusRaca.destreza = 2; bonusRaca.nado = 10; bonusRaca.dano = 10;
+        }
+        if (raca === 'Tritão Polvo') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 3; bonusRaca.constituicao = 2; bonusRaca.destreza = 3; bonusRaca.nado = 7;
+        }
+        if (raca === 'Tritão Peixe-Espada') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 4; bonusRaca.constituicao = 4; bonusRaca.destreza = 1; bonusRaca.nado = 10; bonusRaca.dano = 10;
+        }
+        if (raca === 'Tritão Peixe-Elétrico') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 3; bonusRaca.constituicao = 2; bonusRaca.destreza = 3; bonusRaca.nado = 7; bonusRaca.dano = 10;
+        }
+        if (raca === 'Tritão Tubarão-Branco') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 4; bonusRaca.constituicao = 4; bonusRaca.destreza = 2; bonusRaca.nado = 10; bonusRaca.dano = 12;
+        }
+        if (raca === 'Tritão Tubarão-Baleia') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 4; bonusRaca.constituicao = 4; bonusRaca.destreza = 1; bonusRaca.nado = 10; bonusRaca.dano = 9;
+        }
+        if (raca === 'Tritão Sereia') {
+            bonusRaca.vida = 21; bonusRaca.energia = 18; bonusRaca.stamina = 18;
+            bonusRaca.forca = 1; bonusRaca.constituicao = 1; bonusRaca.destreza = 3; bonusRaca.nado = 13;
+        }
+        if (raca === 'Sky') {
+            bonusRaca.vida = 15; bonusRaca.energia = 17; bonusRaca.stamina = 17;
+            bonusRaca.forca = 2; bonusRaca.constituicao = 2; bonusRaca.espirito = 3; bonusRaca.sabedoria = 1;
+        }
+        if (raca === 'Oni') {
+            bonusRaca.vida = 21; bonusRaca.energia = 15; bonusRaca.stamina = 15;
+            bonusRaca.forca = 4; bonusRaca.constituicao = 4; bonusRaca.armadura = 2; bonusRaca.iniciativa = 4;
+        }
+        if (raca === 'Tontattas') {
+            bonusRaca.vida = 15; bonusRaca.energia = 16; bonusRaca.stamina = 16;
+            bonusRaca.forca = 4; bonusRaca.constituicao = 1; bonusRaca.velocidade = 3; bonusRaca.iniciativa = 1;
+        }
+        if (raca === 'Cyborg') {
+            bonusRaca.vida = 14; bonusRaca.energia = 20; bonusRaca.stamina = 20;
+            bonusRaca.forca = 3; bonusRaca.constituicao = 3; bonusRaca.armadura = 4;
+            // Define a Fonte de Energia como metade da Energia
+            document.getElementById('stamina2').value = bonusRaca.energia / 2;
+        }
+        if (raca === 'Meio Gigante') {
+            bonusRaca.vida = 20; bonusRaca.energia = 19; bonusRaca.stamina = 19;
+            bonusRaca.forca = 5; bonusRaca.constituicao = 5; bonusRaca.armadura = 5;
+        }
+        if (raca === 'Minks Ágies') {
+            bonusRaca.vida = 19; bonusRaca.energia = 16; bonusRaca.stamina = 16;
+            bonusRaca.forca = 2; bonusRaca.constituicao = 1; bonusRaca.destreza = 4; bonusRaca.iniciativa = 2;
+        }
+        if (raca === 'Minks Fortes') {
+            bonusRaca.vida = 19; bonusRaca.energia = 16; bonusRaca.stamina = 16;
+            bonusRaca.forca = 5; bonusRaca.constituicao = 5; bonusRaca.iniciativa = 3;
+        }
+        if (raca === 'Minks Balanceados') {
+            bonusRaca.vida = 19; bonusRaca.energia = 16; bonusRaca.stamina = 16;
+            bonusRaca.forca = 3; bonusRaca.constituicao = 3; bonusRaca.velocidade = 3; bonusRaca.iniciativa = 2;
+        }
+        if (raca === 'Três olhos') {
+            bonusRaca.vida = 20; bonusRaca.energia = 19; bonusRaca.stamina = 19;
+            bonusRaca.forca = 15;
+        }
+        if (raca === 'Gigante') {
+            bonusRaca.vida = 25; bonusRaca.energia = 30; bonusRaca.stamina = 30;
+            bonusRaca.forca = 15; bonusRaca.constituicao = 13; bonusRaca.iniciativa = 8;
+        }
+        if (raca === 'Lunariano') {
+            bonusRaca.vida = 20; bonusRaca.energia = 20; bonusRaca.stamina = 20;
+            bonusRaca.forca = 8; bonusRaca.constituicao = 8; bonusRaca.voo = 10; bonusRaca.armadura = 10; bonusRaca.dano = 10;
+        }
+        if (raca === 'Bucaneiros') {
+            bonusRaca.vida = 18; bonusRaca.energia = 17; bonusRaca.stamina = 17;
+            bonusRaca.forca = 8; bonusRaca.constituicao = 11; bonusRaca.iniciativa = 9; bonusRaca.espirito = 10;
+        }
+        if (raca === 'Oz') {
+            bonusRaca.vida = 70; bonusRaca.energia = 50; bonusRaca.stamina = 50;
+            bonusRaca.forca =25; bonusRaca.constituicao = 25; bonusRaca.iniciativa = 25; bonusRaca.armadura = 25;
+        }
+
+        atualizarAtributosVisuais();
+        atualizarValores();
+        modificarPontos();
+    }
+
+    function atualizarAtributosVisuais() {
+        const campos = [
+            "forca", "constituicao", "espirito", "sabedoria", "iniciativa", "armadura",
+            "destreza", "velocidade", "dano", "percepcao", "concentracao", "precisao", "recuperacao", "nado", "voo"
+        ];
+        campos.forEach(campo => {
+            const input = document.getElementById(campo);
+            const base = parseInt(input.getAttribute("data-base")) || 0;
+            const bonus = bonusRaca[campo] || 0;
+            input.value = base + bonus;
+        });
+    }
+
+    function atualizarValores() {
+        const nivel = parseInt(document.getElementById("nivel").value) || 1;
+        let totalAtributos = 0, vida = 0, energia = 0, pontosPericia = 0;
+
+        for (let i = 1; i <= nivel; i++) {
+            if (i <= 5) { totalAtributos += 2; vida += 3; energia += 2; }
+            else if (i <= 10) { totalAtributos += 3; vida += 7; energia += 3; }
+            else if (i <= 15) { totalAtributos += 4; vida += 10; energia += 5; }
+            else if (i <= 20) { totalAtributos += 5; vida += 16; energia += 8; }
+            else if (i <= 25) { totalAtributos += 6; vida += 20; energia += 12; }
+            else if (i <= 30) { totalAtributos += 10; vida += 24; energia += 20; }
+
+            if ([2,3,6,7].includes(i)) pontosPericia += 1;
+            if ([11,12,13].includes(i)) pontosPericia += 2;
+            if ([16,17,20].includes(i)) pontosPericia += 3;
+            if (i === 21) pontosPericia += 5;
+            if (i === 23) pontosPericia += 6;
+            if (i === 26) pontosPericia += 10;
+            if (i === 28) pontosPericia += 15;
+        }
+
+        vida += bonusRaca.vida;
+        energia += bonusRaca.energia;
+
+        const dano = parseInt(document.getElementById("danoSofrido").value) || 0;
+        const gasto1 = parseInt(document.getElementById("gasto1").value) || 0;
+        //const gasto2 = parseInt(document.getElementById("gasto2").value) || 0;
+
+        document.getElementById("vida").value = vida - dano;
+        document.getElementById("energia").value = energia - gasto1;
+        //document.getElementById("stamina").value = energia * 3 - gasto2;
+
+        const totalAtributosFinais = 10 + totalAtributos;
+        const totalPericiaFinais = 10 + pontosPericia;
+
+        document.getElementById("pontos").setAttribute("data-total", totalAtributosFinais);
+        document.getElementById("pontos2").setAttribute("data-total", totalPericiaFinais);
+
+        atualizarVidaEnergia();
+        modificarPontos();
+    }
+
+    function modificarPontos() {
+        let pontosAtributosGastos = 0;
+        let pontosPericiaGastos = 0;
+
+        const atributos = document.querySelectorAll('.atributos input[type="number"]');
+        atributos.forEach(input => {
+            const base = parseInt(input.getAttribute("data-base")) || 0;
+            pontosAtributosGastos += base;
+        });
+
+        const pericias = document.querySelectorAll('.pericia-section table input[type="number"]');
+        pericias.forEach(input => {
+            const atual = parseInt(input.value) || 0;
+            pontosPericiaGastos += atual;
+        });
+
+        const totalAttr = parseInt(document.getElementById("pontos").getAttribute("data-total")) || 10;
+        const totalPericia = parseInt(document.getElementById("pontos2").getAttribute("data-total")) || 10;
+
+        document.getElementById("pontos").textContent = "Pontos Atributos: " + (totalAttr - pontosAtributosGastos);
+        document.getElementById("pontos2").textContent = "Pontos Perícia: " + (totalPericia - pontosPericiaGastos);
+    }
+
+    function registrarAlteracaoAtributo(campoId) {
+        const input = document.getElementById(campoId);
+        const novoBase = parseInt(input.value) - (bonusRaca[campoId] || 0);
+        input.setAttribute("data-base", novoBase >= 0 ? novoBase : 0);
+        atualizarAtributosVisuais();
+        modificarPontos();
+    }
+
+    window.onload = () => {
+        const atributos = document.querySelectorAll('.atributos input[type="number"]');
+        atributos.forEach(input => {
+            if (!input.hasAttribute('data-base')) {
+                input.setAttribute('data-base', input.value || "0");
+            }
+        });
+        atualizarAtributosVisuais();
+        atualizarValores();
+        modificarPontos();
+    };
+
+    function atualizarVidaEnergia() {
+        const nivel = parseInt(document.getElementById("nivel").value) || 1;
+
+        // Recalcular vida/energia totais com base no nível
+        let vida = 0, energia = 0;
+        for (let i = 1; i <= nivel; i++) {
+            if (i <= 5) { vida += 3; energia += 2; }
+            else if (i <= 10) { vida += 7; energia += 3; }
+            else if (i <= 15) { vida += 10; energia += 5; }
+            else if (i <= 20) { vida += 16; energia += 8; }
+            else if (i <= 25) { vida += 20; energia += 12; }
+            else if (i <= 30) { vida += 24; energia += 20; }
+        }
+
+        // Somar bônus de raça
+        vida += bonusRaca.vida || 0;
+        energia += bonusRaca.energia || 0;
+
+        // Obter os gastos
+        const dano = parseInt(document.getElementById("danoSofrido").value) || 0;
+        const gasto1 = parseInt(document.getElementById("gasto1").value) || 0;
+        //const gasto2 = parseInt(document.getElementById("gasto2").value) || 0;
+        const gasto3 = parseInt(document.getElementById("gasto3").value) || 0;
+
+        // Atualizar os valores finais
+        document.getElementById("vida").value = Math.max(0, vida - dano);
+        document.getElementById("energia").value = Math.max(0, energia - gasto1);
+        //document.getElementById("stamina").value = Math.max(0, (energia * 3) - gasto2);
+
+        // Fonte de energia: metade da energia restante após o gasto (apenas para Cyborg)
+        const raca = document.getElementById("raca").value;
+        let fonteEnergia = 0;
+
+        if (raca === 'Cyborg') {
+            const energiaAtual = Math.max(0, energia - gasto1);
+            fonteEnergia = Math.floor(energiaAtual / 2);
+        }
+
+        document.getElementById("stamina2").value = Math.max(0, fonteEnergia - gasto3);
+    }
+
+    function atualizarTotais() {
+        const mapa = [
+            { nome: 'Força', base: 'forca', haki: 'haki1', fruta: 'poder1', extra: 'extr1', total: 'soma1' },
+            { nome: 'Constituição', base: 'constituicao', haki: 'haki2', fruta: 'poder2', extra: 'extra2', total: 'soma2' },
+            { nome: 'Destreza', base: 'destreza', haki: 'haki5', fruta: 'poder3', extra: 'extra3', total: 'soma3' },
+            { nome: 'Velocidade', base: 'velocidade', haki: 'haki6', fruta: 'poder4', extra: 'extra4', total: 'soma4' },
+            { nome: 'Dano', base: 'dano', haki: 'ehaki4', fruta: 'poder5', extra: 'extra5', total: 'soma5' },
+            { nome: 'Armadura', base: 'armadura', haki: 'haki3', fruta: 'poder6', extra: 'extra6', total: 'soma6' },
+            { nome: 'Iniciativa', base: 'iniciativa', haki: null, fruta: 'poder7', extra: 'extra7', total: 'soma7' },
+            { nome: 'Sabedoria', base: 'sabedoria', haki: null, fruta: 'poder8', extra: 'extra8', total: 'soma8' },
+            { nome: 'Percepção', base: 'percepcao', haki: 'haki7', fruta: 'poder9', extra: 'extra9', total: 'soma9' },
+            { nome: 'Espírito', base: 'espirito', haki: null, fruta: 'poder10', extra: 'extra10', total: 'soma10' },
+            { nome: 'Concentração', base: 'concentracao', haki: null, fruta: 'poder11', extra: 'extra11', total: 'soma11' },
+            { nome: 'Precisão', base: 'precisao', haki: 'haki8', fruta: 'poder12', extra: 'extra12', total: 'soma12' },
+            { nome: 'Recuperação', base: 'recuperacao', haki: null, fruta: 'poder13', extra: 'extra13', total: 'soma13' },
+            { nome: 'Nado', base: 'nado', haki: null, fruta: 'poder14', extra: 'extra14', total: 'soma14' },
+            { nome: 'Voo', base: 'voo', haki: null, fruta: 'poder15', extra: 'extra15', total: 'soma15' },
+        ];
+
+        mapa.forEach(campo => {
+            const base = parseInt(document.getElementById(campo.base)?.value) || 0;
+            const haki = campo.haki ? parseInt(document.getElementById(campo.haki)?.value) || 0 : 0;
+            const fruta = parseInt(document.getElementById(campo.fruta)?.value) || 0;
+            const extra = parseInt(document.getElementById(campo.extra)?.value) || 0;
+
+            const total = base + haki + fruta + extra;
+
+            const span = document.getElementById(campo.total);
+            if (span) span.textContent = total;
+        });
+    }
+
+    function distribuirHaki() {
+      const distribuir = (grau, foco, id1, id2) => {
+        grau = Math.min(parseInt(grau) || 0, 30);
+        let pontosFoco = 0;
+        let pontosOutro = 0;
+    
+        for (let i = 1; i <= grau; i++) {
+          if (i <= 5) {
+            pontosFoco += 3;
+            pontosOutro += 1;
+          } else if (i <= 10) {
+            pontosFoco += 4;
+            pontosOutro += 2;
+          } else if (i <= 15) {
+            pontosFoco += 5;
+            pontosOutro += 3;
+          } else if (i <= 20) {
+            pontosFoco += 7;
+            pontosOutro += 4;
+          } else if (i <= 25) {
+            pontosFoco += 9;
+            pontosOutro += 4;
+          } else if (i <= 30) {
+            pontosFoco += 12;
+            pontosOutro += 6;
+          }
+        }
+    
+        document.getElementById(foco).value = pontosFoco;
+        const outro = foco === id1 ? id2 : id1;
+        document.getElementById(outro).value = pontosOutro;
+      };
+  
+      // PERCEPÇÃO
+      distribuir(
+        document.getElementById("grauPercepcao").value,
+        document.getElementById("focoPercepcao").value,
+        "premonicao",
+        "previsao"
+      );
+  
+      // ARMAMENTO
+      distribuir(
+        document.getElementById("grauArmamento").value,
+        document.getElementById("focoArmamento").value,
+        "ofensivo",
+        "defensivo"
+      );
+  
+      // REI
+      distribuir(
+        document.getElementById("grauRei").value,
+        document.getElementById("focoRei").value,
+        "ordem",
+        "presenca"
+      );
+  
+      // VER O FUTURO (Percepção)
+      const grauPercepcao = parseInt(document.getElementById("grauPercepcao").value) || 0;
+      if (grauPercepcao >= 26) {
+        const premonicao = parseInt(document.getElementById("premonicao").value) || 0;
+        const previsao = parseInt(document.getElementById("previsao").value) || 0;
+        document.getElementById("verFuturo").value = premonicao + previsao;
+        document.getElementById("verFuturo").readOnly = true;
+      } else {
+        document.getElementById("verFuturo").value = "";
+        document.getElementById("verFuturo").readOnly = false;
+      }
+  
+      // AVANÇADO ARMAMENTO
+      const grauArmamento = parseInt(document.getElementById("grauArmamento").value) || 0;
+      if (grauArmamento >= 26) {
+        const ofensivo = parseInt(document.getElementById("ofensivo").value) || 0;
+        const defensivo = parseInt(document.getElementById("defensivo").value) || 0;
+        document.getElementById("avancadoArmamento").value = ofensivo + defensivo;
+        document.getElementById("avancadoArmamento").readOnly = true;
+      } else {
+        document.getElementById("avancadoArmamento").value = "";
+        document.getElementById("avancadoArmamento").readOnly = false;
+      }
+  
+      // AVANÇADO REI
+      const grauRei = parseInt(document.getElementById("grauRei").value) || 0;
+      if (grauRei >= 26) {
+        const ordem = parseInt(document.getElementById("ordem").value) || 0;
+        const presenca = parseInt(document.getElementById("presenca").value) || 0;
+        document.getElementById("avancadoRei").value = ordem + presenca;
+        document.getElementById("avancadoRei").readOnly = true;
+      } else {
+        document.getElementById("avancadoRei").value = "";
+        document.getElementById("avancadoRei").readOnly = false;
+      }
+    }
+
+    function rollDice() {
+        const input = document.getElementById('diceInput').value.replace(/\s+/g, '');
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+
+        const parts = input.split(/(?=[+-])/); // separa por + ou - mantendo os sinais
+        let total = 0;
+        let log = [];
+
+        parts.forEach(part => {
+            const match = part.match(/^([+-]?)(\d*)d(\d+)$/i); // Ex: +2d6
+            if (match) {
+                const sign = match[1] === '-' ? -1 : 1;
+                const count = parseInt(match[2]) || 1;
+                const sides = parseInt(match[3]);
+
+                for (let i = 0; i < count; i++) {
+                    const roll = Math.floor(Math.random() * sides) + 1;
+                    total += roll * sign;
+                    log.push(`${sign < 0 ? '-' : ''}d${sides}: ${roll}`);
+                }
+            } else {
+                // É apenas um número (ex: +3 ou -5)
+                const value = parseInt(part);
+                if (!isNaN(value)) {
+                    total += value;
+                    log.push(`Mod: ${value}`);
+                } else {
+                    log.push(`⚠️ Entrada inválida: ${part}`);
+                }
+            }
+        });
+
+        resultDiv.innerHTML = `
+            <strong>Rolagens:</strong><br>${log.join('<br>')}<br><br>
+            <strong>Total:</strong> ${total}
+        `;
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const input = document.getElementById("diceInput");
+        input.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // evita o envio de formulário, se houver
+                rollDice();
+            }
+        });
+    });
+
+    window.onload = () => {
+        const atributos = document.querySelectorAll('.atributos input[type="number"]');
+        atributos.forEach(input => {
+            if (!input.hasAttribute('data-base')) {
+                input.setAttribute('data-base', input.value || "0");
+            }
+        });
+
+        atualizarAtributosVisuais();
+        atualizarValores();
+        modificarPontos();
+    };
+</script>
+
+<script>
+    const tabela = document.getElementById("tabelaAkuma");
+
+    for (let i = 0; i < 8; i++) {
+        const row = document.createElement("tr");
+
+        // Coluna 1: Componente (texto)
+        const td1 = document.createElement("td");
+        const inputTexto = document.createElement("input");
+        inputTexto.type = "text";
+        td1.appendChild(inputTexto);
+
+        // Coluna 2: Base (número)
+        const td2 = document.createElement("td");
+        const inputBase = document.createElement("input");
+        inputBase.type = "number";
+        inputBase.min = "0";
+        inputBase.classList.add("baseAkuma");
+        inputBase.oninput = atualizarPontosAkuma;
+        td2.appendChild(inputBase);
+
+        // Coluna 3: Valor (número)
+        const td3 = document.createElement("td");
+        const inputValor = document.createElement("input");
+        inputValor.type = "number";
+        inputValor.min = "0";
+        inputValor.classList.add("valorAkuma");
+        inputValor.oninput = atualizarPontosAkuma;
+        td3.appendChild(inputValor);
+
+        // Coluna 4: Soma (readonly)
+        const td4 = document.createElement("td");
+        const inputSoma = document.createElement("input");
+        inputSoma.type = "number";
+        inputSoma.readOnly = true;
+        inputSoma.classList.add("somaAkuma");
+        td4.appendChild(inputSoma);
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+        row.appendChild(td4);
+        tabela.appendChild(row);
+    }
+
+    function calcularPontosPorNivel(nivel) {
+        let pontos = 0;
+        for (let i = 2; i <= nivel; i++) {
+            if (i >= 2 && i <= 5) pontos += 1;
+            else if (i >= 6 && i <= 10) pontos += 2;
+            else if (i >= 11 && i <= 15) pontos += 3;
+            else if (i >= 16 && i <= 20) pontos += 4;
+            else if (i >= 21 && i <= 25) pontos += 5;
+            else if (i >= 26 && i <= 30) pontos += 10;
+        }
+        return pontos;
+    }
+
+    function atualizarPontosAkuma() {
+        const grau = parseInt(document.getElementById("grauAkuma").value) || 0;
+        const totalPontos = calcularPontosPorNivel(grau);
+
+        const camposBase = document.querySelectorAll(".baseAkuma");
+        const camposValor = document.querySelectorAll(".valorAkuma");
+        const camposSoma = document.querySelectorAll(".somaAkuma");
+
+        let usados = 0;
+
+        camposValor.forEach((inputValor, index) => {
+            const base = parseInt(camposBase[index].value) || 0;
+            const valor = parseInt(inputValor.value) || 0;
+            usados += valor;
+
+            const soma = base + valor;
+            camposSoma[index].value = soma;
+        });
+
+        const restantes = totalPontos - usados;
+        const display = document.getElementById("pontosRestantesAkuma");
+        display.textContent = `Pontos restantes: ${restantes}`;
+
+        display.style.color = restantes < 0 ? "red" : "green";
+    }
+</script>
+
+<script>
+  // Carregar imagem salva ao abrir a ficha
+  window.addEventListener('load', function () {
+    const imagemSalva = localStorage.getItem('imagemPersonagem');
+    if (imagemSalva) {
+      const preview = document.getElementById('preview-imagem');
+      preview.src = imagemSalva;
+      preview.style.display = 'block';
+    }
+  });
+
+  // Salvar imagem no localStorage ao selecionar
+  document.getElementById('upload-imagem').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = document.getElementById('preview-imagem');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+
+      localStorage.setItem('imagemPersonagem', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+
+<script>
+    function construirTabelaPericias() {
+      const tbody = document.getElementById("pericias-body");
+      for (let i = 0; i < 20; i++) {
+        const linha = document.createElement("tr");
+
+        const tdNome = document.createElement("td");
+        const inputNome = document.createElement("input");
+        inputNome.type = "text";
+        tdNome.appendChild(inputNome);
+
+        const tdPontos = document.createElement("td");
+        const inputPontos = document.createElement("input");
+        inputPontos.type = "number";
+        inputPontos.oninput = modificarPontos;
+        tdPontos.appendChild(inputPontos);
+
+        linha.appendChild(tdNome);
+        linha.appendChild(tdPontos);
+        tbody.appendChild(linha);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      construirTabelaPericias();
+      carregarFicha();
+    });
+
+    function resetarFicha() {
+      if (confirm("Tem certeza que deseja apagar a ficha?")) {
+        // localStorage.removeItem("fichaPersonagem");  ← agora controlado no ficha.js
+        location.reload();
+      }
+      // localStorage.removeItem('imagemPersonagem');    ← agora controlado no ficha.js
+      document.getElementById('preview-imagem').src = '';
+      document.getElementById('preview-imagem').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

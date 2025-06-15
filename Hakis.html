@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Haki</title>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+  fieldset {
+    border: 1px solid #d2b48c; /* marrom claro */
+    padding: 1em;
+    margin-bottom: 1.5em;
+    background-color: #fffaf0; /* creme suave */
+    border-radius: 10px;
+  }
+
+  legend {
+    font-weight: bold;
+    color: #a0522d; /* marrom claro */
+    padding: 0 0.5em;
+    font-size: 1.1em;
+    font-family: 'Georgia', serif;
+  }
+
+  label {
+    display: block;
+    margin-top: 0.6em;
+    font-weight: bold;
+    color: #8b5e3c; /* tom quente e claro */
+    font-family: 'Georgia', serif;
+  }
+
+  .descricao {
+    margin-left: 1.5em;
+    font-style: italic;
+    color: #a67b5b;
+    margin-bottom: 0.8em;
+    font-size: 0.95em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+    background-color: #fffdf7; /* quase branco */
+    border: 1px solid #e3cba5;
+    font-family: 'Georgia', serif;
+  }
+
+  th, td {
+    border: 1px solid #e3cba5;
+    padding: 0.6em;
+    text-align: center;
+    color: #6b4c32;
+  }
+
+  th {
+    background-color: #f5e2c8;
+    font-weight: bold;
+  }
+
+  h3 {
+    margin-top: 2em;
+    color: #a47148;
+    font-family: 'Georgia', serif;
+    border-bottom: 2px solid #d2b48c;
+    padding-bottom: 0.3em;
+  }
+</style>
+</head>
+<body>
+    <h1>Haki</h1>
+
+    <section class="secao-haki">
+      <!-- Observação -->
+      <fieldset>
+        <legend>Observação / Nível (MP)</legend>
+
+        <label>
+          <input type="checkbox" name="haki-observacao" value="premonicao">
+          Premonição
+        </label>
+        <p class="descricao">
+          Aumenta percepção e esquiva com destreza/velocidade. Detecção = percepção + haki.
+        </p>
+
+        <label>
+          <input type="checkbox" name="haki-observacao" value="previsao">
+          Previsão
+        </label>
+        <p class="descricao">
+          Aumenta a iniciativa (haki + iniciativa). Previsão de até 1 turno à frente. Área limitada (½ haki).
+        </p>
+
+        <label>
+          <input type="checkbox" name="despertar-observacao" value="previsao-futuro">
+          # Previsão Futuro (Despertar)
+        </label>
+      </fieldset>
+
+      <!-- Armamento -->
+      <fieldset>
+        <legend>Armamento / Nível (ST)</legend>
+
+        <label>
+          <input type="checkbox" name="haki-armamento" value="ofensivo">
+          Ofensivo
+        </label>
+        <p class="descricao">
+          Aumenta dano físico e atinge logias. Potência em armas e dano interno. Somente testes de dano/resistência.
+        </p>
+
+        <label>
+          <input type="checkbox" name="haki-armamento" value="defensivo">
+          Defensivo
+        </label>
+        <p class="descricao">
+          Aumenta constituição como armadura natural. Protege armaduras físicas e até a alma com alto espírito.
+        </p>
+
+        <label>
+          <input type="checkbox" name="despertar-armamento" value="embutir">
+          # Embutir (Despertar)
+        </label>
+      </fieldset>
+
+      <!-- Rei -->
+      <fieldset>
+        <legend>Rei / Nível (MP)</legend>
+
+        <label>
+          <input type="checkbox" name="haki-rei" value="ordem">
+          Ordem
+        </label>
+        <p class="descricao">
+          Aumenta dano ou defesa (conforme especialidade). Rompe armaduras. Se conecta ao armamento ofensivo/defensivo.
+        </p>
+
+        <label>
+          <input type="checkbox" name="haki-rei" value="presenca">
+          Presença
+        </label>
+        <p class="descricao">
+          Pressão espiritual. Pode derrubar inimigos com espírito menor. Causa penalidade por diferença de grau.
+        </p>
+
+        <label>
+          <input type="checkbox" name="despertar-rei" value="avancado">
+          # Avançado (Despertar)
+        </label>
+      </fieldset>
+
+      <!-- Tabela de Presença -->
+      <h3>Presença / Mínimo de Espírito</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Grau</th>
+            <th>Presença</th>
+            <th>Mín. Espírito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>G1</td><td>20</td><td>15</td></tr>
+          <tr><td>G2</td><td>25</td><td>20</td></tr>
+          <tr><td>G3</td><td>35</td><td>25</td></tr>
+          <tr><td>G4</td><td>45</td><td>35</td></tr>
+          <tr><td>G5</td><td>60</td><td>45</td></tr>
+          <tr><td>G6</td><td>120</td><td>60</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Choque de Hakis -->
+      <h3>Choque entre Hakis</h3>
+      <p><strong>Ordem:</strong> Pode amplificar ou anular o haki do oponente. Perdedores sofrem dano real.</p>
+      <p><strong>Presença:</strong> A soma dos valores base rebate nos usuários e aliados. Quem não atingir o valor, desmaia.</p>
+
+      <!-- Haki Avançado -->
+      <h3>Haki Avançado</h3>
+      <p>Concede +60 pontos distribuídos entre seu Haki forte e fraco. Apenas os correspondentes são somados.</p>
+
+      <!-- Custo de Energia -->
+      <h3>Custo de Pontos de Energia</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Grau</th>
+            <th>Golpes/Técnicas</th>
+            <th>Manutenção por Volta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>G1</td><td>3 PE</td><td>+1 PE</td></tr>
+          <tr><td>G2</td><td>5 PE</td><td>+2 PE</td></tr>
+          <tr><td>G3</td><td>8 PE</td><td>+2 PE</td></tr>
+          <tr><td>G4</td><td>12 PE</td><td>+3 PE</td></tr>
+          <tr><td>G5</td><td>16 PE</td><td>+3 PE</td></tr>
+          <tr><td>G6</td><td>17 PE</td><td>+4 PE</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    
+  <h1>Haki e Atributos Correspondentes</h1>
+
+  <section>
+    <h2>Observação / Nível: (mp)</h2>
+    <form class="checkbox-group">
+      <label><input type="checkbox" name="observacao" value="premonicao" /> Premonição</label><br />
+      <label><input type="checkbox" name="observacao" value="previsao" /> Previsão</label><br />
+      <small># previsão futuro (despertar)</small>
+    </form>
+  </section>
+
+  <section>
+    <h2>Armamento / Nível: (st)</h2>
+    <form class="checkbox-group">
+      <label><input type="checkbox" name="armamento" value="ofensivo" /> Ofensivo</label><br />
+      <label><input type="checkbox" name="armamento" value="defensivo" /> Defensivo</label><br />
+      <small># embutir (despertar)</small>
+    </form>
+  </section>
+
+  <section>
+    <h2>Rei / Nível: (mp)</h2>
+    <form class="checkbox-group">
+      <label><input type="checkbox" name="rei" value="ordem" /> Ordem</label><br />
+      <label><input type="checkbox" name="rei" value="presenca" /> Presença</label><br />
+      <small># avançado (despertar)</small>
+    </form>
+  </section>
+
+  <section>
+    <h2>Atributos Correspondentes ao Haki</h2>
+
+    <div class="atributos-bloco">
+      <h3>Observação:</h3>
+      <ul class="atributos-list">
+        <li><strong>Premonição</strong> = percepção / destreza ou velocidade</li>
+        <li><strong>Previsão</strong> = precisão / iniciativa</li>
+      </ul>
+    </div>
+
+    <div class="atributos-bloco">
+      <h3>Armamento:</h3>
+      <ul class="atributos-list">
+        <li><strong>Ofensivo</strong> = força</li>
+        <li><strong>Defensivo</strong> = constituição</li>
+      </ul>
+    </div>
+
+    <div class="atributos-bloco">
+      <h3>Rei:</h3>
+      <ul class="atributos-list">
+        <li><strong>Ordem</strong> = espírito / iniciativa</li>
+        <li><strong>Presença</strong> = espírito / concentração</li>
+      </ul>
+    </div>
+
+    <br><br>
+    <a href="home.html">Voltar à Home</a>
+</body>
+</html>

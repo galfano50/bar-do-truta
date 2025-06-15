@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro e Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+</head>
+<body>
+    <div id="mensagem" style="margin-top: 10px; text-align:center;"></div>
+
+    <div class="container">
+        <h2>Registro</h2>
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Senha">
+        <button id="register-btn">Registrar</button>
+
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Senha">
+        <button id="login-btn">Entrar</button>
+    </div>
+
+    <script type="module">
+        // Adiciona eventos aos botões
+        import { register, login } from './js/auth.js';
+
+        document.getElementById("register-btn").addEventListener("click", () => {
+            const email = document.getElementById("register-email").value;
+            const password = document.getElementById("register-password").value;
+            register(email, password);
+        });
+
+        document.getElementById("login-btn").addEventListener("click", () => {
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+            login(email, password);
+        });
+    </script>
+</body>
+</html>

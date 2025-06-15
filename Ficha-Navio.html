@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ficha de Navio</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: #0c0c0c;
+      color: #f2f2f2;
+      font-family: 'Georgia', serif;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #ffd700;
+      border-bottom: 1px solid #555;
+      padding-bottom: 5px;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    ul {
+      list-style: square;
+      margin-left: 20px;
+    }
+    .compartimentos {
+      margin-left: 20px;
+    }
+    .navio {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ficha de Navio</h1>
+
+  <section>
+    <h2>Classes de Navios</h2>
+    <ul>
+      <li><strong>Jangada:</strong> 4 homens</li>
+      <li><strong>Pesqueiro:</strong> Capacidade 10 homens, fácil de manobrar</li>
+      <li><strong>Fragata:</strong> Capacidade 70 homens, +1d10 em teste de velocidade (HP: 50)</li>
+      <li><strong>Caravela:</strong> Capacidade 150 homens, 1 gigante, +1d20 teste de velocidade, +35% HP (HP: 100)</li>
+      <li><strong>Galeão:</strong> Capacidade 200 homens, 2 gigantes, +2d20 teste de velocidade, +30% HP, +25% revestimento (HP: 200)</li>
+      <li><strong>Guerra:</strong> Capacidade 500 homens, 4 gigantes, x2 HP, +35% revestimento (HP: 300)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Mastro e Velas (Velocidade)</h2>
+    <ul>
+      <li><strong>Áurica:</strong> 25 Deslocamento – 15.000.000 Berries</li>
+      <li><strong>Espinha:</strong> 50 Deslocamento – 400.000.000 Berries</li>
+      <li><strong>Platina:</strong> 75 Deslocamento – 800.000.000 Berries</li>
+      <li><strong>Bermudiana:</strong> 125 Deslocamento – 1.000.000.000 Berries</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Madeira (HP Base)</h2>
+    <ul>
+      <li><strong>Cedro:</strong> 120 HP – Apenas ferro e madeira | Caravela | 30.000 Berries</li>
+      <li><strong>Sucupira:</strong> 150 HP – Aceita revestimentos exceto Kairoseki | 1.080.000 Berries</li>
+      <li><strong>Pau-d'Arco:</strong> 170 HP – Aceita Kairoseki com ⅓ dos canhões | 3.000.000 Berries</li>
+      <li><strong>Adan:</strong> 200 HP – Suporta magia (MP: 400) | 10.000.000.000 Berries</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Revestimento (Armadura)</h2>
+    <ul>
+      <li><strong>Madeira:</strong> 25 Arm – 4 Canhões por lado – Fraco | 10.000 Berries</li>
+      <li><strong>Ferro:</strong> 65 Arm – 8 Canhões por lado – Médio e fraco | -10 Velocidade | 82.000 Berries</li>
+      <li><strong>Aço:</strong> 100 Arm – 15 Canhões por lado – Médio; 10 Canhões fortes | -25 Velocidade | 2.000.000 Berries</li>
+      <li><strong>Kairoseki:</strong> 200 Arm – 20 Canhões por lado – Qualquer tipo | -50 Velocidade | 10.000.000 Berries</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Canhões</h2>
+    <ul>
+      <li><strong>Lançador de Arpões:</strong> 30 Dano +4d20 – 80 Armadura | Alcance: 75 | +10 Teste | 75.000 Berries</li>
+      <li><strong>Canhão Superior:</strong> 35 Dano +3d20 – 40 Armadura | Alcance: 50 | +7 Teste | 50.000 Berries</li>
+      <li><strong>Canhão Aprimorado:</strong> 25 Dano +2d20 – 20 Armadura | Alcance: 25 | +5 Teste | 34.000 Berries</li>
+      <li><strong>Canhão Comum:</strong> 15 Dano +1d20 | Alcance: 25 | +4 Teste | 12.000 Berries</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Compartimentos dos Navios</h2>
+    <div class="navio"><strong>Jangada:</strong> Convés</div>
+    <div class="navio"><strong>Pesqueiro:</strong> Convés, Sala de ferramenta, Dormitório</div>
+    <div class="navio"><strong>Fragata:</strong> Convés, Aposento do capitão, Cozinha, Dormitório, Sala de máquinas, Sala de treinamento</div>
+    <div class="navio"><strong>Caravela:</strong> Convés, Aposento do capitão, Cozinha, Dormitório, Sala de máquinas, Sala de treinamento, Sala de tesouro, Sala de ferramenta</div>
+    <div class="navio"><strong>Galeão:</strong> Convés, Aposento do capitão, Biblioteca, Cela, Cozinha, Despensa, Dormitório, Enfermaria, Laboratório, Quarto de vigilância, Refeitório, Sala de máquinas, Sala de ferramenta, Sala de treinamento, Sala de tesouros</div>
+    <div class="navio"><strong>Guerra:</strong> Convés, Aposento do capitão, Biblioteca, Cela, Cozinha x3, Despensa x3, Dormitório x5, Enfermaria x2, Laboratório x2, Quarto de vigilância x2, Refeitório x5, Sala de máquinas x2, Sala de ferramenta x3, Sala de treinamento x2, Sala de tesouros x2</div>
+  </section>
+
+  <section>
+    <h2>Campo de Batalha Naval</h2>
+    <p>A cada 25 pontos de velocidade, o navio pode mover-se uma unidade no campo.</p>
+    <p>O alcance dos canhões é fixo, porém testes de precisão são feitos contra a velocidade do navio alvo.</p>
+    <pre>
+25
+25
+25
+25
+25
+25
+25
+25
+25
+25
+25
+25
+    </pre>
+  </section>
+
+</body>
+</html>

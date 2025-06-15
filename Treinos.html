@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Treinos - RPG</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 20px;
+    line-height: 1.5;
+  }
+  h1, h2, h3 {
+    color: #ffd700;
+  }
+  section {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+  th, td {
+    border: 1px solid #666;
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+  th {
+    background-color: #222;
+  }
+  p {
+    margin: 0.5rem 0;
+  }
+  .important {
+    color: #ff6347;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>Treinos</h1>
+
+<section>
+  <h2>Treino de XP</h2>
+  <p>Os treinos só são liberados a partir do momento que se libera o grau correspondente ao treino no seu nível de personagem:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Nível (N)</th>
+        <th>Pontos de Energia Gastos</th>
+        <th>Grau do Golpe</th>
+        <th>XP Ganha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 a 5</td><td>10</td><td>Grau 1</td><td>150 xp</td></tr>
+      <tr><td>6 a 10</td><td>20</td><td>Grau 2</td><td>1.000 xp</td></tr>
+      <tr><td>11 a 15</td><td>30</td><td>Grau 3</td><td>3.250 xp</td></tr>
+      <tr><td>16 a 20</td><td>40</td><td>Grau 4</td><td>6.500 xp</td></tr>
+      <tr><td>21 a 25</td><td>50</td><td>Grau 5</td><td>11.500 xp</td></tr>
+      <tr><td>26 a 30</td><td>60</td><td>Grau 6</td><td>80.000 xp</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Regra dos Pontos de Energia (P.E)</h2>
+  <p>Os pontos de energia determinam seu estado de condição física atual e o quanto se pode treinar técnicas novas e até aplicar durante uma luta.</p>
+
+  <h3>Tempo de recuperação natural:</h3>
+  <ul>
+    <li>10 pontos de energia se recuperam naturalmente em 6h dentro do jogo.</li>
+    <li>20 pontos de energia se recuperam naturalmente em 12h dentro do jogo.</li>
+    <li>30 pontos de energia se recuperam naturalmente em 24h dentro do jogo.</li>
+    <li>40 pontos de energia se recuperam naturalmente em 36h dentro do jogo.</li>
+    <li>50 pontos de energia se recuperam naturalmente em 48h dentro do jogo.</li>
+  </ul>
+
+  <h3>Recuperação por descanso:</h3>
+  <p>Caso a pessoa venha a tirar um período de descanso (dormir) para acelerar sua recuperação, o tempo necessário é reduzido pela metade.</p>
+
+  <h3>Recuperação por outros meios:</h3>
+  <p>O personagem pode possuir itens como bebidas, porções e até mesmo alguns alimentos que recuperam valores fixos de energia, sendo uma melhor saída para encurtar seu tempo de recuperação.</p>
+
+  <h3>Exaustão:</h3>
+  <p>Caso o personagem chegue a um estado de exaustão e mesmo assim permanecer ativo, e toda sua energia seja consumida e ele não possua meios para revitalizar, sofrerá a penalização da perda de <span class="important">-1 ponto fixo a cada hora forçada</span>.</p>
+
+  <h3>Um inimigo inesperado:</h3>
+  <p>Caso o personagem tenha realizado um treino a poucas horas e o seu período de recuperação total não tenha sido concluído e apareça uma visita inesperada, deve-se calcular o quanto foi recuperado de energia. Caso a divisão termine em número quebrado, arredonda-se para cima.</p>
+
+  <h3>Zoan:</h3>
+  <p>A maioria das akuma no mi do tipo Zoan possuem uma recuperação acelerada, entretanto muitas têm mais pontos de vida e seus pontos de energia são menores. Ainda assim, possuem vantagem em relação à durabilidade.</p>
+  <p>Os pontos de recuperação das Zoan não usam o dado adicional do seu Grau, somente os valores fixos, divididos igualmente entre o HP e os pontos de energia.</p>
+  <p>O grau atual da fruta determina em quantas voltas x2 se aplica a recuperação, contando a partir do Grau 2:</p>
+  <ul>
+    <li>G2: 5 voltas</li>
+    <li>G3: 6 voltas</li>
+    <li>G4: 7 voltas</li>
+    <li>G5: 8 voltas</li>
+  </ul>
+  <p>O Grau 6 é o despertar, passando a ser de 5 em 5 voltas aplicada a sua recuperação.</p>
+  <p>(Caso a divisão termine em número quebrado, arredonda-se para cima.)</p>
+  <p><span class="important">[Ciborgues: a energia extra não pode ser usada para treinos]</span></p>
+</section>
+
+<section>
+  <h2>Treino de Golpes e Técnicas</h2>
+  <p>Segue os tipos de treinos para golpes e técnicas:</p>
+  <ul>
+    <li>Golpes</li>
+    <li>Técnicas</li>
+    <li>Buff e Debuff</li>
+  </ul>
+  <p>O grau de técnicas determina quantos treinos são necessários para adquirir tal. Exemplo: um buff Grau 5 precisa de 5 treinos Grau 5.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nível (N)</th>
+        <th>Pontos de Energia Gastos</th>
+        <th>Grau do Golpe</th>
+        <th>XP Ganha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 a 5</td><td>10</td><td>Grau 1</td><td>75 xp</td></tr>
+      <tr><td>6 a 10</td><td>20</td><td>Grau 2</td><td>500 xp</td></tr>
+      <tr><td>11 a 15</td><td>30</td><td>Grau 3</td><td>1.125 xp</td></tr>
+      <tr><td>16 a 20</td><td>40</td><td>Grau 4</td><td>3.250 xp</td></tr>
+      <tr><td>21 a 25</td><td>50</td><td>Grau 5</td><td>7.250 xp</td></tr>
+      <tr><td>26 a 30</td><td>60</td><td>Grau 6</td><td>45.000 xp</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</body>
+</html>

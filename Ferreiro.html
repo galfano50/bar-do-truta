@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ferreiro - RPG</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f4f1ea;
+      color: #3b3a30;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #4a3c31;
+      border-bottom: 2px solid #8b7d6b;
+      padding-bottom: 6px;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    th, td {
+      border: 1px solid #c1bdb7;
+      padding: 8px 12px;
+      text-align: center;
+    }
+    th {
+      background-color: #8b7d6b;
+      color: #fff;
+    }
+    tbody tr:nth-child(odd) {
+      background-color: #e9e4d4;
+    }
+    section {
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+    }
+    p {
+      max-width: 900px;
+      margin-bottom: 16px;
+    }
+    .note {
+      background-color: #f9f5e9;
+      border-left: 6px solid #8b7d6b;
+      padding: 12px 20px;
+      margin-bottom: 25px;
+      font-style: italic;
+      color: #615943;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h1>Ferreiro</h1>
+
+    <h2>Materiais</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Armadura / Armas Pesado</th>
+          <th>Armadura / Armas Leve</th>
+          <th>Penalidade Velocidade (Armadura Pesada)</th>
+          <th>Penalidade Velocidade (Armadura Leve)</th>
+          <th>Grau</th>
+          <th>Dureza</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Pedra</td><td>2</td><td>1</td><td>- 0</td><td>- 0</td><td>G1</td><td>2</td></tr>
+        <tr><td>Couro</td><td>2</td><td>1</td><td>- 0</td><td>- 0</td><td>G1</td><td>2</td></tr>
+        <tr><td>Madeira</td><td>2</td><td>2</td><td>- 2</td><td>- 0</td><td>G2</td><td>2</td></tr>
+        <tr><td>Cobre</td><td>8</td><td>3</td><td>- 2</td><td>- 0</td><td>G2</td><td>3</td></tr>
+        <tr><td>Ferro</td><td>10</td><td>5</td><td>- 3</td><td>- 1</td><td>G3</td><td>5</td></tr>
+        <tr><td>Prata</td><td>12</td><td>6</td><td>- 4</td><td>- 2</td><td>G3</td><td>8</td></tr>
+        <tr><td>Ouro</td><td>15</td><td>8</td><td>- 6</td><td>- 3</td><td>G3</td><td>10</td></tr>
+        <tr><td>Aço</td><td>19</td><td>10</td><td>- 7</td><td>- 4</td><td>G4</td><td>15</td></tr>
+        <tr><td>Diamante</td><td>21</td><td>12</td><td>- 8</td><td>- 5</td><td>G4</td><td>20</td></tr>
+        <tr><td>Titânio</td><td>22</td><td>13</td><td>- 10</td><td>- 6</td><td>G4</td><td>25</td></tr>
+        <tr><td>Karan</td><td>23</td><td>14</td><td>- 11</td><td>- 7</td><td>G5</td><td>15</td></tr>
+        <tr><td>E. Dragão</td><td>28</td><td>15</td><td>- 10</td><td>- 6</td><td>G6</td><td>30</td></tr>
+        <tr><td>Kairoseki</td><td>25</td><td>14</td><td>- 13</td><td>- 10</td><td>G5</td><td>27</td></tr>
+        <tr><td>Poneglyph</td><td>30</td><td>15</td><td>- 15</td><td>- 12</td><td>G6</td><td>60</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      Apenas ferreiros a partir do <strong>G4 (Nível 20)</strong> da perícia podem adicionar pontos a suas armas e armaduras.<br/>
+      Apenas o mestre ferreiro pode adicionar aos atributos uma outra perícia como se fosse um atributo.<br/>
+      A soma de todos os itens que compõem uma armadura se usa o valor total distribuído entre os itens.<br/>
+      O seu grau define qual o material no qual você é capaz de manusear.<br/>
+      A dureza determina a quantidade de vezes na qual o item aguenta a diferença de dano (perdendo) até se quebrar totalmente. (Exceto em navios)
+    </div>
+  </section>
+
+</body>
+</html>

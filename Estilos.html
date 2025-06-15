@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estilos de Combate</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #1c1b18;
+      color: #f5f5dc;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      color: #d4af37;
+    }
+
+    details {
+      background-color: #2a2a24;
+      border: 1px solid #444;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #ffdd57;
+    }
+
+    ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.7rem;
+      line-height: 1.5;
+    }
+
+    .categoria {
+      font-size: 1.1rem;
+      color: #87cefa;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🗡️ Estilos de Combate</h1>
+
+  <details open>
+    <summary>Espadachim</summary>
+    <ul>
+      <li><strong>Rounnin:</strong> Penetração de materiais físicos comuns. <code>+1d10</code> no teste de dano.</li>
+      <li><strong>Espadachim:</strong> <code>-1d20</code> contra aço/titânio/karan/kairoseki. <code>+1d20</code> acerto com Destreza. (Pode lançar rajadas cortantes)</li>
+      <li><strong>Mestre Espadachim:</strong> Converte Velocidade ↔ Destreza nos testes de dano. <code>+2d20</code> contra acerto em Destreza. (Corta poderes de Akuma no Mi com espada e Haki apropriados)</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Sensor</summary>
+    <ul>
+      <li><strong>Sensor:</strong> Contra-ataque após defesa bem-sucedida. <code>+1d10</code> em golpes corpo a corpo.</li>
+      <li><strong>Guardião:</strong> Inimigo recebe status "Enfraquecido" após defesa.</li>
+      <li><strong>Warlord:</strong> Pode atacar com a defesa. <code>+2d20</code> testes físicos (exceto espirituais/gases/toque).</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Gunner</summary>
+    <ul>
+      <li><strong>Ranger:</strong> <code>+1d10</code> precisão. Dois tiros consecutivos com um único teste.</li>
+      <li><strong>Gunner:</strong> Balas de maior calibre. <code>+1d20</code> Percepção e <code>+1d20</code> Precisão.</li>
+      <li><strong>Sniper:</strong> <code>-2d20</code> armadura externa, <code>-1d20</code> Constituição do inimigo. <code>+2d20</code> Precisão (crítico = dano base).</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Boxer</summary>
+    <ul>
+      <li><strong>Combatente:</strong> Golpes corpo a corpo -2 energia. <code>+1d10</code> Destreza.</li>
+      <li><strong>Boxer:</strong> Esquiva bem-sucedida gera golpe limpo. <code>+1d20</code> Destreza (somente físico).</li>
+      <li><strong>Monge:</strong> Destreza → Força. <code>+2d20</code> dano. -4 energia para golpes G3 corpo (sem frutas).</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Haste</summary>
+    <ul>
+      <li><strong>Haste:</strong> Um ataque contra todos num raio. <code>+1d10</code> acerto com arma (Destreza).</li>
+      <li><strong>Lanceiro:</strong> Tenta desarmar com Destreza x Destreza. <code>+1d20</code> no teste.</li>
+      <li><strong>Zilong:</strong> Redireciona projéteis com teste de Destreza. <code>+2d20</code>. (Projétil compatível com arma)</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Haki</summary>
+    <ul>
+      <li>Escolha um Haki forte: recebe <code>+1d10</code> por grau.</li>
+      <li><code>-1d20</code> dano de usuários de Akuma no Mi.</li>
+      <li><code>+1d20</code> em testes de Haki contra habilidades de frutas espirituais.</li>
+      <li>Espírito base soma-se aos testes. Custo: 2 por volta (qualquer grau).</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Akuma no Mi</summary>
+    <ul>
+      <li><code>+1d10</code> por grau em habilidades (Logia/Zoan/Paramecia) - G1.</li>
+      <li><code>-1</code> energia, <code>+4</code> recuperação (Zoan+). <code>+1d20</code> testes (exceto Zoan) - G2.</li>
+      <li><strong>Logia:</strong> <code>+2d20</code> dano vs outras frutas. +2 turnos em status - G3.</li>
+      <li><strong>Zoan:</strong> <code>+2d20</code> recuperação. +1 turno recarga - G3.</li>
+      <li><strong>Paramecia:</strong> <code>+2d20</code> dano extra final - G3.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Rokushiki</summary>
+    <ul>
+      <li>Golpes de nível 3+: <code>+1d10</code> no atributo teste.</li>
+      <li>Combinar 2 Rokushikis: <code>+1d20</code> dano (atributos somados).</li>
+      <li><strong>Rokugan:</strong> -4 energia em todas. <code>+2d20</code> de dano.</li>
+    </ul>
+  </details>
+
+</body>
+</html>

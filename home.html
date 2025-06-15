@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar do Truta RPG</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Firebase -->
+    <script type="module" src="js/firebase-config.js"></script>
+
+    <style>
+        nav {
+            padding: 20px;
+            background: #f9f5f1;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 0;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav li {
+            position: relative;
+            background: #ffe6c2;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 12px 20px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            flex: 0 0 calc((100% / 5) - 12px);
+            margin-left: -20px;
+        }
+
+        nav li:nth-child(5n + 1) {
+            margin-left: 0;
+        }
+
+        nav li:hover {
+            background: #ffcc66;
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        nav li a {
+            text-decoration: none;
+            color: #4b3b2b;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: block;
+        }
+
+        nav li a:focus,
+        nav li a:hover {
+            outline: none;
+            color: #2c1f0e;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #ffe6c2;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #loading {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>RPG One Piece</h1>
+        <button id="logout-btn">Sair</button>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="Armas.html" target="_blank">Armas</a></li>
+            <li><a href="Jogabilidade.html" target="_blank">Jogabilidade</a></li>
+            <li><a href="Escala.html" target="_blank">Escala</a></li>
+            <li><a href="Estilos.html" target="_blank">Estilos</a></li>
+            <li><a href="Ficha.html" target="_blank">Ficha</a></li>
+            <li><a href="Ficha-Navio.html" target="_blank">Ficha-Navio</a></li>
+            <li><a href="Hakis.html" target="_blank">Hakis</a></li>
+            <li><a href="Individualidades.html" target="_blank">Individualidades</a></li>
+            <li><a href="PassagemNivel.html" target="_blank">Passagem de Nível</a></li>
+            <li><a href="Racas.html" target="_blank">Raças</a></li>
+            <li><a href="Ferreiro.html" target="_blank">Ferreiro</a></li>
+            <li><a href="Status.html" target="_blank">Status</a></li>
+            <li><a href="Treinos.html" target="_blank">Treinos</a></li>
+            <li><a href="Tecnicas.html" target="_blank">Técnicas</a></li>
+            <li><a href="AlaMestre.html" target="_blank">Ala Mestre</a></li>
+        </ul>
+    </nav>
+
+    <div id="loading">Verificando autenticação...</div>
+
+    <script type="module">
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { app } from "./js/firebase-config.js";
+
+        const auth = getAuth(app);
+        const loadingDiv = document.getElementById("loading");
+        const nav = document.querySelector("nav");
+        const header = document.querySelector("header");
+
+        // Inicialmente esconde tudo até autenticar
+        nav.style.display = "none";
+        header.style.display = "none";
+
+        // Verifica o estado da autenticação
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário autenticado -> exibe conteúdo
+                loadingDiv.style.display = "none";
+                nav.style.display = "block";
+                header.style.display = "flex";
+            } else {
+                // Usuário não autenticado -> redireciona
+                window.location.href = "index.html";
+            }
+        });
+
+        // Função de logout
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            }).catch((error) => {
+                console.error("Erro ao deslogar:", error.message);
+            });
+        });
+    </script>
+</body>
+</html>
