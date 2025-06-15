@@ -1,4 +1,4 @@
-// ficha.js corrigido e integrado com Firebase
+// ficha.js corrigido e completo para salvar/carregar todos os campos no Firebase
 import { app, db, auth } from './firebase-config.js';
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
@@ -83,7 +83,27 @@ window.salvarFicha = async function () {
     soma7: getTxt('soma7'), soma8: getTxt('soma8'), soma9: getTxt('soma9'),
     soma10: getTxt('soma10'), soma11: getTxt('soma11'), soma12: getTxt('soma12'),
     soma13: getTxt('soma13'), soma14: getTxt('soma14'), soma15: getTxt('soma15'),
-    bonusRaca: getTxt('bonusRaca')
+    bonusRaca: getTxt('bonusRaca'),
+
+    // Extras
+    extra1: getVal('extra1'), extra2: getVal('extra2'), extra3: getVal('extra3'), extra4: getVal('extra4'),
+    extra5: getVal('extra5'), extra6: getVal('extra6'), extra7: getVal('extra7'), extra8: getVal('extra8'),
+    extra9: getVal('extra9'), extra10: getVal('extra10'), extra11: getVal('extra11'), extra12: getVal('extra12'),
+    extra13: getVal('extra13'), extra14: getVal('extra14'), extra15: getVal('extra15'),
+
+    // Fruta
+    poder1: getVal('poder1'), poder2: getVal('poder2'), poder3: getVal('poder3'), poder4: getVal('poder4'),
+    poder5: getVal('poder5'), poder6: getVal('poder6'), poder7: getVal('poder7'), poder8: getVal('poder8'),
+    poder9: getVal('poder9'), poder10: getVal('poder10'), poder11: getVal('poder11'), poder12: getVal('poder12'),
+    poder13: getVal('poder13'), poder14: getVal('poder14'), poder15: getVal('poder15'),
+
+    // Haki detalhado
+    grauPercepcao: getVal('grauPercepcao'), focoPercepcao: getVal('focoPercepcao'),
+    premonicao: getVal('premonicao'), previsao: getVal('previsao'), verFuturo: getVal('verFuturo'),
+    grauArmamento: getVal('grauArmamento'), focoArmamento: getVal('focoArmamento'),
+    ofensivo: getVal('ofensivo'), defensivo: getVal('defensivo'), avancadoArmamento: getVal('avancadoArmamento'),
+    grauRei: getVal('grauRei'), focoRei: getVal('focoRei'),
+    ordem: getVal('ordem'), presenca: getVal('presenca'), avancadoRei: getVal('avancadoRei')
   };
 
   ficha.atributosBase = {};
