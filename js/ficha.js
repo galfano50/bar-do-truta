@@ -1,4 +1,4 @@
-// ficha.js corrigido com campos Embutir (haki1-8) e Extra (extra1-15)
+// ficha.js corrigido e integrado com Firebase
 import { app, db, auth } from './firebase-config.js';
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
@@ -83,25 +83,25 @@ window.salvarFicha = async function () {
     soma7: getTxt('soma7'), soma8: getTxt('soma8'), soma9: getTxt('soma9'),
     soma10: getTxt('soma10'), soma11: getTxt('soma11'), soma12: getTxt('soma12'),
     soma13: getTxt('soma13'), soma14: getTxt('soma14'), soma15: getTxt('soma15'),
-    bonusRaca: getTxt('bonusRaca')
+    bonusRaca: getTxt('bonusRaca'),
+    hakiAvancado: {
+      grauPercepcao: getVal('grauPercepcao'), focoPercepcao: getVal('focoPercepcao'), premonicao: getVal('premonicao'), previsao: getVal('previsao'), verFuturo: getVal('verFuturo'),
+      grauArmamento: getVal('grauArmamento'), focoArmamento: getVal('focoArmamento'), ofensivo: getVal('ofensivo'), defensivo: getVal('defensivo'), avancadoArmamento: getVal('avancadoArmamento'),
+      grauRei: getVal('grauRei'), focoRei: getVal('focoRei'), ordem: getVal('ordem'), presenca: getVal('presenca'), avancadoRei: getVal('avancadoRei')
+    },
+    fruta: {},
+    haki: {},
+    extra: {}
   };
 
-  // Embutir
-  for (let i = 1; i <= 8; i++) {
-    ficha[`haki${i}`] = getVal(`haki${i}`);
-  }
-
-  // Extras
-  for (let i = 1; i <= 15; i++) {
-    ficha[`extra${i}`] = getVal(`extra${i}`);
-  }
+  for (let i = 1; i <= 15; i++) ficha.fruta[`poder${i}`] = getVal(`poder${i}`);
+  for (let i = 1; i <= 8; i++) ficha.haki[`haki${i}`] = getVal(`haki${i}`);
+  for (let i = 1; i <= 15; i++) ficha.extra[`extra${i}`] = getVal(`extra${i}`);
 
   ficha.atributosBase = {};
   document.querySelectorAll('.atributos input[type="number"]').forEach(input => {
     ficha.atributosBase[input.id] = input.getAttribute('data-base') || '0';
   });
-
-  ficha.hakiDetalhado = Array.from(document.querySelectorAll('.Haki input[type="number"]')).map(i => i.value);
 
   ficha.pericias = Array.from(document.querySelectorAll("#pericias-body tr")).map(row => {
     const inputs = row.querySelectorAll("input");
@@ -131,6 +131,7 @@ async function carregarFicha(docId) {
     const dados = snap.data();
 
     for (const key in dados) {
+      if (["fruta", "haki", "extra", "hakiAvancado", "atributosBase", "pericias", "mochila", "akumaDetalhado"].includes(key)) continue;
       const el = document.getElementById(key);
       if (el && dados[key] !== undefined) {
         if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") {
@@ -141,13 +142,36 @@ async function carregarFicha(docId) {
       }
     }
 
+    if (dados.fruta) {
+      for (const key in dados.fruta) {
+        const el = document.getElementById(key);
+        if (el) el.value = dados.fruta[key];
+      }
+    }
+    if (dados.haki) {
+      for (const key in dados.haki) {
+        const el = document.getElementById(key);
+        if (el) el.value = dados.haki[key];
+      }
+    }
+    if (dados.extra) {
+      for (const key in dados.extra) {
+        const el = document.getElementById(key);
+        if (el) el.value = dados.extra[key];
+      }
+    }
+    if (dados.hakiAvancado) {
+      for (const key in dados.hakiAvancado) {
+        const el = document.getElementById(key);
+        if (el) el.value = dados.hakiAvancado[key];
+      }
+    }
     if (dados.atributosBase) {
       for (const id in dados.atributosBase) {
         const el = document.getElementById(id);
         if (el) el.setAttribute("data-base", dados.atributosBase[id]);
       }
     }
-
     if (dados.pericias) {
       const tbody = document.getElementById("pericias-body");
       tbody.innerHTML = "";
@@ -157,14 +181,12 @@ async function carregarFicha(docId) {
         tbody.appendChild(tr);
       });
     }
-
     if (dados.mochila) {
       const mochilas = document.querySelectorAll(".mochila-section textarea");
       dados.mochila.forEach((m, i) => {
         if (mochilas[i]) mochilas[i].value = m.nome;
       });
     }
-
     if (dados.akumaDetalhado) {
       const inputs = document.querySelectorAll('.akuma-no-mi input');
       dados.akumaDetalhado.forEach((v, i) => {
@@ -176,23 +198,6 @@ async function carregarFicha(docId) {
         if (el) el.textContent = pontosAkuma.split(':')[1];
       }
     }
-
-    // Carregar Embutir (haki1-8)
-    for (let i = 1; i <= 8; i++) {
-      const el = document.getElementById(`haki${i}`);
-      if (el && dados[`haki${i}`] !== undefined) {
-        el.value = dados[`haki${i}`];
-      }
-    }
-
-    // Carregar Extra (extra1-15)
-    for (let i = 1; i <= 15; i++) {
-      const el = document.getElementById(`extra${i}`);
-      if (el && dados[`extra${i}`] !== undefined) {
-        el.value = dados[`extra${i}`];
-      }
-    }
-
   } catch (e) {
     console.error("Erro ao carregar ficha:", e);
     alert("Erro ao carregar a ficha.");
