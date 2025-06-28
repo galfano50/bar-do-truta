@@ -1,63 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
 
 body {
     margin: 0;
-    font-family: 'Pirata One', cursive;
+    padding: 0;
+    font-family: 'IM Fell English SC', serif;
     background: url('../imagens/fundo-pirata.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-color: #1c130a;
-    color: #e8ddc7;
+    background-color: #12100e;
+    color: #e0d8c0;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 400px;
-    margin: 100px auto;
-    padding: 25px;
-    background: rgba(28, 19, 10, 0.96);
-    border: 3px solid #7a5c2e;
-    border-radius: 10px;
+    max-width: 480px;
+    margin: 80px auto;
+    padding: 30px 25px;
+    background: rgba(18, 15, 12, 0.95);
+    border: 4px solid #a67c52;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     text-align: center;
+    backdrop-filter: blur(3px);
 }
 
 .container h1,
 .container h2 {
-    color: #c2a878;
-    margin-bottom: 20px;
+    font-family: 'Pirata One', cursive;
+    color: #d4af7f;
+    font-size: 2em;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px #000;
 }
 
 input {
     display: block;
     width: 100%;
-    padding: 12px;
-    margin: 14px 0;
-    border-radius: 6px;
-    border: 2px solid #3b2b1b;
-    background-color: #2a1d12;
-    color: #e8ddc7;
+    padding: 14px;
+    margin: 16px 0;
+    border-radius: 8px;
+    border: 2px solid #3e2e1f;
+    background-color: #1f1a14;
+    color: #f2e9dc;
     font-size: 1em;
-    font-family: 'Pirata One', cursive;
+    font-family: 'IM Fell English SC', serif;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 input:focus {
     outline: none;
-    background-color: #38291c;
-    border-color: #7a5c2e;
+    background-color: #2b2218;
+    border-color: #c2a878;
 }
 
 button {
-    background: #7a5c2e;
-    color: #1c130a;
+    background: linear-gradient(to bottom, #a67c52, #8b5e34);
+    color: #1a1108;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-family: 'Pirata One', cursive;
-    border: none;
-    border-radius: 8px;
+    border: 2px solid #5a3d23;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 1.1em;
-    transition: all 0.3s ease;
+    font-size: 1.2em;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background: #5a4420;
-    color: #e8ddc7;
+    background: #5a3d23;
+    color: #f0e8d8;
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 40px 20px;
+        padding: 20px;
+    }
+
+    .container h1,
+    .container h2 {
+        font-size: 1.5em;
+    }
+
+    button {
+        font-size: 1em;
+    }
 }
