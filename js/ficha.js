@@ -1,3 +1,25 @@
+
+// Fallback seguro para atualizarAtributosVisuais se não estiver definido
+if (typeof atualizarAtributosVisuais !== "function") {
+  window.atualizarAtributosVisuais = function () {
+    // Atualiza campos base com bônus de raça (vida, energia etc.)
+    const vida = document.getElementById("vida");
+    const energia = document.getElementById("energia");
+    const stamina2 = document.getElementById("stamina2");
+
+    const baseVida = parseInt(vida?.getAttribute("data-base") || 0);
+    const baseEnergia = parseInt(energia?.getAttribute("data-base") || 0);
+    const baseStamina = parseInt(stamina2?.getAttribute("data-base") || 0);
+
+    const bonusVida = parseInt(window.bonusRaca?.vida || 0);
+    const bonusEnergia = parseInt(window.bonusRaca?.energia || 0);
+    const bonusStamina = parseInt(window.bonusRaca?.stamina || 0);
+
+    if (vida) vida.value = baseVida + bonusVida;
+    if (energia) energia.value = baseEnergia + bonusEnergia;
+    if (stamina2) stamina2.value = baseStamina + bonusStamina;
+  };
+}
 // ficha.js corrigido e integrado com Firebase
 import { app, db, auth } from './firebase-config.js';
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
@@ -22,10 +44,6 @@ onAuthStateChanged(auth, (user) => {
 });
 
 window.salvarFicha = async function () {
-  // 🔧 Atualiza campos visuais antes de salvar
-  atualizarAtributosVisuais?.();
-  atualizarValores?.();
-  modificarPontos?.();
   const id = document.getElementById('personagemId')?.value.trim();
   if (!id || !currentUser) return alert("Informe o ID do personagem e esteja logado.");
 
@@ -146,15 +164,12 @@ async function carregarFicha(docId) {
       }
     }
 
-    // ✅ CORREÇÃO: aplicar bônus de raça após carregar a raça
-    if (dados.raca) aplicarRaca();
-
-    if (dados.fruta) {
+    // ✅ CORREÇÃO: aplicar bônus de raça após carregar a raçaif (dados.fruta) {
       for (const key in dados.fruta) {
         const el = document.getElementById(key);
         if (el) el.value = dados.fruta[key];
       }
-    }
+  
     if (dados.haki) {
       for (const key in dados.haki) {
         const el = document.getElementById(key);
@@ -174,11 +189,17 @@ async function carregarFicha(docId) {
       }
     }
     if (dados.atributosBase) {
-      for (const id in dados.atributosBase) {
-        const el = document.getElementById(id);
-        if (el) el.setAttribute("data-base", dados.atributosBase[id]);
-      }
-    }
+  for (const id in dados.atributosBase) {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute("data-base", dados.atributosBase[id]);
+  }
+  atualizarAtributosVisuais?.();
+  aplicarRaca?.();
+}
+    // Garante aplicação correta de atributos e bônus
+    atualizarAtributosVisuais?.();
+    aplicarRaca?.();
+
     if (dados.pericias) {
       const tbody = document.getElementById("pericias-body");
       tbody.innerHTML = "";
