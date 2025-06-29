@@ -142,6 +142,9 @@ async function carregarFicha(docId) {
       }
     }
 
+    // ✅ CORREÇÃO: aplicar bônus de raça após carregar a raça
+    if (dados.raca) aplicarRaca();
+
     if (dados.fruta) {
       for (const key in dados.fruta) {
         const el = document.getElementById(key);
