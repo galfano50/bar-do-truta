@@ -22,6 +22,10 @@ onAuthStateChanged(auth, (user) => {
 });
 
 window.salvarFicha = async function () {
+  // 🔧 Atualiza campos visuais antes de salvar
+  atualizarAtributosVisuais?.();
+  atualizarValores?.();
+  modificarPontos?.();
   const id = document.getElementById('personagemId')?.value.trim();
   if (!id || !currentUser) return alert("Informe o ID do personagem e esteja logado.");
 
