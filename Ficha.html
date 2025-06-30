@@ -286,6 +286,11 @@
                     <label>Armadura: <input type="number" id="extra6" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Iniciativa: <input type="number" id="extra7" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Sabedoria: <input type="number" id="extra8" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                </div>
+            </div>
+            <div class="coluna">
+              <div class="Extras2">
+                    <h3>Continuação</h3><br>
                     <label>Percepção: <input type="number" id="extra9" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Espírito: <input type="number" id="extra10" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Concentração: <input type="number" id="extra11" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
@@ -293,7 +298,7 @@
                     <label>Recuperação: <input type="number" id="extra13" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Nado: <input type="number" id="extra14" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Voo: <input type="number" id="extra15" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
-                </div>
+              </div>
             </div>
             <div class="coluna">
                 <div class="totais">
@@ -315,20 +320,20 @@
                     <p>Voo Total: <span id="soma15">0</span oninput="modificarPontos()"></p>
                 </div>
             </div>
-            <div class="coluna">
-                <div class="dice-roller">
-                    <h2>Rolador de Dados</h2>
-                    <input type="text" id="diceInput" placeholder="Ex: 1d10+5d20+3d6">
-                    <button type="button" onclick="rollDice()">Rolar</button>
-                    <div id="result" class="result" style="display: block;"></div>
-                </div>
-            </div>
+        </div>
+
+        <div class="dice-roller">
+            <h2>Rolador de Dados</h2>
+            <input type="text" id="diceInput" placeholder="Ex: 1d10+5d20+3d6">
+            <button type="button" onclick="rollDice()">Rolar</button>
+            <div id="result" class="result" style="display: block;"></div>
         </div>
 
         <div class="sobra flex-colunas">
             <div class="coluna">
               <div class="akuma-no-mi">
                   <h3>Akuma no mi</h3>
+                  <label>Nome: <input type="text"></label>
                   <label>Grau: <input type="number" id="grauAkuma" min="1" max="30" oninput="atualizarPontosAkuma()"></label>
                   <table id="tabelaAkuma">
                       <tr>
@@ -342,22 +347,6 @@
                   <p id="pontosRestantesAkuma">Pontos restantes: 0</p>
               </div>
             </div>
-            <div class="coluna">
-                <div class="mochila-section">
-                    <h3>Mochila</h3>
-                    <table>
-                        <script>
-                            for (let i = 0; i < 20; i++) {
-                                document.write(`
-                                    <tr>
-                                        <textarea oninput="autoResize(this)"></textarea>
-                                    </tr>
-                                `);
-                            }
-                        </script>
-                    </table>
-                </div> 
-            </div> 
         </div>
 
         <div class="Haki">
@@ -427,7 +416,7 @@
                         <thead>
                             <tr>
                                 <th>Perícia</th>
-                                <th>Pts</th>
+                                <th>Pontos</th>
                             </tr>
                         </thead>
                         <tbody id="pericias-body"></tbody>
@@ -462,7 +451,24 @@
                     <label>Golpes: <textarea id="golpes3"></textarea></label><br>
                 </div>
             </div>
-        </div>    
+        </div>  
+        
+        <div class="coluna">
+            <div class="mochila-section">
+                <h3>Mochila</h3>
+                <table>
+                    <script>
+                        for (let i = 0; i < 20; i++) {
+                            document.write(`
+                                <tr>
+                                    <textarea oninput="autoResize(this)"></textarea>
+                                </tr>
+                            `);
+                        }
+                    </script>
+                </table>
+            </div> 
+        </div> 
 
         <div class="botao-container">
           <label for="personagemId">ID do Personagem:</label>
@@ -1028,34 +1034,6 @@
 
         display.style.color = restantes < 0 ? "red" : "green";
     }
-</script>
-
-<script>
-  // Carregar imagem salva ao abrir a ficha
-  window.addEventListener('load', function () {
-    const imagemSalva = localStorage.getItem('imagemPersonagem');
-    if (imagemSalva) {
-      const preview = document.getElementById('preview-imagem');
-      preview.src = imagemSalva;
-      preview.style.display = 'block';
-    }
-  });
-
-  // Salvar imagem no localStorage ao selecionar
-  document.getElementById('upload-imagem').addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      const preview = document.getElementById('preview-imagem');
-      preview.src = e.target.result;
-      preview.style.display = 'block';
-
-      localStorage.setItem('imagemPersonagem', e.target.result);
-    };
-    reader.readAsDataURL(file);
-  });
 </script>
 
 <script>
