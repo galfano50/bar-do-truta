@@ -198,15 +198,29 @@ async function carregarFicha(docId) {
     // Garante aplicação correta de atributos e bônus
     atualizarAtributosVisuais?.();
     aplicarRaca?.();
-
+    
     if (dados.pericias) {
       const tbody = document.getElementById("pericias-body");
       tbody.innerHTML = "";
-      dados.pericias.forEach(p => {
+    
+      dados.pericias.forEach((p, idx) => {
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td><input value="${p.nome}"/></td><td><input value="${p.pontos}"/></td>`;
+        tr.innerHTML = `
+          <td><input class="pericia-nome"  value="${p.nome || ''}"></td>
+          <td><input class="pericia-att"   value="${p.att_atrelado || ''}"></td>
+          <td><input class="pericia-pontos" type="number" min="0" value="${p.pontos || 0}"></td>
+        `;
         tbody.appendChild(tr);
       });
+    
+      /* 🔄 Recalcula imediatamente após popular a tabela */
+      if (typeof recalcularPontosPericia === "function") {
+        recalcularPontosPericia();      // sua função “oficial”
+      } else {
+        // fallback: dispara evento input em cada novo campo de pontos
+        tbody.querySelectorAll('.pericia-pontos')
+             .forEach(el => el.dispatchEvent(new Event('input', { bubbles: true })));
+      }
     }
     if (dados.mochila) {
       const mochilas = document.querySelectorAll(".mochila-section textarea");
