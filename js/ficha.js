@@ -163,6 +163,7 @@ async function carregarFicha(docId) {
         }
       }
     }
+    // ✅ CORREÇÃO: aplicar bônus de raça após carregar a raçaif (dados.fruta) {
       for (const key in dados.fruta) {
         const el = document.getElementById(key);
         if (el) el.value = dados.fruta[key];
@@ -206,31 +207,6 @@ async function carregarFicha(docId) {
         tr.innerHTML = `<td><input value="${p.nome}"/></td><td><input value="${p.pontos}"/></td>`;
         tbody.appendChild(tr);
       });
-    }
-    if (dados.pericias) {
-      const tbody = document.getElementById("pericias-body");
-      tbody.innerHTML = "";
-    
-      dados.pericias.forEach(p => {
-        const tr = document.createElement("tr");
-        const tdNome = document.createElement("td");
-        const inputNome = document.createElement("input");
-        inputNome.type  = "text";
-        inputNome.value = p.nome || "";
-        tdNome.appendChild(inputNome);
-      
-        const tdPontos = document.createElement("td");
-        const inputPts = document.createElement("input");
-        inputPts.type  = "number";
-        inputPts.value = p.pontos || 0;
-      
-        inputPts.addEventListener("input", calcularPontosPericias);
-      
-        tdPontos.appendChild(inputPts);
-        tr.append(tdNome, tdPontos);
-        tbody.appendChild(tr);
-      });
-      calcularPontosPericias?.();
     }
     if (dados.mochila) {
       const mochilas = document.querySelectorAll(".mochila-section textarea");
