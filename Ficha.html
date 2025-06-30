@@ -21,8 +21,80 @@
         }
       });
     </script>
+    <script type="module">
+      import { storage } from './firebase-config.js';
+      import {
+        ref,
+        uploadBytes,
+        getDownloadURL
+      } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
+    
+      // Pré-visualização das imagens selecionadas
+      ["1", "2"].forEach(n => {
+        const input = document.getElementById(`upload-imagem${n}`);
+        const preview = document.getElementById(`preview-imagem${n}`);
+        input?.addEventListener("change", e => {
+          const file = e.target.files[0];
+          if (file) preview.src = URL.createObjectURL(file);
+        });
+      });
+    
+      // Função para subir imagens e retornar URLs
+      async function uploadImagens(docId) {
+        const urls = {};
+        for (const n of ["1", "2"]) {
+          const input = document.getElementById(`upload-imagem${n}`);
+          if (!input || !input.files[0]) continue;
+        
+          const file = input.files[0];
+          const storageRef = ref(storage, `fichas/${docId}/img${n}`);
+          await uploadBytes(storageRef, file);
+          urls[`img${n}`] = await getDownloadURL(storageRef);
+        }
+        return urls;
+      }
+    
+      // Função para carregar imagens do Firebase Storage ou do Firestore
+      async function carregarImagens(docId, dadosFicha) {
+        const mapping = { img1: "preview-imagem1", img2: "preview-imagem2" };
+        for (const campo in mapping) {
+          let url = dadosFicha?.imagens?.[campo];
+          if (!url) {
+            try {
+              url = await getDownloadURL(ref(storage, `fichas/${docId}/${campo}`));
+            } catch (e) {
+              console.warn(`Imagem ${campo} não encontrada no Storage.`);
+            }
+          }
+          if (url) {
+            const img = document.getElementById(mapping[campo]);
+            if (img) img.src = url;
+          }
+        }
+      }
+    
+      // Exporta globalmente as funções para serem usadas fora deste script
+      window.uploadImagens = uploadImagens;
+      window.carregarImagens = carregarImagens;
+    </script>
 </head>
 <style>
+    .imagens-personagem{
+      display:flex;
+      gap:1rem;              /* espaço entre as duas caixas */
+      flex-wrap:wrap;        /* quebra em telas pequenas */
+    }
+
+    .imagem-personagem{
+      flex:1 1 250px;        /* cresce mas não fica menor que 250 px */
+    }
+
+    .imagem-personagem img{
+      width:100%;
+      height:auto;
+      border:1px solid #666;
+      border-radius:6px;
+    }
     .imagem-personagem {
       text-align: center;
       margin: 20px auto;
@@ -154,10 +226,19 @@
 </style>
 <body>
     <div class="container">
-        <div class="imagem-personagem">
-          <label for="upload-imagem" class="label-imagem">Imagem do Personagem:</label><br>
-          <input type="file" id="upload-imagem" accept="image/*"><br><br>
-          <img id="preview-imagem" src="" alt="Prévia da imagem">
+        <div class="imagens-personagem">
+          <!-- Imagem 1 -->
+          <div class="imagem-personagem">
+            <label for="upload-imagem1" class="label-imagem">Imagem do Personagem 1:</label><br>
+            <input type="file" id="upload-imagem1" accept="image/*"><br><br>
+            <img id="preview-imagem1" src="" alt="Pré‑visualização 1">
+          </div>
+          <!-- Imagem 2 -->
+          <div class="imagem-personagem">
+            <label for="upload-imagem2" class="label-imagem">Imagem do Personagem 2:</label><br>
+            <input type="file" id="upload-imagem2" accept="image/*"><br><br>
+            <img id="preview-imagem2" src="" alt="Pré‑visualização 2">
+          </div>
         </div>
 
         <div class="header flex-colunas">
