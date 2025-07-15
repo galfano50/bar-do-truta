@@ -1079,18 +1079,7 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       construirTabelaPericias();
-      carregarFicha();
     });
-
-    function resetarFicha() {
-      if (confirm("Tem certeza que deseja apagar a ficha?")) {
-        // localStorage.removeItem("fichaPersonagem");  ← agora controlado no ficha.js
-        location.reload();
-      }
-      // localStorage.removeItem('imagemPersonagem');    ← agora controlado no ficha.js
-      document.getElementById('preview-imagem').src = '';
-      document.getElementById('preview-imagem').style.display = 'none';
-    }
 </script>
 
 </body>
