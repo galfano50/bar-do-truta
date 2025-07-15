@@ -161,8 +161,15 @@ window.salvarFicha = async function () {
   const fileInput = document.getElementById('upload-imagem');
   let urlImagem = '';
   if (fileInput && fileInput.files && fileInput.files[0]) {
-    urlImagem = await uploadImagem(id, fileInput.files[0]);
-    ficha.urlImagem = urlImagem;
+    try {
+      urlImagem = await uploadImagem(id, fileInput.files[0]);
+      ficha.urlImagem = urlImagem;
+      const urlInput = document.getElementById('urlImagem');
+      if (urlInput) urlInput.value = urlImagem;
+    } catch (e) {
+      alert("Erro ao fazer upload da imagem: " + (e.message || e));
+      return; // Não tenta salvar a ficha se o upload falhar
+    }
   } else if (ficha.urlImagem) {
     // Mantém a url se já existir
   }
@@ -267,6 +274,8 @@ async function carregarFicha(docId) {
         img.src = dados.urlImagem;
         img.style.display = 'block';
       }
+      const urlInput = document.getElementById('urlImagem');
+      if (urlInput) urlInput.value = dados.urlImagem;
     }
     // Corrigir: atualizar totais após carregar todos os campos
     if (typeof atualizarTotais === 'function') atualizarTotais();
