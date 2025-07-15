@@ -3,174 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar do Truta RPG</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>RPG One Piece - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap&family=Cardo:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+            font-family: 'Cardo', serif;
+            color: #2d3a4a;
+            overflow-x: hidden;
+        }
+        .header-modern {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.92);
+            box-shadow: 0 2px 16px 0 rgba(31,38,135,0.10);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 2.5vw;
+        }
+        .logo-modern {
+            font-family: 'Pirata One', cursive;
+            font-size: 2.2rem;
+            color: #4bb0e6;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px #b6e0f7;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .user-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #b6e0f7 40%, #4bb0e6 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            color: #2d3a4a;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #b6e0f7;
+        }
+        .logout-btn-modern {
+            background: none;
+            border: none;
+            color: #4bb0e6;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 0.3rem 1.2rem;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .logout-btn-modern:hover {
+            background: #b6e0f7;
+            color: #2d3a4a;
+        }
+        .dashboard {
+            margin-top: 110px;
+            padding: 2vw 4vw 4vw 4vw;
+            min-height: 80vh;
+        }
+        .dashboard-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: #4bb0e6;
+            letter-spacing: 1px;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .dashboard-card {
+            background: rgba(255,255,255,0.92);
+            border-radius: 1.2rem;
+            box-shadow: 0 4px 24px 0 rgba(31,38,135,0.10);
+            padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+            cursor: pointer;
+            border: 1.5px solid transparent;
+            position: relative;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px 0 #b6e0f7;
+            background: #e0f7fa;
+            border: 1.5px solid #4bb0e6;
+        }
+        .dashboard-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4bb0e6;
+            filter: drop-shadow(0 2px 6px #b6e0f7);
+        }
+        .dashboard-label {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #2d3a4a;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .header-modern { flex-direction: column; gap: 0.7rem; padding: 1rem 2vw; }
+            .dashboard { padding: 1vw 2vw 2vw 2vw; }
+            .dashboard-title { font-size: 1.4rem; }
+        }
+        /* Efeito de partículas sutil */
+        .particles {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
     <script type="module" src="js/firebase-config.js"></script>
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Cardo:wght@700&display=swap');
-
-    body {
-        background-color: #1c130a;
-        color: #e8ddc7;
-        font-family: 'Cardo', serif;
-        margin: 0;
-    }
-
-    nav {
-        padding: 20px;
-        background: #3a2b1a;
-        border-top: 4px solid #8b5e3c;
-        border-bottom: 4px solid #8b5e3c;
-        max-width: 960px;
-        margin: 0 auto;
-    }
-
-    nav ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px 0;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        justify-content: center;
-    }
-
-    nav li {
-        position: relative;
-        background: linear-gradient(145deg, #5b3a1e, #3a2412);
-        border: 2px solid #c2a87d;
-        border-radius: 12px;
-        box-shadow: 0 6px 10px rgba(0,0,0,0.4);
-        padding: 14px 24px;
-        font-weight: bold;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        flex: 0 0 calc((100% / 5) - 12px);
-        margin-left: -20px;
-    }
-
-    nav li:nth-child(5n + 1) {
-        margin-left: 0;
-    }
-
-    nav li:hover {
-        background: linear-gradient(145deg, #7a4e25, #50331c);
-        transform: translateY(-6px) scale(1.05);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        z-index: 10;
-    }
-
-    nav li a {
-        text-decoration: none;
-        color: #f0e6d2;
-        font-family: 'Cardo', serif;
-        font-size: 16px;
-        display: block;
-        text-align: center;
-    }
-
-    nav li a:focus,
-    nav li a:hover {
-        outline: none;
-        color: #ffe19c;
-    }
-
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 40px;
-        background-color: #2c1f0e;
-        color: #fff;
-        box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-        border-bottom: 3px solid #8b5e3c;
-        font-family: 'Pirata One', cursive;
-    }
-
-    header h1 {
-        font-size: 36px;
-        font-weight: normal;
-        color: #f5c16c;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-        margin: 0;
-        letter-spacing: 2px;
-    }
-
-    #loading {
-        text-align: center;
-        margin-top: 20px;
-        font-weight: bold;
-        font-family: 'Cardo', serif;
-        font-size: 18px;
-        color: #ffcc66;
-    }
-</style>
 </head>
 <body>
-
-    <header>
-        <h1>RPG One Piece</h1>
-        <button id="logout-btn">Sair</button>
+    <canvas class="particles"></canvas>
+    <header class="header-modern">
+        <div class="logo-modern">RPG One Piece</div>
+        <div class="user-info">
+            <span id="user-greeting" style="font-size:1.1rem;"></span>
+            <div class="user-avatar" id="user-avatar">?</div>
+            <button id="logout-btn" class="logout-btn-modern" title="Sair">Sair</button>
+        </div>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="Armas.html" target="_blank">Armas</a></li>
-            <li><a href="Jogabilidade.html" target="_blank">Jogabilidade</a></li>
-            <li><a href="Escala.html" target="_blank">Escala</a></li>
-            <li><a href="Estilos.html" target="_blank">Estilos</a></li>
-            <li><a href="Ficha.html" target="_blank">Ficha</a></li>
-            <li><a href="Ficha-Navio.html" target="_blank">Ficha-Navio</a></li>
-            <li><a href="Hakis.html" target="_blank">Hakis</a></li>
-            <li><a href="Individualidades.html" target="_blank">Individualidades</a></li>
-            <li><a href="PassagemNivel.html" target="_blank">Passagem de Nível</a></li>
-            <li><a href="Racas.html" target="_blank">Raças</a></li>
-            <li><a href="Ferreiro.html" target="_blank">Ferreiro</a></li>
-            <li><a href="Status.html" target="_blank">Status</a></li>
-            <li><a href="Treinos.html" target="_blank">Treinos</a></li>
-            <li><a href="Tecnicas.html" target="_blank">Técnicas</a></li>
-            <li><a href="AlaMestre.html" target="_blank">Ala Mestre</a></li>
-        </ul>
-    </nav>
-
-    <div id="loading">Verificando autenticação...</div>
-
+    <main class="dashboard">
+        <div class="dashboard-title text-center">Bem-vindo ao seu painel de aventura!</div>
+        <div class="dashboard-grid">
+            <a class="dashboard-card" href="Armas.html" target="_blank"><span class="dashboard-icon">⚔️</span><span class="dashboard-label">Armas</span></a>
+            <a class="dashboard-card" href="Jogabilidade.html" target="_blank"><span class="dashboard-icon">🎲</span><span class="dashboard-label">Jogabilidade</span></a>
+            <a class="dashboard-card" href="Escala.html" target="_blank"><span class="dashboard-icon">📏</span><span class="dashboard-label">Escala</span></a>
+            <a class="dashboard-card" href="Estilos.html" target="_blank"><span class="dashboard-icon">🥋</span><span class="dashboard-label">Estilos</span></a>
+            <a class="dashboard-card" href="Ficha.html" target="_blank"><span class="dashboard-icon">📄</span><span class="dashboard-label">Ficha</span></a>
+            <a class="dashboard-card" href="Ficha-Navio.html" target="_blank"><span class="dashboard-icon">⛵</span><span class="dashboard-label">Ficha-Navio</span></a>
+            <a class="dashboard-card" href="Hakis.html" target="_blank"><span class="dashboard-icon">✨</span><span class="dashboard-label">Hakis</span></a>
+            <a class="dashboard-card" href="Individualidades.html" target="_blank"><span class="dashboard-icon">🧬</span><span class="dashboard-label">Individualidades</span></a>
+            <a class="dashboard-card" href="PassagemNivel.html" target="_blank"><span class="dashboard-icon">🚀</span><span class="dashboard-label">Passagem de Nível</span></a>
+            <a class="dashboard-card" href="Racas.html" target="_blank"><span class="dashboard-icon">🐾</span><span class="dashboard-label">Raças</span></a>
+            <a class="dashboard-card" href="Ferreiro.html" target="_blank"><span class="dashboard-icon">⚒️</span><span class="dashboard-label">Ferreiro</span></a>
+            <a class="dashboard-card" href="Status.html" target="_blank"><span class="dashboard-icon">📊</span><span class="dashboard-label">Status</span></a>
+            <a class="dashboard-card" href="Treinos.html" target="_blank"><span class="dashboard-icon">🏋️</span><span class="dashboard-label">Treinos</span></a>
+            <a class="dashboard-card" href="Tecnicas.html" target="_blank"><span class="dashboard-icon">🌀</span><span class="dashboard-label">Técnicas</span></a>
+            <a class="dashboard-card" href="AlaMestre.html" target="_blank"><span class="dashboard-icon">👑</span><span class="dashboard-label">Ala Mestre</span></a>
+        </div>
+    </main>
     <script type="module">
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
         import { app } from "./js/firebase-config.js";
-
         const auth = getAuth(app);
-        const loadingDiv = document.getElementById("loading");
-        const nav = document.querySelector("nav");
-        const header = document.querySelector("header");
-
-        // Inicialmente esconde tudo até autenticar
-        nav.style.display = "none";
-        header.style.display = "none";
-
-        // Verifica o estado da autenticação
+        // Autenticação e saudação
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Usuário autenticado -> exibe conteúdo
-                loadingDiv.style.display = "none";
-                nav.style.display = "block";
-                header.style.display = "flex";
+                let name = user.displayName || user.email || "Usuário";
+                let firstLetter = name[0].toUpperCase();
+                document.getElementById("user-greeting").textContent = `Olá, ${name.split('@')[0]}`;
+                document.getElementById("user-avatar").textContent = firstLetter;
             } else {
-                // Usuário não autenticado -> redireciona
                 window.location.href = "index.html";
             }
         });
-
-        // Função de logout
         document.getElementById("logout-btn").addEventListener("click", () => {
             signOut(auth).then(() => {
                 window.location.href = "index.html";
             }).catch((error) => {
-                console.error("Erro ao deslogar:", error.message);
+                alert("Erro ao deslogar: " + error.message);
             });
         });
+        // Efeito de partículas sutil
+        const canvas = document.querySelector('.particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < 36; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.8 + 0.7,
+                    dx: (Math.random() - 0.5) * 0.2,
+                    dy: (Math.random() - 0.5) * 0.2,
+                    alpha: Math.random() * 0.18 + 0.08
+                });
+            }
+        }
+        createParticles();
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+                ctx.fillStyle = '#4bb0e6';
+                ctx.shadowColor = '#b6e0f7';
+                ctx.shadowBlur = 8;
+                ctx.fill();
+                ctx.restore();
+                p.x += p.dx;
+                p.y += p.dy;
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
     </script>
 </body>
 </html>

@@ -3,47 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <title>Ala do Mestre</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap&family=Cardo:wght@700&display=swap" rel="stylesheet">
   <script type="module" src="js/firebase-config.js"></script>
   <script type="module" src="js/ala-mestre.js"></script>
   <style>
     body {
-      font-family: "Georgia", serif;
-      background-color: #1e1e1e;
-      color: #e0e0e0;
-      padding: 20px;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+      font-family: 'Cardo', serif;
+      color: #2d3a4a;
+      overflow-x: hidden;
     }
-
-    h1 {
-      color: #ffd700;
+    .header-modern {
+      font-family: 'Pirata One', cursive;
+      font-size: 2.2rem;
+      color: #4bb0e6;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px #b6e0f7;
+      text-align: center;
+      margin-top: 2.5rem;
+      margin-bottom: 1.5rem;
     }
-
+    .fichas-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+      padding: 0 4vw;
+      margin-bottom: 2.5rem;
+    }
     .ficha {
-      background-color: #2c2c2c;
-      border: 1px solid #444;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 10px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px 0 rgba(31,38,135,0.10);
+      padding: 2.2rem 1.2rem 1.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+      border: 1.5px solid transparent;
+      position: relative;
+      margin-bottom: 0;
     }
-
-    button {
-      background-color: #444;
-      color: #fff;
+    .ficha:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px 0 #b6e0f7;
+      background: #e0f7fa;
+      border: 1.5px solid #4bb0e6;
+    }
+    .ficha-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #4bb0e6;
+      margin-bottom: 0.7rem;
+      text-align: left;
+    }
+    .ficha-content {
+      font-size: 1.05rem;
+      color: #2d3a4a;
+      margin-bottom: 0.5rem;
+    }
+    .ficha-btn {
+      background: linear-gradient(90deg, #b6e0f7 0%, #4bb0e6 100%);
+      color: #2d3a4a;
+      font-weight: bold;
       border: none;
-      padding: 8px 12px;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+      text-align: center;
       cursor: pointer;
-      border-radius: 6px;
-      margin-top: 5px;
-      margin-right: 5px;
+      display: inline-block;
     }
-
-    button:hover {
-      background-color: #666;
+    .ficha-btn:hover {
+      background: #4bb0e6;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .header-modern { font-size: 1.3rem; margin-top: 1.2rem; }
+      .fichas-container { padding: 0 1vw; gap: 1rem; }
     }
   </style>
 </head>
-
 <body>
-  <h1>Ala do Mestre</h1>
-  <div id="listaFichas"></div>
+  <div class="header-modern">Ala do Mestre</div>
+  <div id="listaFichas" class="fichas-container"></div>
 </body>
 </html>

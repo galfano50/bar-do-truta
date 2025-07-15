@@ -47,7 +47,7 @@ async function register(email, password) {
     exibirMensagem("Usuário registrado com sucesso.");
 
     setTimeout(() => {
-      window.location.href = "home.html";  // <-- Redirecionamento ajustado aqui
+      window.location.href = "login.html";
     }, 1500);
 
   } catch (error) {
@@ -78,7 +78,7 @@ async function login(email, password) {
     exibirMensagem("Login realizado com sucesso.");
 
     setTimeout(() => {
-      window.location.href = "home.html";  // <-- Redirecionamento ajustado aqui
+      window.location.href = "home.html";
     }, 1500);
 
   } catch (error) {

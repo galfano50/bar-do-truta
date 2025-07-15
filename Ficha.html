@@ -4,159 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ficha de Personagem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap&family=Cardo:wght@700&display=swap" rel="stylesheet">
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/ficha.js"></script>
     <script type="module">
       import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
       import { app } from "./js/firebase-config.js";
-
       const auth = getAuth(app);
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          // Define global para uso no ficha.js
           window.currentUID = user.uid;
         } else {
-          // Redireciona se não estiver logado
           window.location.href = "index.html";
         }
       });
     </script>
-</head>
-<style>
-    .imagem-personagem {
-      text-align: center;
-      margin: 20px auto;
-      padding: 10px;
-    }
-
-    .label-imagem {
-      font-size: 1.2em;
-      font-weight: bold;
-      color: #f0e6d2; /* tom envelhecido estilo pirata */
-    }
-
-    #preview-imagem {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      border: 5px solid #8b5e3c; /* marrom madeira */
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-      display: none;
-      margin-top: 10px;
-      background-color: #fdf5e6;
-    }
-
-    body {
-      background-color: #1b1b1b;
-      color: #e0c097;
-      font-family: 'Georgia', serif;
-      padding: 8px;
-      font-size: 14px;
-    }
-
-    .container {
-      max-width: 960px;
-      margin: auto;
-    }
-
-    input, textarea, select {
-      background-color: #3b2e25;
-      color: #f3e9d2;
-      border: 1px solid #8b5e3c;
-      padding: 4px;
-      border-radius: 4px;
-      width: 100%;
-      margin-bottom: 4px;
-      font-size: 0.85rem;
-      min-width: 80px; /* ⬅ Evita que fique estreito em telas pequenas */
-    }
-
-    textarea {
-      resize: both;        /* ⬅ permite redimensionar livremente */
-      min-height: 50px;
-      min-width: 100px;
-    }
-
-    /* Garante que setas dos input[type=number] apareçam sempre */
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-      -webkit-appearance: auto;
-      margin: 0;
-    }
-
-    button {
-      background-color: #8b5e3c;
-      color: #fff6d6;
-      border: none;
-      padding: 6px 12px;
-      font-size: 0.85rem;
-      margin: 4px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #a86e44;
-    }
-
-    h3, h2 {
-      margin: 6px 0;
-      font-size: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .flex-colunas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
-    }
-
-    .coluna {
-      flex: 1 1 30%;
-      box-sizing: border-box;
-    }
-
-    .pontos-distribuir {
-      font-size: 0.9rem;
-      margin: 6px 0;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85rem;
-    }
-
-    table th, table td {
-      padding: 4px;
-      text-align: left;
-    }
-
-    .dice-roller input {
-      width: calc(100% - 20px);
-    }
-
-    @media (max-width: 768px) {
-      .coluna {
-        flex: 1 1 100%;
-      }
-
+    <style>
       body {
-        font-size: 0.85rem;
+        min-height: 100vh;
+        background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+        color: #2d3a4a;
+        font-family: 'Cardo', serif;
+        padding: 0;
+        font-size: 15px;
       }
-    }
-</style>
+      .container {
+        max-width: 980px;
+        margin: 2.5rem auto 2rem auto;
+        background: rgba(255,255,255,0.97);
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+        padding: 2.5rem 2vw 2vw 2vw;
+      }
+      .header-modern {
+        font-family: 'Pirata One', cursive;
+        font-size: 2.2rem;
+        color: #4bb0e6;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 8px #b6e0f7;
+        text-align: center;
+        margin-bottom: 2.2rem;
+      }
+      .imagem-personagem {
+        text-align: center;
+        margin: 0 auto 2rem auto;
+        padding: 10px 0 0 0;
+      }
+      .label-imagem {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #4bb0e6;
+      }
+      #preview-imagem {
+        max-width: 220px;
+        width: 100%;
+        height: auto;
+        border: 4px solid #b6e0f7;
+        border-radius: 18px;
+        box-shadow: 0 0 15px #b6e0f7;
+        display: none;
+        margin-top: 10px;
+        background-color: #f7fbfd;
+      }
+      input, textarea, select {
+        background-color: #f7fbfd;
+        color: #2d3a4a;
+        border: 1px solid #b6e0f7;
+        padding: 6px;
+        border-radius: 6px;
+        width: 100%;
+        margin-bottom: 8px;
+        font-size: 1rem;
+        min-width: 80px;
+      }
+      textarea {
+        resize: both;
+        min-height: 50px;
+        min-width: 100px;
+      }
+      input[type=file] {
+        background: none;
+        border: none;
+        color: #4bb0e6;
+        padding: 0;
+        margin-bottom: 0.5rem;
+      }
+      button {
+        background: linear-gradient(90deg, #b6e0f7 0%, #4bb0e6 100%);
+        color: #2d3a4a;
+        border: none;
+        padding: 8px 18px;
+        font-size: 1rem;
+        margin: 6px 0;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.2s, color 0.2s;
+      }
+      button:hover {
+        background: #4bb0e6;
+        color: #fff;
+      }
+      h3, h2 {
+        margin: 10px 0 6px 0;
+        font-size: 1.1rem;
+        color: #4bb0e6;
+      }
+      label {
+        display: block;
+        margin-bottom: 4px;
+        color: #2d3a4a;
+        font-weight: 500;
+      }
+      .flex-colunas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: space-between;
+      }
+      .coluna {
+        flex: 1 1 30%;
+        box-sizing: border-box;
+        min-width: 220px;
+      }
+      .pontos-distribuir {
+        font-size: 0.98rem;
+        margin: 6px 0;
+        color: #4bb0e6;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.98rem;
+        background: #f7fbfd;
+        border-radius: 0.7rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px #b6e0f7;
+        margin-bottom: 1.2rem;
+      }
+      table th, table td {
+        padding: 6px;
+        text-align: left;
+        border: 1px solid #b6e0f7;
+      }
+      table th {
+        background-color: #e0f7fa;
+        color: #4bb0e6;
+        font-weight: bold;
+      }
+      table tr:nth-child(even) td {
+        background: #f2faff;
+      }
+      @media (max-width: 900px) {
+        .container { padding: 1.2rem 1vw; }
+        .flex-colunas { gap: 8px; }
+      }
+      @media (max-width: 600px) {
+        .header-modern { font-size: 1.3rem; }
+        .container { padding: 0.5rem 0.5vw; }
+        .coluna { min-width: 100%; }
+      }
+    </style>
+</head>
 <body>
     <div class="container">
+        <div class="header-modern">Ficha de Personagem</div>
         <div class="imagem-personagem">
           <label for="upload-imagem" class="label-imagem">Imagem do Personagem:</label><br>
-          <input type="file" id="upload-imagem" accept="image/*"><br><br>
+          <input type="file" id="upload-imagem" accept="image/*"><br>
           <img id="preview-imagem" src="" alt="Prévia da imagem">
         </div>
 

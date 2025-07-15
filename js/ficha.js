@@ -21,9 +21,10 @@ if (typeof atualizarAtributosVisuais !== "function") {
   };
 }
 // ficha.js corrigido e integrado com Firebase
-import { app, db, auth } from './firebase-config.js';
+import { app, db, auth, storage } from './firebase-config.js';
 import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-storage.js";
 
 let currentUser = null;
 
@@ -43,6 +44,15 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+// Função para upload de imagem
+async function uploadImagem(personagemId, file) {
+  if (!file || !currentUser) return null;
+  const imgRef = storageRef(storage, `fichas/${currentUser.uid}_${personagemId}.jpg`);
+  await uploadBytes(imgRef, file);
+  return await getDownloadURL(imgRef);
+}
+
+// Salvar ficha com imagem
 window.salvarFicha = async function () {
   const id = document.getElementById('personagemId')?.value.trim();
   if (!id || !currentUser) return alert("Informe o ID do personagem e esteja logado.");
@@ -113,7 +123,8 @@ window.salvarFicha = async function () {
     },
     fruta: {},
     haki: {},
-    extra: {}
+    extra: {},
+    urlImagem: getVal('urlImagem') // Adiciona a URL da imagem
   };
 
   for (let i = 1; i <= 15; i++) ficha.fruta[`poder${i}`] = getVal(`poder${i}`);
@@ -136,6 +147,21 @@ window.salvarFicha = async function () {
   const pontosRestantes = getTxt('pontosRestantesAkuma');
   if (pontosRestantes) ficha.akumaDetalhado.push(`__pontos__:${pontosRestantes}`);
 
+  // Upload da imagem se houver
+  const fileInput = document.getElementById('upload-imagem');
+  let urlImagem = '';
+  if (fileInput && fileInput.files && fileInput.files[0]) {
+    urlImagem = await uploadImagem(id, fileInput.files[0]);
+    ficha.urlImagem = urlImagem;
+  } else if (ficha.urlImagem) {
+    // Mantém a url se já existir
+  }
+
+  // Corrigir: atualizar totais antes de salvar para garantir soma5 correto
+  if (typeof atualizarTotais === 'function') atualizarTotais();
+  // Corrigir: atualizar pontos/perícia antes de salvar para garantir pontos corretos
+  if (typeof modificarPontos === 'function') modificarPontos();
+
   try {
     await setDoc(doc(db, "fichas", docId), ficha);
     alert("Ficha salva com sucesso!");
@@ -153,7 +179,7 @@ async function carregarFicha(docId) {
     const dados = snap.data();
 
     for (const key in dados) {
-      if (["fruta", "haki", "extra", "hakiAvancado", "atributosBase", "pericias", "mochila", "akumaDetalhado"].includes(key)) continue;
+      if (["fruta", "haki", "extra", "hakiAvancado", "atributosBase", "pericias", "mochila", "akumaDetalhado", "urlImagem"].includes(key)) continue;
       const el = document.getElementById(key);
       if (el && dados[key] !== undefined) {
         if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") {
@@ -225,6 +251,17 @@ async function carregarFicha(docId) {
         if (el) el.textContent = pontosAkuma.split(':')[1];
       }
     }
+    if (dados.urlImagem) {
+      const img = document.getElementById('preview-imagem');
+      if (img) {
+        img.src = dados.urlImagem;
+        img.style.display = 'block';
+      }
+    }
+    // Corrigir: atualizar totais após carregar todos os campos
+    if (typeof atualizarTotais === 'function') atualizarTotais();
+    // Corrigir: atualizar pontos/perícia após carregar perícias
+    if (typeof modificarPontos === 'function') modificarPontos();
   } catch (e) {
     console.error("Erro ao carregar ficha:", e);
     alert("Erro ao carregar a ficha.");
@@ -232,3 +269,20 @@ async function carregarFicha(docId) {
 }
 
 window.carregarFicha = carregarFicha;
+
+// Preview instantâneo da imagem
+const fileInput = document.getElementById('upload-imagem');
+if (fileInput) {
+  fileInput.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('preview-imagem');
+    if (file && preview) {
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        preview.src = ev.target.result;
+        preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+}
