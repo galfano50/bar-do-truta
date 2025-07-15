@@ -44,13 +44,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Função para upload de imagem
-async function uploadImagem(personagemId, file) {
-  if (!file || !currentUser) return null;
-  const imgRef = storageRef(storage, `fichas/${currentUser.uid}_${personagemId}.jpg`);
-  await uploadBytes(imgRef, file);
-  return await getDownloadURL(imgRef);
-}
+// Remover função uploadImagem
 
 // Salvar ficha com imagem
 window.salvarFicha = async function () {
@@ -133,8 +127,7 @@ window.salvarFicha = async function () {
     },
     fruta: {},
     haki: {},
-    extra: {},
-    urlImagem: getVal('urlImagem') // Adiciona a URL da imagem
+    extra: {}
   };
 
   for (let i = 1; i <= 15; i++) ficha.fruta[`poder${i}`] = getVal(`poder${i}`);
@@ -156,23 +149,6 @@ window.salvarFicha = async function () {
   ficha.akumaDetalhado = Array.from(document.querySelectorAll('.akuma-no-mi input')).map(i => i.value);
   const pontosRestantes = getTxt('pontosRestantesAkuma');
   if (pontosRestantes) ficha.akumaDetalhado.push(`__pontos__:${pontosRestantes}`);
-
-  // Upload da imagem se houver
-  const fileInput = document.getElementById('upload-imagem');
-  let urlImagem = '';
-  if (fileInput && fileInput.files && fileInput.files[0]) {
-    try {
-      urlImagem = await uploadImagem(id, fileInput.files[0]);
-      ficha.urlImagem = urlImagem;
-      const urlInput = document.getElementById('urlImagem');
-      if (urlInput) urlInput.value = urlImagem;
-    } catch (e) {
-      alert("Erro ao fazer upload da imagem: " + (e.message || e));
-      return; // Não tenta salvar a ficha se o upload falhar
-    }
-  } else if (ficha.urlImagem) {
-    // Mantém a url se já existir
-  }
 
   // Corrigir: atualizar totais antes de salvar para garantir soma5 correto
   if (typeof atualizarTotais === 'function') atualizarTotais();
@@ -196,7 +172,7 @@ async function carregarFicha(docId) {
     const dados = snap.data();
 
     for (const key in dados) {
-      if (["fruta", "haki", "extra", "hakiAvancado", "atributosBase", "pericias", "mochila", "akumaDetalhado", "urlImagem"].includes(key)) continue;
+      if (["fruta", "haki", "extra", "hakiAvancado", "atributosBase", "pericias", "mochila", "akumaDetalhado"].includes(key)) continue;
       const el = document.getElementById(key);
       if (el && dados[key] !== undefined) {
         if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT") {
@@ -268,15 +244,7 @@ async function carregarFicha(docId) {
         if (el) el.textContent = pontosAkuma.split(':')[1];
       }
     }
-    if (dados.urlImagem) {
-      const img = document.getElementById('preview-imagem');
-      if (img) {
-        img.src = dados.urlImagem;
-        img.style.display = 'block';
-      }
-      const urlInput = document.getElementById('urlImagem');
-      if (urlInput) urlInput.value = dados.urlImagem;
-    }
+    // Remover manipulação de urlImagem
     // Corrigir: atualizar totais após carregar todos os campos
     if (typeof atualizarTotais === 'function') atualizarTotais();
     // Corrigir: atualizar pontos/perícia após carregar perícias
@@ -289,19 +257,4 @@ async function carregarFicha(docId) {
 
 window.carregarFicha = carregarFicha;
 
-// Preview instantâneo da imagem
-const fileInput = document.getElementById('upload-imagem');
-if (fileInput) {
-  fileInput.addEventListener('change', function (e) {
-    const file = e.target.files[0];
-    const preview = document.getElementById('preview-imagem');
-    if (file && preview) {
-      const reader = new FileReader();
-      reader.onload = function (ev) {
-        preview.src = ev.target.result;
-        preview.style.display = 'block';
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-}
+// Remover preview instantâneo da imagem

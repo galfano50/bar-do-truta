@@ -176,7 +176,6 @@
           <label for="upload-imagem" class="label-imagem">Imagem do Personagem:</label><br>
           <input type="file" id="upload-imagem" accept="image/*"><br>
           <img id="preview-imagem" src="" alt="Prévia da imagem">
-          <input type="hidden" id="urlImagem">
         </div>
 
         <div class="header flex-colunas">
@@ -499,20 +498,33 @@
     </div>
 
 <script>
-    // document.getElementById('upload-imagem').addEventListener('change', function (event) {
-    //   const file = event.target.files[0];
-    //   if (!file) return;
+    // Carregar imagem salva ao abrir a ficha
+    window.addEventListener('load', function () {
+      const personagemId = document.getElementById('personagemId')?.value || '';
+      const imagemSalva = localStorage.getItem('imagemPersonagem_' + personagemId);
+      if (imagemSalva) {
+        const preview = document.getElementById('preview-imagem');
+        preview.src = imagemSalva;
+        preview.style.display = 'block';
+      }
+    });
 
-    //   const reader = new FileReader();
-    //   reader.onload = function (e) {
-    //     const preview = document.getElementById('preview-imagem');
-    //     preview.src = e.target.result;
-    //     preview.style.display = 'block';
+    // Salvar imagem no localStorage ao selecionar
+    document.getElementById('upload-imagem').addEventListener('change', function (event) {
+      const file = event.target.files[0];
+      if (!file) return;
 
-    //     localStorage.setItem('imagemPersonagem', e.target.result);
-    //   };
-    //   reader.readAsDataURL(file);
-    // });
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const preview = document.getElementById('preview-imagem');
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        // Salva no localStorage usando o personagemId como chave
+        const personagemId = document.getElementById('personagemId')?.value || '';
+        localStorage.setItem('imagemPersonagem_' + personagemId, e.target.result);
+      };
+      reader.readAsDataURL(file);
+    });
 
     let bonusRaca = {
         forca: 0,
