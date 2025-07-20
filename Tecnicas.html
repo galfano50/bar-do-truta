@@ -4,31 +4,51 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Técnicas</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   body {
-    font-family: "Georgia", serif;
-    background-color: #1c1c1c;
-    color: #ddd;
-    line-height: 1.5;
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+    color: #2d3a4a;
+    font-family: 'Cardo', serif;
+    font-size: 15px;
   }
-  h1, h2, h3 {
-    color: #caa76e;
+  .container {
+    max-width: 980px;
+    margin: 2.5rem auto 2rem auto;
+    background: rgba(255,255,255,0.97);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    padding: 2.5rem 2vw 2vw 2vw;
   }
   h1 {
+    color: #4bb0e6;
+    border-bottom: 2px solid #b6e0f7;
+    padding-bottom: 6px;
+    margin-bottom: 2.2rem;
+    font-size: 2rem;
+    font-weight: bold;
     text-align: center;
-    margin-bottom: 1em;
   }
   h2 {
-    margin-top: 2em;
-    border-bottom: 2px solid #caa76e;
-    padding-bottom: 0.3em;
+    color: #4bb0e6;
+    border-bottom: 2px solid #b6e0f7;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    font-weight: bold;
   }
   h3 {
-    margin-top: 1.5em;
-    color: #d9b84c;
+    color: #4bb0e6;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  h4 {
+    color: #2196f3;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
   p {
     margin-bottom: 1em;
@@ -39,170 +59,198 @@
   }
   .nota {
     font-style: italic;
-    color: #a1a1a1;
+    color: #666;
   }
   .tecnica {
-    margin-bottom: 1.5em;
+    background: #f7fbfd;
+    border: 1px solid #b6e0f7;
+    border-radius: 0.7rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px #b6e0f722;
+  }
+  .badge-mod {
+    background: #e3f3fb;
+    color: #2196f3;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.4em;
+    border: 1px solid #b6e0f7;
   }
 </style>
 </head>
 <body>
 
-<h1>Técnicas</h1>
+<div class="container">
+  <h1>Técnicas</h1>
 
-<!-- MINKS -->
-<section id="minks">
-  <h2>MINKS</h2>
+  <!-- MINKS -->
+  <section id="minks">
+    <h2>MINKS</h2>
 
-  <article class="tecnica">
-    <h3>SULONG</h3>
-    <p>Assim que um Mink olha diretamente para a lua cheia, sua transformação começa imediatamente e, após alguns segundos, eles terão alcançado sua nova forma.</p>
-    <p>Para iniciar a transformação, um Mink deve ter uma visão clara e desobstruída da lua, sendo incapaz de passar por Sulong se a lua estiver coberta por nuvens, um telhado ou qualquer outra coisa. Um mink também pode ocultar seus olhos da luz da lua para evitar sua transformação; até mesmo vidros coloridos os protegerão com eficácia.</p>
-    <p><strong>Requerimentos para ativação e sustentação:</strong></p>
-    <ul>
-      <li>Concentração (natural): 15+</li>
-      <li>Espírito (natural): 15+</li>
-    </ul>
-    <p>Caso a pessoa possua esses atributos NATURALMENTE sem adicional de dados ou técnicas, ela pode controlar o sulong sem penalidades de perda de controle e gastos a mais.</p>
-    <p>Um indivíduo mink a partir do nível 17 pode usar o sulong mesmo que não possua os atributos de controle.</p>
+    <article class="tecnica">
+      <h3>SULONG</h3>
+      <p>Assim que um Mink olha diretamente para a lua cheia, sua transformação começa imediatamente e, após alguns segundos, eles terão alcançado sua nova forma.</p>
+      <p>Para iniciar a transformação, um Mink deve ter uma visão clara e desobstruída da lua, sendo incapaz de passar por Sulong se a lua estiver coberta por nuvens, um telhado ou qualquer outra coisa. Um mink também pode ocultar seus olhos da luz da lua para evitar sua transformação; até mesmo vidros coloridos os protegerão com eficácia.</p>
+      <p><strong>Requerimentos para ativação e sustentação:</strong></p>
+      <ul>
+        <li>Concentração (natural): <span class="badge-mod">15+</span></li>
+        <li>Espírito (natural): <span class="badge-mod">15+</span></li>
+      </ul>
+      <p>Caso a pessoa possua esses atributos NATURALMENTE sem adicional de dados ou técnicas, ela pode controlar o sulong sem penalidades de perda de controle e gastos a mais.</p>
+      <p>Um indivíduo mink a partir do nível <span class="badge-mod">17</span> pode usar o sulong mesmo que não possua os atributos de controle.</p>
 
-    <h4>Ganhos para quem controla o sulong:</h4>
-    <ul>
-      <li>FOR: +25</li>
-      <li>CONS: +25</li>
-      <li>VEL: +25</li>
-      <li>DES: +25</li>
-      <li>ARM: +25</li>
-      <li>DAN: +25</li>
-      <li>PER: +25</li>
-      <li>CON: -</li>
-      <li>INI: +25</li>
-      <li>SAB: -</li>
-      <li>ESP: -</li>
-      <li>PRE: +25</li>
-    </ul>
-    <p>Maximização de dados de nível até o último turno.</p>
-    <p>Hp: x3 do valor em que foi ativada a técnica.</p>
-    <p>5 voltas +1d10 de técnica ativada.</p>
-    <p>Exemplo: ¼ do valor base para ativação.</p>
-    <p><strong>Electro:</strong> +50</p>
+      <h4>Ganhos para quem controla o sulong:</h4>
+      <ul>
+        <li>FOR: <span class="badge-mod">+25</span></li>
+        <li>CONS: <span class="badge-mod">+25</span></li>
+        <li>VEL: <span class="badge-mod">+25</span></li>
+        <li>DES: <span class="badge-mod">+25</span></li>
+        <li>ARM: <span class="badge-mod">+25</span></li>
+        <li>DAN: <span class="badge-mod">+25</span></li>
+        <li>PER: <span class="badge-mod">+25</span></li>
+        <li>CON: -</li>
+        <li>INI: <span class="badge-mod">+25</span></li>
+        <li>SAB: -</li>
+        <li>ESP: -</li>
+        <li>PRE: <span class="badge-mod">+25</span></li>
+      </ul>
+      <p>Maximização de dados de nível até o último turno.</p>
+      <p>Hp: x3 do valor em que foi ativada a técnica.</p>
+      <p><span class="badge-mod">5</span> voltas <span class="badge-mod">+1d10</span> de técnica ativada.</p>
+      <p>Exemplo: ¼ do valor base para ativação.</p>
+      <p><strong>Electro:</strong> <span class="badge-mod">+50</span></p>
 
-    <h4>Ganhos para quem NÃO controla o sulong:</h4>
-    <ul>
-      <li>FOR: +25</li>
-      <li>CONS: +25</li>
-      <li>VEL: +25</li>
-      <li>DES: +25</li>
-      <li>ARM: +25</li>
-      <li>DAN: +25</li>
-      <li>PER: +25</li>
-      <li>CON: -</li>
-      <li>INI: +25</li>
-      <li>SAB: -</li>
-      <li>ESP: -</li>
-      <li>PRE: +25</li>
-    </ul>
-    <p>Maximização de dados de nível até o último turno.</p>
-    <p>Hp: x2 do valor em que foi ativada a técnica.</p>
-    <p>5 voltas de técnica ativada.</p>
-    <p>A cada volta tem de fazer um teste de concentração para manter o controle da técnica.</p>
-    <p><strong>Electro:</strong> +25</p>
-  </article>
+      <h4>Ganhos para quem NÃO controla o sulong:</h4>
+      <ul>
+        <li>FOR: <span class="badge-mod">+25</span></li>
+        <li>CONS: <span class="badge-mod">+25</span></li>
+        <li>VEL: <span class="badge-mod">+25</span></li>
+        <li>DES: <span class="badge-mod">+25</span></li>
+        <li>ARM: <span class="badge-mod">+25</span></li>
+        <li>DAN: <span class="badge-mod">+25</span></li>
+        <li>PER: <span class="badge-mod">+25</span></li>
+        <li>CON: -</li>
+        <li>INI: <span class="badge-mod">+25</span></li>
+        <li>SAB: -</li>
+        <li>ESP: -</li>
+        <li>PRE: <span class="badge-mod">+25</span></li>
+      </ul>
+      <p>Maximização de dados de nível até o último turno.</p>
+      <p>Hp: x2 do valor em que foi ativada a técnica.</p>
+      <p><span class="badge-mod">5</span> voltas de técnica ativada.</p>
+      <p>A cada volta tem de fazer um teste de concentração para manter o controle da técnica.</p>
+      <p><strong>Electro:</strong> <span class="badge-mod">+25</span></p>
+    </article>
 
-  <article class="tecnica">
-    <h3>ELECTRO</h3>
-    <p>Os usuários de Electro podem canalizar a eletricidade em partes de seus corpos para chocar qualquer coisa que tocam. Todos os minks parecem ser capazes de usá-lo, incluindo crianças e idosos, e parece ser do conhecimento comum para eles. Este poder também pode ser canalizado através de armas.</p>
-    <p><strong>Dano de acordo com o grau do usuário:</strong></p>
-    <ul>
-      <li>G1: 5 +1D10 P.E: 5</li>
-      <li>G2: 10 +2D10 P.E: 10</li>
-      <li>G3: 20 +3D10 P.E: 15</li>
-      <li>G4: 25 +4D10 P.E: 20</li>
-      <li>G5: 35 +5D10 P.E: 25</li>
-      <li>G6: 40 +6D10 P.E: 30</li>
-    </ul>
-  </article>
-</section>
+    <article class="tecnica">
+      <h3>ELECTRO</h3>
+      <p>Os usuários de Electro podem canalizar a eletricidade em partes de seus corpos para chocar qualquer coisa que tocam. Todos os minks parecem ser capazes de usá-lo, incluindo crianças e idosos, e parece ser do conhecimento comum para eles. Este poder também pode ser canalizado através de armas.</p>
+      <p><strong>Dano de acordo com o grau do usuário:</strong></p>
+      <ul>
+        <li>G1: <span class="badge-mod">5</span> <span class="badge-mod">+1D10</span> P.E: <span class="badge-mod">5</span></li>
+        <li>G2: <span class="badge-mod">10</span> <span class="badge-mod">+2D10</span> P.E: <span class="badge-mod">10</span></li>
+        <li>G3: <span class="badge-mod">20</span> <span class="badge-mod">+3D10</span> P.E: <span class="badge-mod">15</span></li>
+        <li>G4: <span class="badge-mod">25</span> <span class="badge-mod">+4D10</span> P.E: <span class="badge-mod">20</span></li>
+        <li>G5: <span class="badge-mod">35</span> <span class="badge-mod">+5D10</span> P.E: <span class="badge-mod">25</span></li>
+        <li>G6: <span class="badge-mod">40</span> <span class="badge-mod">+6D10</span> P.E: <span class="badge-mod">30</span></li>
+      </ul>
+    </article>
+  </section>
 
-<!-- TRITÃO -->
-<section id="tritao">
-  <h2>TRITÃO</h2>
+  <!-- TRITÃO -->
+  <section id="tritao">
+    <h2>TRITÃO</h2>
 
-  <article class="tecnica">
-    <h3>G5 - Habilidade de raça (Mermail) - 5 voltas</h3>
-    <p>O usuário fica imune a golpes de Fruta como uma espécie de barreira de água (técnicas de instantâneo). Se entrar em contato direto com usuário, deixa o valor fixo de -2, -4, -8, -16, -32 pontos nos dados base do usuário da fruta (acumulativo a cada golpe).</p>
-    <ul>
-      <li>+30 armadura</li>
-      <li>P.E: ¼ do valor base para ativação</li>
-    </ul>
-  </article>
+    <article class="tecnica">
+      <h3>G5 - Habilidade de raça (Mermail) - <span class="badge-mod">5</span> voltas</h3>
+      <p>O usuário fica imune a golpes de Fruta como uma espécie de barreira de água (técnicas de instantâneo). Se entrar em contato direto com usuário, deixa o valor fixo de <span class="badge-mod">-2</span>, <span class="badge-mod">-4</span>, <span class="badge-mod">-8</span>, <span class="badge-mod">-16</span>, <span class="badge-mod">-32</span> pontos nos dados base do usuário da fruta (acumulativo a cada golpe).</p>
+      <ul>
+        <li><span class="badge-mod">+35+5D10</span> Armadura de água que envolve o corpo do usuário e funciona como uma defesa geral</li>
+        <li>P.E: ¼ do valor base para ativação</li>
+      </ul>
+    </article>
 
-  <article class="tecnica">
-    <h3>Combate Merman (Passivo)</h3>
-    <p>Todos os golpes de karatê tritão enfraquecem usuário de akuma no mi em: -1d20</p>
-  </article>
+    <article class="tecnica">
+      <h3>Combate Merman (Passivo)</h3>
+      <p>Todos os golpes de karatê tritão enfraquecem usuário de akuma no mi em: <span class="badge-mod">-1d20</span>; Vantagem territorial: Quando dentro da água, ganhe <span class="badge-mod">+1D20</span></p>
+    </article>
 
-  <article class="tecnica">
-    <h3>G3 - Combate Merman (Buff) - 4 voltas</h3>
-    <p>Usado debaixo d'água, envolve a manipulação da água com as mãos como se fosse algo tangível a ser usado para ataques a distância, aumentando a distância em +500m e os golpes em +10 nos testes.</p>
-    <p>P.E: 15</p>
-  </article>
+    <article class="tecnica">
+      <h3>G3 - Combate Merman (Buff) - <span class="badge-mod">3</span> voltas</h3>
+      <p>Usado debaixo d'água, envolve a manipulação da água com as mãos como se fosse algo tangível a ser usado para ataques a distância, aumentando a distância em <span class="badge-mod">+500m</span> e os golpes em <span class="badge-mod">+20+3D10</span> nos testes e Dano.</p>
+      <p>P.E: <span class="badge-mod">15</span></p>
+    </article>
 
-  <article class="tecnica">
-    <h3>G4 - Merman Abissal (Buff) - 6 voltas</h3>
-    <p>Usa a umidade do local para bombear seus órgãos internos, após inalar o ar.</p>
-    <ul>
-      <li>+20 Força/Desl/Cons/Nado</li>
-      <li>+1D20</li>
-      <li>P.E: 20</li>
-    </ul>
-  </article>
+    <article class="tecnica">
+      <h3>G4 - Merman Abissal (Buff) - <span class="badge-mod">4</span> voltas</h3>
+      <p>Usa a umidade do local para bombear seus órgãos internos, após inalar o ar.</p>
+      <ul>
+        <li><span class="badge-mod">+25</span> Força/Desl/Cons/Nado</li>
+        <li><span class="badge-mod">+4D10</span></li>
+        <li>P.E: <span class="badge-mod">20</span></li>
+      </ul>
+    </article>
 
-  <article class="tecnica">
-    <h3>G1 - Hyakuman Gawara Seiken</h3>
-    <p>Um soco duro que pode enviar um oponente a voar (Rajada de dano).</p>
-    <ul>
-      <li>+5 força</li>
-      <li>+5 dano</li>
-      <li>P.E: 5</li>
-    </ul>
-  </article>
+    <article class="tecnica">
+      <h3>G1 - Hyakuman Gawara Seiken</h3>
+      <p>Um soco duro que pode enviar um oponente a voar (Rajada de dano).</p>
+      <ul>
+        <li><span class="badge-mod">+5</span> força</li>
+        <li><span class="badge-mod">+5</span> dano</li>
+        <li>P.E: <span class="badge-mod">5</span></li>
+      </ul>
+    </article>
 
-  <article class="tecnica">
-    <h3>G2 - Senmaigawara Seiken</h3>
-    <p>Uma versão muito mais forte do Hyakuman Gawara Hyaku Seiken.</p>
-    <ul>
-      <li>+10 força</li>
-      <li>+10 dano</li>
-      <li>P.E: 10</li>
-    </ul>
-  </article>
+    <article class="tecnica">
+      <h3>G2 - Senmaigawara Seiken</h3>
+      <p>Uma versão muito mais forte do Hyakuman Gawara Hyaku Seiken.</p>
+      <ul>
+        <li><span class="badge-mod">+10</span> força</li>
+        <li><span class="badge-mod">+10</span> dano</li>
+        <li>P.E: <span class="badge-mod">10</span></li>
+      </ul>
+    </article>
 
-  <article class="tecnica">
-    <h3>G2 - Want Giri</h3>
-    <p>Bate seu braço na parte de trás do pescoço de seu oponente.</p>
-    <ul>
-      <li>P.E: 5</li>
-    </ul>
-  </article>
+    <article class="tecnica">
+      <h3>G2 - Want Giri</h3>
+      <p>Bate seu braço na parte de trás do pescoço de seu oponente. </p>
+      <ul>
+        <li><span class="badge-mod">+10</span> Velocidade/Força</li>
+        <li>P.E: <span class="badge-mod">10</span></li>
+      </ul>
+    </article>
 
-  <article class="tecnica">
-    <h3>G2 - Tenshu Giri</h3>
-    <p>Se move em um movimento rotativo e atinge o inimigo.</p>
-    <ul>
-      <li>P.E: 10</li>
-    </ul>
-  </article>
+    <article class="tecnica">
+      <h3>G2 - Tenshu Giri</h3>
+      <p>Se move em um movimento rotativo e atinge o inimigo, girando-o, caso leve o dano.</p>
+      <ul>
+        <li><span class="badge-mod">10+2D10</span> Dano real.</li>
+        <li>P.E: <span class="badge-mod">10</span></li>
+      </ul>
+    </article>
 
-  <article class="tecnica">
-    <h3>G3 - Razor Saw</h3>
-    <p>Um golpe rápido cortante usado para fazer feridas profundas.</p>
-    <ul>
-      <li>+15 dano</li>
-      <li>P.E: 15</li>
-    </ul>
-  </article>
-</section>
+    <article class="tecnica">
+      <h3>G3 - Tenshu Garai</h3>
+      <p>Move a água ao seu redor em um movimento rotativo, ganhando impuso para desferiri um potente golpe.</p>
+      <ul>
+        <li>Velocidade de Nado = Força do golpe</li>
+        <li>P.E: <span class="badge-mod">15</span></li>
+      </ul>
+    </article>
 
+    <article class="tecnica">
+      <h3>G3 - Razor Saw</h3>
+      <p>Um golpe rápido cortante usado para fazer feridas profundas.</p>
+      <ul>
+        <li><span class="badge-mod">+20+3D10</span> Força o dano que passar vira sangramento por <span class="badge-mod">1d4</span>: Rodadas.</li>
+        <li>P.E: <span class="badge-mod">15</span></li>
+      </ul>
+    </article>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

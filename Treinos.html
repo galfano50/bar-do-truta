@@ -4,140 +4,197 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Treinos - RPG</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   body {
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 20px;
-    line-height: 1.5;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+    color: #2d3a4a;
+    font-family: 'Cardo', serif;
+    font-size: 15px;
   }
-  h1, h2, h3 {
-    color: #ffd700;
+  .container {
+    max-width: 980px;
+    margin: 2.5rem auto 2rem auto;
+    background: rgba(255,255,255,0.97);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    padding: 2.5rem 2vw 2vw 2vw;
+  }
+  h1 {
+    color: #4bb0e6;
+    border-bottom: 2px solid #b6e0f7;
+    padding-bottom: 6px;
+    margin-bottom: 2.2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  h2 {
+    color: #4bb0e6;
+    border-bottom: 2px solid #b6e0f7;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  h3 {
+    color: #4bb0e6;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
   }
   section {
     margin-bottom: 2rem;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #b6e0f7;
     padding-bottom: 1rem;
   }
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 0.5rem;
+    background: #f7fbfd;
+    border-radius: 0.7rem;
+    overflow: hidden;
+    border: 1px solid #b6e0f7;
   }
   th, td {
-    border: 1px solid #666;
+    border: 1px solid #b6e0f7;
     padding: 0.5rem 1rem;
     text-align: center;
   }
   th {
-    background-color: #222;
+    background-color: #e3f3fb;
+    color: #2196f3;
+    font-weight: bold;
+  }
+  td {
+    color: #2d3a4a;
   }
   p {
     margin: 0.5rem 0;
   }
   .important {
-    color: #ff6347;
+    color: #e74c3c;
     font-weight: bold;
+  }
+  .badge-mod {
+    background: #e3f3fb;
+    color: #2196f3;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.4em;
+    border: 1px solid #b6e0f7;
+  }
+  ul {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+  }
+  li {
+    margin-bottom: 0.5rem;
   }
 </style>
 </head>
 <body>
 
-<h1>Treinos</h1>
+<div class="container">
+  <h1>Treinos</h1>
 
-<section>
-  <h2>Treino de XP</h2>
-  <p>Os treinos só são liberados a partir do momento que se libera o grau correspondente ao treino no seu nível de personagem:</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Nível (N)</th>
-        <th>Pontos de Energia Gastos</th>
-        <th>Grau do Golpe</th>
-        <th>XP Ganha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1 a 5</td><td>10</td><td>Grau 1</td><td>150 xp</td></tr>
-      <tr><td>6 a 10</td><td>20</td><td>Grau 2</td><td>1.000 xp</td></tr>
-      <tr><td>11 a 15</td><td>30</td><td>Grau 3</td><td>3.250 xp</td></tr>
-      <tr><td>16 a 20</td><td>40</td><td>Grau 4</td><td>6.500 xp</td></tr>
-      <tr><td>21 a 25</td><td>50</td><td>Grau 5</td><td>11.500 xp</td></tr>
-      <tr><td>26 a 30</td><td>60</td><td>Grau 6</td><td>80.000 xp</td></tr>
-    </tbody>
-  </table>
-</section>
+  <section>
+    <h2>Treino de XP</h2>
+    <p>Os treinos só são liberados a partir do momento que se libera o grau correspondente ao treino no seu nível de personagem:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Nível (N)</th>
+          <th>Pontos de Energia Gastos</th>
+          <th>Grau do Golpe</th>
+          <th>XP Ganha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1 a 5</td><td><span class="badge-mod">10</span></td><td>Grau 1</td><td><span class="badge-mod">150</span> xp</td></tr>
+        <tr><td>6 a 10</td><td><span class="badge-mod">20</span></td><td>Grau 2</td><td><span class="badge-mod">1.000</span> xp</td></tr>
+        <tr><td>11 a 15</td><td><span class="badge-mod">30</span></td><td>Grau 3</td><td><span class="badge-mod">3.250</span> xp</td></tr>
+        <tr><td>16 a 20</td><td><span class="badge-mod">40</span></td><td>Grau 4</td><td><span class="badge-mod">6.500</span> xp</td></tr>
+        <tr><td>21 a 25</td><td><span class="badge-mod">50</span></td><td>Grau 5</td><td><span class="badge-mod">11.500</span> xp</td></tr>
+        <tr><td>26 a 30</td><td><span class="badge-mod">60</span></td><td>Grau 6</td><td><span class="badge-mod">80.000</span> xp</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<section>
-  <h2>Regra dos Pontos de Energia (P.E)</h2>
-  <p>Os pontos de energia determinam seu estado de condição física atual e o quanto se pode treinar técnicas novas e até aplicar durante uma luta.</p>
+  <section>
+    <h2>Regra dos Pontos de Energia (P.E)</h2>
+    <p>Os pontos de energia determinam seu estado de condição física atual e o quanto se pode treinar técnicas novas e até aplicar durante uma luta.</p>
 
-  <h3>Tempo de recuperação natural:</h3>
-  <ul>
-    <li>10 pontos de energia se recuperam naturalmente em 6h dentro do jogo.</li>
-    <li>20 pontos de energia se recuperam naturalmente em 12h dentro do jogo.</li>
-    <li>30 pontos de energia se recuperam naturalmente em 24h dentro do jogo.</li>
-    <li>40 pontos de energia se recuperam naturalmente em 36h dentro do jogo.</li>
-    <li>50 pontos de energia se recuperam naturalmente em 48h dentro do jogo.</li>
-  </ul>
+    <h3>Tempo de recuperação natural:</h3>
+    <ul>
+      <li><span class="badge-mod">10</span> pontos de energia se recuperam naturalmente em <span class="badge-mod">6h</span> dentro do jogo.</li>
+      <li><span class="badge-mod">20</span> pontos de energia se recuperam naturalmente em <span class="badge-mod">12h</span> dentro do jogo.</li>
+      <li><span class="badge-mod">30</span> pontos de energia se recuperam naturalmente em <span class="badge-mod">24h</span> dentro do jogo.</li>
+      <li><span class="badge-mod">40</span> pontos de energia se recuperam naturalmente em <span class="badge-mod">36h</span> dentro do jogo.</li>
+      <li><span class="badge-mod">50</span> pontos de energia se recuperam naturalmente em <span class="badge-mod">48h</span> dentro do jogo.</li>
+    </ul>
 
-  <h3>Recuperação por descanso:</h3>
-  <p>Caso a pessoa venha a tirar um período de descanso (dormir) para acelerar sua recuperação, o tempo necessário é reduzido pela metade.</p>
+    <h3>Recuperação por descanso:</h3>
+    <p>Caso a pessoa venha a tirar um período de descanso (dormir) para acelerar sua recuperação, o tempo necessário é reduzido pela metade.</p>
 
-  <h3>Recuperação por outros meios:</h3>
-  <p>O personagem pode possuir itens como bebidas, porções e até mesmo alguns alimentos que recuperam valores fixos de energia, sendo uma melhor saída para encurtar seu tempo de recuperação.</p>
+    <h3>Recuperação por outros meios:</h3>
+    <p>O personagem pode possuir itens como bebidas, porções e até mesmo alguns alimentos que recuperam valores fixos de energia, sendo uma melhor saída para encurtar seu tempo de recuperação.</p>
 
-  <h3>Exaustão:</h3>
-  <p>Caso o personagem chegue a um estado de exaustão e mesmo assim permanecer ativo, e toda sua energia seja consumida e ele não possua meios para revitalizar, sofrerá a penalização da perda de <span class="important">-1 ponto fixo a cada hora forçada</span>.</p>
+    <h3>Exaustão:</h3>
+    <p>Caso o personagem chegue a um estado de exaustão e mesmo assim permanecer ativo, e toda sua energia seja consumida e ele não possua meios para revitalizar, sofrerá a penalização da perda de <span class="important">-1 ponto fixo a cada hora forçada</span>.</p>
 
-  <h3>Um inimigo inesperado:</h3>
-  <p>Caso o personagem tenha realizado um treino a poucas horas e o seu período de recuperação total não tenha sido concluído e apareça uma visita inesperada, deve-se calcular o quanto foi recuperado de energia. Caso a divisão termine em número quebrado, arredonda-se para cima.</p>
+    <h3>Um inimigo inesperado:</h3>
+    <p>Caso o personagem tenha realizado um treino a poucas horas e o seu período de recuperação total não tenha sido concluído e apareça uma visita inesperada, deve-se calcular o quanto foi recuperado de energia. Caso a divisão termine em número quebrado, arredonda-se para cima.</p>
 
-  <h3>Zoan:</h3>
-  <p>A maioria das akuma no mi do tipo Zoan possuem uma recuperação acelerada, entretanto muitas têm mais pontos de vida e seus pontos de energia são menores. Ainda assim, possuem vantagem em relação à durabilidade.</p>
-  <p>Os pontos de recuperação das Zoan não usam o dado adicional do seu Grau, somente os valores fixos, divididos igualmente entre o HP e os pontos de energia.</p>
-  <p>O grau atual da fruta determina em quantas voltas x2 se aplica a recuperação, contando a partir do Grau 2:</p>
-  <ul>
-    <li>G2: 5 voltas</li>
-    <li>G3: 6 voltas</li>
-    <li>G4: 7 voltas</li>
-    <li>G5: 8 voltas</li>
-  </ul>
-  <p>O Grau 6 é o despertar, passando a ser de 5 em 5 voltas aplicada a sua recuperação.</p>
-  <p>(Caso a divisão termine em número quebrado, arredonda-se para cima.)</p>
-  <p><span class="important">[Ciborgues: a energia extra não pode ser usada para treinos]</span></p>
-</section>
+    <h3>Zoan:</h3>
+    <p>A maioria das akuma no mi do tipo Zoan possuem uma recuperação acelerada, entretanto muitas têm mais pontos de vida e seus pontos de energia são menores. Ainda assim, possuem vantagem em relação à durabilidade.</p>
+    <p>Os pontos de recuperação das Zoan não usam o dado adicional do seu Grau, somente os valores fixos, divididos igualmente entre o HP e os pontos de energia.</p>
+    <p>O grau atual da fruta determina em quantas voltas x2 se aplica a recuperação, contando a partir do Grau 2:</p>
+    <ul>
+      <li>G2: <span class="badge-mod">5</span> voltas</li>
+      <li>G3: <span class="badge-mod">6</span> voltas</li>
+      <li>G4: <span class="badge-mod">7</span> voltas</li>
+      <li>G5: <span class="badge-mod">8</span> voltas</li>
+    </ul>
+    <p>O Grau 6 é o despertar, passando a ser de <span class="badge-mod">5</span> em <span class="badge-mod">5</span> voltas aplicada a sua recuperação.</p>
+    <p>(Caso a divisão termine em número quebrado, arredonda-se para cima.)</p>
+    <p><span class="important">[Ciborgues: a energia extra não pode ser usada para treinos]</span></p>
+  </section>
 
-<section>
-  <h2>Treino de Golpes e Técnicas</h2>
-  <p>Segue os tipos de treinos para golpes e técnicas:</p>
-  <ul>
-    <li>Golpes</li>
-    <li>Técnicas</li>
-    <li>Buff e Debuff</li>
-  </ul>
-  <p>O grau de técnicas determina quantos treinos são necessários para adquirir tal. Exemplo: um buff Grau 5 precisa de 5 treinos Grau 5.</p>
+  <section>
+    <h2>Treino de Golpes e Técnicas</h2>
+    <p>Segue os tipos de treinos para golpes e técnicas:</p>
+    <ul>
+      <li>Golpes</li>
+      <li>Técnicas</li>
+      <li>Buff e Debuff</li>
+    </ul>
+    <p>O grau de técnicas determina quantos treinos são necessários para adquirir tal. Exemplo: um buff Grau 5 precisa de <span class="badge-mod">5</span> treinos Grau 5.</p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Nível (N)</th>
-        <th>Pontos de Energia Gastos</th>
-        <th>Grau do Golpe</th>
-        <th>XP Ganha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1 a 5</td><td>10</td><td>Grau 1</td><td>75 xp</td></tr>
-      <tr><td>6 a 10</td><td>20</td><td>Grau 2</td><td>500 xp</td></tr>
-      <tr><td>11 a 15</td><td>30</td><td>Grau 3</td><td>1.125 xp</td></tr>
-      <tr><td>16 a 20</td><td>40</td><td>Grau 4</td><td>3.250 xp</td></tr>
-      <tr><td>21 a 25</td><td>50</td><td>Grau 5</td><td>7.250 xp</td></tr>
-      <tr><td>26 a 30</td><td>60</td><td>Grau 6</td><td>45.000 xp</td></tr>
-    </tbody>
-  </table>
-</section>
+    <table>
+      <thead>
+        <tr>
+          <th>Nível (N)</th>
+          <th>Pontos de Energia Gastos</th>
+          <th>Grau do Golpe</th>
+          <th>XP Ganha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1 a 5</td><td><span class="badge-mod">10</span></td><td>Grau 1</td><td><span class="badge-mod">75</span> xp</td></tr>
+        <tr><td>6 a 10</td><td><span class="badge-mod">20</span></td><td>Grau 2</td><td><span class="badge-mod">500</span> xp</td></tr>
+        <tr><td>11 a 15</td><td><span class="badge-mod">30</span></td><td>Grau 3</td><td><span class="badge-mod">1.125</span> xp</td></tr>
+        <tr><td>16 a 20</td><td><span class="badge-mod">40</span></td><td>Grau 4</td><td><span class="badge-mod">3.250</span> xp</td></tr>
+        <tr><td>21 a 25</td><td><span class="badge-mod">50</span></td><td>Grau 5</td><td><span class="badge-mod">7.250</span> xp</td></tr>
+        <tr><td>26 a 30</td><td><span class="badge-mod">60</span></td><td>Grau 6</td><td><span class="badge-mod">45.000</span> xp</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

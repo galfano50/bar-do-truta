@@ -4,177 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ficha de Personagem</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap&family=Cardo:wght@700&display=swap" rel="stylesheet">
-    <script type="module" src="js/firebase-config.js"></script>
-    <script type="module" src="js/ficha.js"></script>
-    <script type="module">
-      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-      import { app } from "./js/firebase-config.js";
-      const auth = getAuth(app);
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          window.currentUID = user.uid;
-        } else {
-          window.location.href = "index.html";
-        }
-      });
-    </script>
-    <style>
-      body {
-        min-height: 100vh;
-        background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
-        color: #2d3a4a;
-        font-family: 'Cardo', serif;
-        padding: 0;
-        font-size: 15px;
-      }
-      .container {
-        max-width: 980px;
-        margin: 2.5rem auto 2rem auto;
-        background: rgba(255,255,255,0.97);
-        border-radius: 1.5rem;
-        box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
-        padding: 2.5rem 2vw 2vw 2vw;
-      }
-      .header-modern {
-        font-family: 'Pirata One', cursive;
-        font-size: 2.2rem;
-        color: #4bb0e6;
-        letter-spacing: 2px;
-        text-shadow: 2px 2px 8px #b6e0f7;
-        text-align: center;
-        margin-bottom: 2.2rem;
-      }
-      .imagem-personagem {
-        text-align: center;
-        margin: 0 auto 2rem auto;
-        padding: 10px 0 0 0;
-      }
-      .label-imagem {
-        font-size: 1.1em;
-        font-weight: bold;
-        color: #4bb0e6;
-      }
-      #preview-imagem {
-        max-width: 220px;
-        width: 100%;
-        height: auto;
-        border: 4px solid #b6e0f7;
-        border-radius: 18px;
-        box-shadow: 0 0 15px #b6e0f7;
-        display: none;
-        margin-top: 10px;
-        background-color: #f7fbfd;
-      }
-      input, textarea, select {
-        background-color: #f7fbfd;
-        color: #2d3a4a;
-        border: 1px solid #b6e0f7;
-        padding: 6px;
-        border-radius: 6px;
-        width: 100%;
-        margin-bottom: 8px;
-        font-size: 1rem;
-        min-width: 80px;
-      }
-      textarea {
-        resize: both;
-        min-height: 50px;
-        min-width: 100px;
-      }
-      input[type=file] {
-        background: none;
-        border: none;
-        color: #4bb0e6;
-        padding: 0;
-        margin-bottom: 0.5rem;
-      }
-      button {
-        background: linear-gradient(90deg, #b6e0f7 0%, #4bb0e6 100%);
-        color: #2d3a4a;
-        border: none;
-        padding: 8px 18px;
-        font-size: 1rem;
-        margin: 6px 0;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background 0.2s, color 0.2s;
-      }
-      button:hover {
-        background: #4bb0e6;
-        color: #fff;
-      }
-      h3, h2 {
-        margin: 10px 0 6px 0;
-        font-size: 1.1rem;
-        color: #4bb0e6;
-      }
-      label {
-        display: block;
-        margin-bottom: 4px;
-        color: #2d3a4a;
-        font-weight: 500;
-      }
-      .flex-colunas {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 18px;
-        justify-content: space-between;
-      }
-      .coluna {
-        flex: 1 1 30%;
-        box-sizing: border-box;
-        min-width: 220px;
-      }
-      .pontos-distribuir {
-        font-size: 0.98rem;
-        margin: 6px 0;
-        color: #4bb0e6;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.98rem;
-        background: #f7fbfd;
-        border-radius: 0.7rem;
-        overflow: hidden;
-        box-shadow: 0 2px 8px #b6e0f7;
-        margin-bottom: 1.2rem;
-      }
-      table th, table td {
-        padding: 6px;
-        text-align: left;
-        border: 1px solid #b6e0f7;
-      }
-      table th {
-        background-color: #e0f7fa;
-        color: #4bb0e6;
-        font-weight: bold;
-      }
-      table tr:nth-child(even) td {
-        background: #f2faff;
-      }
-      @media (max-width: 900px) {
-        .container { padding: 1.2rem 1vw; }
-        .flex-colunas { gap: 8px; }
-      }
-      @media (max-width: 600px) {
-        .header-modern { font-size: 1.3rem; }
-        .container { padding: 0.5rem 0.5vw; }
-        .coluna { min-width: 100%; }
-      }
-    </style>
 </head>
+<style>
+    .imagem-personagem {
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px;
+    }
+
+    .label-imagem {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #f0e6d2; /* tom envelhecido estilo pirata */
+    }
+
+    #preview-imagem {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border: 5px solid #8b5e3c; /* marrom madeira */
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+      display: none;
+      margin-top: 10px;
+      background-color: #fdf5e6;
+    }
+
+    body {
+      background-color: #1b1b1b;
+      color: #e0c097;
+      font-family: 'Georgia', serif;
+      padding: 8px;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+
+    input, textarea, select {
+      background-color: #3b2e25;
+      color: #f3e9d2;
+      border: 1px solid #8b5e3c;
+      padding: 4px;
+      border-radius: 4px;
+      width: 100%;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
+      min-width: 80px; /* ⬅ Evita que fique estreito em telas pequenas */
+    }
+
+    textarea {
+      resize: both;        /* ⬅ permite redimensionar livremente */
+      min-height: 50px;
+      min-width: 100px;
+    }
+
+    /* Garante que setas dos input[type=number] apareçam sempre */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: auto;
+      margin: 0;
+    }
+
+    button {
+      background-color: #8b5e3c;
+      color: #fff6d6;
+      border: none;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      margin: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a86e44;
+    }
+
+    h3, h2 {
+      margin: 6px 0;
+      font-size: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .flex-colunas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    .coluna {
+      flex: 1 1 30%;
+      box-sizing: border-box;
+    }
+
+    .pontos-distribuir {
+      font-size: 0.9rem;
+      margin: 6px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    table th, table td {
+      padding: 4px;
+      text-align: left;
+    }
+
+    .dice-roller input {
+      width: calc(100% - 20px);
+    }
+
+    @media (max-width: 768px) {
+      .coluna {
+        flex: 1 1 100%;
+      }
+
+      body {
+        font-size: 0.85rem;
+      }
+    }
+</style>
 <body>
     <div class="container">
-        <div class="header-modern">Ficha de Personagem</div>
         <div class="imagem-personagem">
           <label for="upload-imagem" class="label-imagem">Imagem do Personagem:</label><br>
-          <input type="file" id="upload-imagem" accept="image/*"><br>
+          <input type="file" id="upload-imagem" accept="image/*"><br><br>
           <img id="preview-imagem" src="" alt="Prévia da imagem">
         </div>
 
@@ -296,7 +261,7 @@
             <div class="coluna">
                 <div class="Extra">
                     <h3>Extras</h3><br>
-                    <label>Força: <input type="number" id="extra1" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
+                    <label>Força: <input type="number" id="extr1" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Constituição: <input type="number" id="extra2" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Destreza: <input type="number" id="extra3" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Velocidade: <input type="number" id="extra4" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
@@ -304,11 +269,6 @@
                     <label>Armadura: <input type="number" id="extra6" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Iniciativa: <input type="number" id="extra7" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Sabedoria: <input type="number" id="extra8" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
-                </div>
-            </div>
-            <div class="coluna">
-              <div class="Extras2">
-                    <h3>Continuação</h3><br>
                     <label>Percepção: <input type="number" id="extra9" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Espírito: <input type="number" id="extra10" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Concentração: <input type="number" id="extra11" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
@@ -316,7 +276,7 @@
                     <label>Recuperação: <input type="number" id="extra13" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Nado: <input type="number" id="extra14" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
                     <label>Voo: <input type="number" id="extra15" value="0" oninput="modificarPontos(); atualizarTotais()"></label><br>
-              </div>
+                </div>
             </div>
             <div class="coluna">
                 <div class="totais">
@@ -338,20 +298,20 @@
                     <p>Voo Total: <span id="soma15">0</span oninput="modificarPontos()"></p>
                 </div>
             </div>
-        </div>
-
-        <div class="dice-roller">
-            <h2>Rolador de Dados</h2>
-            <input type="text" id="diceInput" placeholder="Ex: 1d10+5d20+3d6">
-            <button type="button" onclick="rollDice()">Rolar</button>
-            <div id="result" class="result" style="display: block;"></div>
+            <div class="coluna">
+                <div class="dice-roller">
+                    <h2>Rolador de Dados</h2>
+                    <input type="text" id="diceInput" placeholder="Ex: 1d10+5d20+3d6">
+                    <button type="button" onclick="rollDice()">Rolar</button>
+                    <div id="result" class="result" style="display: block;"></div>
+                </div>
+            </div>
         </div>
 
         <div class="sobra flex-colunas">
             <div class="coluna">
               <div class="akuma-no-mi">
                   <h3>Akuma no mi</h3>
-                  <label>Nome: <input type="text"></label>
                   <label>Grau: <input type="number" id="grauAkuma" min="1" max="30" oninput="atualizarPontosAkuma()"></label>
                   <table id="tabelaAkuma">
                       <tr>
@@ -365,6 +325,22 @@
                   <p id="pontosRestantesAkuma">Pontos restantes: 0</p>
               </div>
             </div>
+            <div class="coluna">
+                <div class="mochila-section">
+                    <h3>Mochila</h3>
+                    <table>
+                        <script>
+                            for (let i = 0; i < 20; i++) {
+                                document.write(`
+                                    <tr>
+                                        <textarea oninput="autoResize(this)"></textarea>
+                                    </tr>
+                                `);
+                            }
+                        </script>
+                    </table>
+                </div> 
+            </div> 
         </div>
 
         <div class="Haki">
@@ -434,7 +410,7 @@
                         <thead>
                             <tr>
                                 <th>Perícia</th>
-                                <th>Pontos</th>
+                                <th id="pts">Pts</th>
                             </tr>
                         </thead>
                         <tbody id="pericias-body"></tbody>
@@ -469,24 +445,7 @@
                     <label>Golpes: <textarea id="golpes3"></textarea></label><br>
                 </div>
             </div>
-        </div>  
-        
-        <div class="coluna">
-            <div class="mochila-section">
-                <h3>Mochila</h3>
-                <table>
-                    <script>
-                        for (let i = 0; i < 20; i++) {
-                            document.write(`
-                                <tr>
-                                    <textarea oninput="autoResize(this)"></textarea>
-                                </tr>
-                            `);
-                        }
-                    </script>
-                </table>
-            </div> 
-        </div> 
+        </div>    
 
         <div class="botao-container">
           <label for="personagemId">ID do Personagem:</label>
@@ -498,30 +457,14 @@
     </div>
 
 <script>
-    // Carregar imagem salva ao abrir a ficha
-    window.addEventListener('load', function () {
-      const personagemId = document.getElementById('personagemId')?.value || '';
-      const imagemSalva = localStorage.getItem('imagemPersonagem_' + personagemId);
-      if (imagemSalva) {
-        const preview = document.getElementById('preview-imagem');
-        preview.src = imagemSalva;
-        preview.style.display = 'block';
-      }
-    });
-
-    // Salvar imagem no localStorage ao selecionar
-    document.getElementById('upload-imagem').addEventListener('change', function (event) {
+    document.getElementById('upload-imagem').addEventListener('change', function(event) {
       const file = event.target.files[0];
-      if (!file) return;
-
+      if (!file) return;    
       const reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         const preview = document.getElementById('preview-imagem');
         preview.src = e.target.result;
         preview.style.display = 'block';
-        // Salva no localStorage usando o personagemId como chave
-        const personagemId = document.getElementById('personagemId')?.value || '';
-        localStorage.setItem('imagemPersonagem_' + personagemId, e.target.result);
       };
       reader.readAsDataURL(file);
     });
@@ -796,11 +739,11 @@
 
     function atualizarTotais() {
         const mapa = [
-            { nome: 'Força', base: 'forca', haki: 'haki1', fruta: 'poder1', extra: 'extra1', total: 'soma1' },
+            { nome: 'Força', base: 'forca', haki: 'haki1', fruta: 'poder1', extra: 'extr1', total: 'soma1' },
             { nome: 'Constituição', base: 'constituicao', haki: 'haki2', fruta: 'poder2', extra: 'extra2', total: 'soma2' },
             { nome: 'Destreza', base: 'destreza', haki: 'haki5', fruta: 'poder3', extra: 'extra3', total: 'soma3' },
             { nome: 'Velocidade', base: 'velocidade', haki: 'haki6', fruta: 'poder4', extra: 'extra4', total: 'soma4' },
-            { nome: 'Dano', base: 'dano', haki: 'haki4', fruta: 'poder5', extra: 'extra5', total: 'soma5' },
+            { nome: 'Dano', base: 'dano', haki: 'ehaki4', fruta: 'poder5', extra: 'extra5', total: 'soma5' },
             { nome: 'Armadura', base: 'armadura', haki: 'haki3', fruta: 'poder6', extra: 'extra6', total: 'soma6' },
             { nome: 'Iniciativa', base: 'iniciativa', haki: null, fruta: 'poder7', extra: 'extra7', total: 'soma7' },
             { nome: 'Sabedoria', base: 'sabedoria', haki: null, fruta: 'poder8', extra: 'extra8', total: 'soma8' },
@@ -1068,6 +1011,34 @@
 </script>
 
 <script>
+  // Carregar imagem salva ao abrir a ficha
+  window.addEventListener('load', function () {
+    const imagemSalva = localStorage.getItem('imagemPersonagem');
+    if (imagemSalva) {
+      const preview = document.getElementById('preview-imagem');
+      preview.src = imagemSalva;
+      preview.style.display = 'block';
+    }
+  });
+
+  // Salvar imagem no localStorage ao selecionar
+  document.getElementById('upload-imagem').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const preview = document.getElementById('preview-imagem');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+
+      localStorage.setItem('imagemPersonagem', e.target.result);
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+
+<script>
     function construirTabelaPericias() {
       const tbody = document.getElementById("pericias-body");
       for (let i = 0; i < 20; i++) {
@@ -1092,7 +1063,397 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       construirTabelaPericias();
+      carregarFicha();
     });
+
+    function resetarFicha() {
+      if (confirm("Tem certeza que deseja apagar a ficha?")) {
+        localStorage.removeItem("fichaPersonagem");
+        location.reload();
+      }
+      localStorage.removeItem('imagemPersonagem');
+      document.getElementById('preview-imagem').src = '';
+      document.getElementById('preview-imagem').style.display = 'none';
+    }
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCMWxGtooYe7UXzFop_FfCKu-M4ima5vMc",
+    authDomain: "hospedagem-rpg.firebaseapp.com",
+    databaseURL: "https://hospedagem-rpg-default-rtdb.firebaseio.com",
+    projectId: "hospedagem-rpg",
+    storageBucket: "hospedagem-rpg.appspot.com",
+    messagingSenderId: "834126719159",
+    appId: "1:834126719159:web:f605f39f967f9bd2498532",
+    measurementId: "G-41LQB57W3X"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function salvarFicha() {
+    const id = document.getElementById('personagemId')?.value.trim();
+    if (!id) return alert("Informe o ID do personagem.");
+
+    const ficha = {
+      nome: document.getElementById('nome').value,
+        raca: document.getElementById('raca').value,
+        classe: document.getElementById('classe').value,
+        individualidade: document.getElementById('individualidade').value,
+        alcunha: document.getElementById('alcunha').value,
+        patente: document.getElementById('patente').value,
+        estilo: document.getElementById('estilo').value,
+        idade: document.getElementById('idade').value,
+        altura: document.getElementById('altura').value,
+        nivel: document.getElementById('nivel').value,
+        xp: document.getElementById('xp').value,
+        vida: document.getElementById('vida').value,
+        energia: document.getElementById('energia').value,
+        danoSofrido: document.getElementById('danoSofrido').value,
+        gasto1: document.getElementById('gasto1').value,
+        pontos: document.getElementById('pontos').textContent,
+        pontos2: document.getElementById('pontos2').textContent,
+        stamina2: document.getElementById('stamina2').value,
+        gasto3: document.getElementById('gasto3').value,      
+        forca: document.getElementById('forca').value,
+        constituicao: document.getElementById('constituicao').value,
+        destreza: document.getElementById('destreza').value,
+        velocidade: document.getElementById('velocidade').value,
+        dano: document.getElementById('dano').value,
+        armadura: document.getElementById('armadura').value,
+        iniciativa: document.getElementById('iniciativa').value,
+        sabedoria: document.getElementById('sabedoria').value,
+        percepcao: document.getElementById('percepcao').value,
+        espirito: document.getElementById('espirito').value,
+        concentracao: document.getElementById('concentracao').value,
+        precisao: document.getElementById('precisao').value,
+        recuperacao: document.getElementById('recuperacao').value,
+        nado: document.getElementById('nado').value,
+        voo: document.getElementById('voo').value,
+        haki1: document.getElementById('haki1').value,
+        haki2: document.getElementById('haki2').value,
+        haki3: document.getElementById('haki3').value,
+        haki4: document.getElementById('haki4').value,
+        haki5: document.getElementById('haki5').value,
+        haki6: document.getElementById('haki6').value,
+        haki7: document.getElementById('haki7').value,
+        haki8: document.getElementById('haki8').value,
+        poder1: document.getElementById('poder1').value,
+        poder2: document.getElementById('poder2').value,
+        poder3: document.getElementById('poder3').value,
+        poder4: document.getElementById('poder4').value,
+        poder5: document.getElementById('poder5').value,
+        poder6: document.getElementById('poder6').value,
+        poder7: document.getElementById('poder7').value,
+        poder8: document.getElementById('poder8').value,
+        poder9: document.getElementById('poder9').value,
+        poder10: document.getElementById('poder10').value,
+        poder11: document.getElementById('poder11').value,
+        poder12: document.getElementById('poder12').value,
+        poder13: document.getElementById('poder13').value,
+        poder14: document.getElementById('poder14').value,
+        poder15: document.getElementById('poder15').value,
+        extra1: document.getElementById('extr1').value,
+        extra2: document.getElementById('extra2').value,
+        extra3: document.getElementById('extra3').value,
+        extra4: document.getElementById('extra4').value,
+        extra5: document.getElementById('extra5').value,
+        extra6: document.getElementById('extra6').value,
+        extra7: document.getElementById('extra7').value,
+        extra8: document.getElementById('extra8').value,
+        extra9: document.getElementById('extra9').value,
+        extra10: document.getElementById('extra10').value,
+        extra11: document.getElementById('extra11').value,
+        extra12: document.getElementById('extra12').value,
+        extra13: document.getElementById('extra13').value,
+        extra14: document.getElementById('extra14').value,
+        extra15: document.getElementById('extra15').value,
+        soma1: document.getElementById('soma1').textContent,
+        soma2: document.getElementById('soma2').textContent,
+        soma3: document.getElementById('soma3').textContent,
+        soma4: document.getElementById('soma4').textContent,
+        soma5: document.getElementById('soma5').textContent,
+        soma6: document.getElementById('soma6').textContent,
+        soma7: document.getElementById('soma7').textContent,
+        soma8: document.getElementById('soma8').textContent,
+        soma9: document.getElementById('soma9').textContent,
+        soma10: document.getElementById('soma10').textContent,
+        soma11: document.getElementById('soma11').textContent,
+        soma12: document.getElementById('soma12').textContent,
+        soma13: document.getElementById('soma13').textContent,
+        soma14: document.getElementById('soma14').textContent,
+        soma15: document.getElementById('soma15').textContent,
+        primaria: document.getElementById('primaria').value,
+        secundaria: document.getElementById('secundaria').value,
+        item1: document.getElementById('item1').value,
+        item2: document.getElementById('item2').value,
+        item3: document.getElementById('item3').value,
+        item4: document.getElementById('item4').value,
+        item5: document.getElementById('item5').value,
+        item6: document.getElementById('item6').value,
+        item7: document.getElementById('item7').value,
+        golpes1: document.getElementById('golpes1').value,
+        golpes2: document.getElementById('golpes2').value,
+        golpes3: document.getElementById('golpes3').value
+        };
+
+      // Bônus de Raça
+      const bonusRacaEl = document.getElementById("bonusRaca");
+      ficha.bonusRaca = bonusRacaEl ? bonusRacaEl.textContent : "";
+
+      // Atributos base
+      ficha.atributosBase = {};
+      document.querySelectorAll('.atributos input[type="number"]').forEach(input => {
+        ficha.atributosBase[input.id] = input.getAttribute('data-base') || '0';
+      });
+    
+      // Haki detalhado
+      ficha.hakiDetalhado = [];
+      document.querySelectorAll('.Haki input[type="number"]').forEach(input => {
+        ficha.hakiDetalhado.push(input.value);
+      });
+    
+      // Perícias
+      ficha.pericias = [];
+      document.querySelectorAll("#pericias-body tr").forEach(row => {
+        const inputs = row.querySelectorAll("input");
+        if (inputs.length === 2) {
+          ficha.pericias.push({ nome: inputs[0].value, pontos: inputs[1].value });
+        }
+      });
+    
+      // Mochila
+      ficha.mochila = [];
+      document.querySelectorAll(".mochila-section textarea").forEach(el => {
+        ficha.mochila.push({ nome: el.value });
+      });
+    
+      // Fruta - Akuma no Mi
+      ficha.akumaDetalhado = [];
+      document.querySelectorAll('.akuma-no-mi input').forEach(input => {
+        ficha.akumaDetalhado.push(input.value);
+      });
+    
+      // Pontos restantes da fruta
+      const pontosRestantes = document.getElementById('pontosRestantesAkuma');
+      if (pontosRestantes) {
+        ficha.akumaDetalhado.push(`__pontos__:${pontosRestantes.textContent}`);
+      }
+      
+    try {
+      await setDoc(doc(db, "fichas", id), ficha);
+      alert("Ficha salva no Firebase!");
+    } catch (e) {
+      console.error("Erro ao salvar:", e);
+      alert("Erro ao salvar no Firebase.");
+    }
+  }
+
+async function carregarFicha() {
+  const params = new URLSearchParams(window.location.search);
+  const personagemId = params.get("personagemId");
+  if (!personagemId) return;
+
+  try {
+    const docRef = doc(db, "fichas", personagemId);
+    const docSnap = await getDoc(docRef);
+
+    if (!docSnap.exists()) {
+      console.warn("Ficha não encontrada.");
+      return;
+    }
+
+    const ficha = docSnap.data();
+      document.getElementById('nome').value = ficha.nome || '';
+      document.getElementById('raca').value = ficha.raca || '';
+      document.getElementById('classe').value = ficha.classe || '';
+      document.getElementById('individualidade').value = ficha.individualidade || '';
+      document.getElementById('alcunha').value = ficha.alcunha || '';
+      document.getElementById('patente').value = ficha.patente || '';
+      document.getElementById('estilo').value = ficha.estilo || '';
+      document.getElementById('idade').value = ficha.idade || '';
+      document.getElementById('altura').value = ficha.altura || '';
+      document.getElementById('nivel').value = ficha.nivel || '';
+      document.getElementById('xp').value = ficha.xp || '';
+      document.getElementById('vida').value = ficha.vida || '';
+      document.getElementById('energia').value = ficha.energia || '';
+      //document.getElementById('stamina').value = ficha.stamina || '';
+      document.getElementById('danoSofrido').value = ficha.danoSofrido || '';
+      document.getElementById('gasto1').value = ficha.gasto1 || '';
+      //document.getElementById('gasto2').value = ficha.gasto2 || '';
+      document.getElementById('pontos').textContent = ficha.pontos || '';
+      document.getElementById('pontos2').textContent = ficha.pontos2 || '';
+      document.getElementById('stamina2').value = ficha.stamina2 || '';
+      document.getElementById('gasto3').value = ficha.gasto3 || '';
+      // 2. Atributos
+      document.getElementById('forca').value = ficha.forca || '';
+      document.getElementById('constituicao').value = ficha.constituicao || '';
+      document.getElementById('destreza').value = ficha.destreza || '';
+      document.getElementById('velocidade').value = ficha.velocidade || '';
+      document.getElementById('dano').value = ficha.dano || '';
+      document.getElementById('armadura').value = ficha.armadura || '';
+      document.getElementById('iniciativa').value = ficha.iniciativa || '';
+      document.getElementById('sabedoria').value = ficha.sabedoria || '';
+      document.getElementById('percepcao').value = ficha.percepcao || '';
+      document.getElementById('espirito').value = ficha.espirito || '';
+      document.getElementById('concentracao').value = ficha.concentracao || '';
+      document.getElementById('precisao').value = ficha.precisao || '';
+      document.getElementById('recuperacao').value = ficha.recuperacao || '';
+      document.getElementById('nado').value = ficha.nado || '';
+      document.getElementById('voo').value = ficha.voo || '';
+      // 3. Haki
+      document.getElementById('haki1').value = ficha.haki1 || '';
+      document.getElementById('haki2').value = ficha.haki2 || '';
+      document.getElementById('haki3').value = ficha.haki3 || '';
+      document.getElementById('haki4').value = ficha.haki4 || '';
+      document.getElementById('haki5').value = ficha.haki5 || '';
+      document.getElementById('haki6').value = ficha.haki6 || '';
+      document.getElementById('haki7').value = ficha.haki7 || '';
+      document.getElementById('haki8').value = ficha.haki8 || '';
+      // 4. Fruta (Akuma no Mi principal)
+      document.getElementById('poder1').value = ficha.poder1 || '';
+      document.getElementById('poder2').value = ficha.poder2 || '';
+      document.getElementById('poder3').value = ficha.poder3 || '';
+      document.getElementById('poder4').value = ficha.poder4 || '';
+      document.getElementById('poder5').value = ficha.poder5 || '';
+      document.getElementById('poder6').value = ficha.poder6 || '';
+      document.getElementById('poder7').value = ficha.poder7 || '';
+      document.getElementById('poder8').value = ficha.poder8 || '';
+      document.getElementById('poder9').value = ficha.poder9 || '';
+      document.getElementById('poder10').value = ficha.poder10 || '';
+      document.getElementById('poder11').value = ficha.poder11 || '';
+      document.getElementById('poder12').value = ficha.poder12 || '';
+      document.getElementById('poder13').value = ficha.poder13 || '';
+      document.getElementById('poder14').value = ficha.poder14 || '';
+      document.getElementById('poder15').value = ficha.poder15 || '';
+      // 5. Extras
+      document.getElementById('extr1').value = ficha.extra1 || '';
+      document.getElementById('extra2').value = ficha.extra2 || '';
+      document.getElementById('extra3').value = ficha.extra3 || '';
+      document.getElementById('extra4').value = ficha.extra4 || '';
+      document.getElementById('extra5').value = ficha.extra5 || '';
+      document.getElementById('extra6').value = ficha.extra6 || '';
+      document.getElementById('extra7').value = ficha.extra7 || '';
+      document.getElementById('extra8').value = ficha.extra8 || '';
+      document.getElementById('extra9').value = ficha.extra9 || '';
+      document.getElementById('extra10').value = ficha.extra10 || '';
+      document.getElementById('extra11').value = ficha.extra11 || '';
+      document.getElementById('extra12').value = ficha.extra12 || '';
+      document.getElementById('extra13').value = ficha.extra13 || '';
+      document.getElementById('extra14').value = ficha.extra14 || '';
+      document.getElementById('extra15').value = ficha.extra15 || '';
+      // 6. Totais (somas)
+      for (let i = 1; i <= 15; i++) {
+        const span = document.getElementById(`soma${i}`);
+        if (span) span.textContent = ficha[`soma${i}`] || '';
+      }
+      // 7. Armas e Itens
+      document.getElementById('primaria').value = ficha.primaria || '';
+      document.getElementById('secundaria').value = ficha.secundaria || '';
+      document.getElementById('item1').value = ficha.item1 || '';
+      document.getElementById('item2').value = ficha.item2 || '';
+      document.getElementById('item3').value = ficha.item3 || '';
+      document.getElementById('item4').value = ficha.item4 || '';
+      document.getElementById('item5').value = ficha.item5 || '';
+      document.getElementById('item6').value = ficha.item6 || '';
+      document.getElementById('item7').value = ficha.item7 || '';
+      // 8. Golpes
+      document.getElementById('golpes1').value = ficha.golpes1 || '';
+      document.getElementById('golpes2').value = ficha.golpes2 || '';
+      document.getElementById('golpes3').value = ficha.golpes3 || '';
+
+      
+    // Bônus de Raça
+    if (ficha.bonusRaca) {
+      const bonusRaca = document.getElementById("bonusRaca");
+      if (bonusRaca) bonusRaca.textContent = ficha.bonusRaca;
+    }
+
+    // Atributos base
+    if (ficha.atributosBase) {
+      for (const [id, base] of Object.entries(ficha.atributosBase)) {
+        const input = document.getElementById(id);
+        if (input) {
+          input.setAttribute("data-base", base);
+        }
+      }
+    }
+
+    // Haki detalhado
+    if (Array.isArray(ficha.hakiDetalhado)) {
+      const hakiInputs = document.querySelectorAll(".Haki input[type='number']");
+      hakiInputs.forEach((input, index) => {
+        input.value = ficha.hakiDetalhado[index] || 0;
+      });
+    }
+
+    // Perícias
+    if (Array.isArray(ficha.pericias)) {
+      const tbody = document.getElementById("pericias-body");
+      if (tbody) {
+        tbody.innerHTML = "";
+        ficha.pericias.forEach(pericia => {
+          const row = document.createElement("tr");
+
+          const nomeCell = document.createElement("td");
+          const nomeInput = document.createElement("input");
+          nomeInput.type = "text";
+          nomeInput.value = pericia.nome || "";
+          nomeCell.appendChild(nomeInput);
+
+          const pontosCell = document.createElement("td");
+          const pontosInput = document.createElement("input");
+          pontosInput.type = "number";
+          pontosInput.value = pericia.pontos || 0;
+          pontosCell.appendChild(pontosInput);
+
+          row.appendChild(nomeCell);
+          row.appendChild(pontosCell);
+          tbody.appendChild(row);
+        });
+      }
+    }
+
+    // Mochila
+    if (Array.isArray(ficha.mochila)) {
+      const mochilaSection = document.querySelector(".mochila-section");
+      if (mochilaSection) {
+        const textareas = mochilaSection.querySelectorAll("textarea");
+        ficha.mochila.forEach((item, i) => {
+          if (textareas[i]) {
+            textareas[i].value = item.nome || "";
+          }
+        });
+      }
+    }
+
+    // Fruta (Akuma no Mi)
+    if (Array.isArray(ficha.akumaDetalhado)) {
+      const inputs = document.querySelectorAll(".akuma-no-mi input");
+      ficha.akumaDetalhado.forEach((valor, i) => {
+        if (typeof valor === "string" && valor.startsWith("__pontos__:")) {
+          const pontosRestantes = document.getElementById("pontosRestantesAkuma");
+          if (pontosRestantes) {
+            pontosRestantes.textContent = valor.split(":")[1];
+          }
+        } else if (inputs[i]) {
+          inputs[i].value = valor;
+        }
+      });
+    }
+
+  } catch (e) {
+    console.error("Erro ao carregar ficha:", e);
+  }
+}
+
+  // Expõe globalmente
+  window.salvarFicha = salvarFicha;
+  window.carregarFicha = carregarFicha;
 </script>
 
 </body>

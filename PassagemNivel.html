@@ -4,44 +4,89 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Passagem de Nível - RPG</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #1e1e2f;
-    color: #eee;
-    margin: 20px;
-    line-height: 1.5;
+    min-height: 100vh;
+    background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+    color: #2d3a4a;
+    font-family: 'Cardo', serif;
+    font-size: 15px;
   }
-  h1, h2, h3 {
-    color: #f0a500;
+  .container {
+    max-width: 980px;
+    margin: 2.5rem auto 2rem auto;
+    background: rgba(255,255,255,0.97);
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    padding: 2.5rem 2vw 2vw 2vw;
+  }
+  .header-modern {
+    font-family: 'Pirata One', cursive;
+    font-size: 2.2rem;
+    color: #4bb0e6;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px #b6e0f7;
+    text-align: center;
+    margin-bottom: 2.2rem;
+  }
+  h1 {
+    color: #4bb0e6;
+    border-bottom: 2px solid #b6e0f7;
+    padding-bottom: 6px;
+    margin-bottom: 2.2rem;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  h2 {
+    color: #4bb0e6;
+    border-bottom: 2px solid #b6e0f7;
+    padding-bottom: 6px;
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  h3 {
+    color: #4bb0e6;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
   }
   table {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 40px;
-    background: #2c2c44;
-    border-radius: 6px;
+    background: #f7fbfd;
+    border-radius: 0.7rem;
     overflow: hidden;
+    border: 1px solid #b6e0f7;
   }
   th, td {
     padding: 10px 12px;
-    border: 1px solid #444466;
+    border: 1px solid #b6e0f7;
     text-align: center;
   }
   th {
-    background-color: #3a3a66;
+    background-color: #e3f3fb;
+    color: #2196f3;
+    font-weight: bold;
+  }
+  td {
+    color: #2d3a4a;
   }
   .section {
     margin-bottom: 50px;
   }
   .degree-header {
-    background: #444477;
+    background: #e3f3fb;
     font-weight: bold;
     font-size: 1.1em;
+    color: #2196f3;
   }
   .note {
     font-size: 0.9em;
-    color: #bbb;
+    color: #666;
     margin-top: -30px;
     margin-bottom: 20px;
     font-style: italic;
@@ -55,227 +100,240 @@
   .box {
     flex: 1 1 30%;
     min-width: 300px;
-    background: #2f2f55;
+    background: #f7fbfd;
     padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 0 8px #0008;
+    border-radius: 0.7rem;
+    box-shadow: 0 2px 8px #b6e0f722;
+    border: 1px solid #b6e0f7;
+  }
+  .badge-mod {
+    background: #e3f3fb;
+    color: #2196f3;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.4em;
+    border: 1px solid #b6e0f7;
   }
 </style>
 </head>
 <body>
 
-<h1>Passagem de Nível - RPG</h1>
+<div class="container">
+  <h1>Passagem de Nível - RPG</h1>
 
-<section class="section">
-  <h2>Tabela de XP a Atingir por Nível</h2>
-  <table>
-    <thead>
-      <tr><th>Nível</th><th>XP Necessária</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>0</td></tr>
-      <tr><td>2</td><td>400</td></tr>
-      <tr><td>3</td><td>800</td></tr>
-      <tr><td>4</td><td>1.600</td></tr>
-      <tr><td>5</td><td>3.200</td></tr>
-      <tr><td>6</td><td>4.000</td></tr>
-      <tr><td>7</td><td>6.000</td></tr>
-      <tr><td>8</td><td>8.000</td></tr>
-      <tr><td>9</td><td>10.000</td></tr>
-      <tr><td>10</td><td>12.000</td></tr>
-      <tr><td>11</td><td>15.000</td></tr>
-      <tr><td>12</td><td>20.000</td></tr>
-      <tr><td>13</td><td>25.000</td></tr>
-      <tr><td>14</td><td>30.000</td></tr>
-      <tr><td>15</td><td>35.000</td></tr>
-      <tr><td>16</td><td>50.000</td></tr>
-      <tr><td>17</td><td>70.000</td></tr>
-      <tr><td>18</td><td>90.000</td></tr>
-      <tr><td>19</td><td>110.000</td></tr>
-      <tr><td>20</td><td>130.000</td></tr>
-      <tr><td>21</td><td>150.000</td></tr>
-      <tr><td>22</td><td>200.000</td></tr>
-      <tr><td>23</td><td>250.000</td></tr>
-      <tr><td>24</td><td>300.000</td></tr>
-      <tr><td>25</td><td>350.000</td></tr>
-      <tr><td>26</td><td>500.000</td></tr>
-      <tr><td>27</td><td>750.000</td></tr>
-      <tr><td>28</td><td>1.000.000</td></tr>
-      <tr><td>29</td><td>1.250.000</td></tr>
-      <tr><td>30</td><td>1.500.000</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="section">
-  <h2>Ganhos de Atributos por Nível</h2>
-  <p>Distribua os seguintes pontos conforme seu nível:</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Nível</th>
-        <th>Pontos de Atributo</th>
-        <th>HP</th>
-        <th>Pontos de Energia (P.E.)</th>
-        <th>Perícias</th>
-        <th>Espaços na Bolsa</th>
-        <th>Notas / Liberações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>+2</td><td>+3</td><td>+2</td><td>0</td><td>0</td><td>Valor presente na fruta base</td></tr>
-      <tr><td>2</td><td>+2</td><td>+3</td><td>+2</td><td>+1</td><td>+1</td><td></td></tr>
-      <tr><td>3</td><td>+2</td><td>+3</td><td>+2</td><td>+1</td><td>0</td><td></td></tr>
-      <tr><td>4</td><td>+2</td><td>+3</td><td>+2</td><td>0</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>5</td><td>+2</td><td>+3</td><td>+2</td><td>0</td><td>0</td><td>Golpe liberado</td></tr>
-      <tr><td>6</td><td>+3</td><td>+7</td><td>+3</td><td>+1</td><td>+1</td><td></td></tr>
-      <tr><td>7</td><td>+3</td><td>+7</td><td>+3</td><td>0</td><td>0</td><td>Golpe liberado</td></tr>
-      <tr><td>8</td><td>+3</td><td>+7</td><td>+3</td><td>0</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>9</td><td>+3</td><td>+7</td><td>+3</td><td>0</td><td>0</td><td></td></tr>
-      <tr><td>10</td><td>+3</td><td>+7</td><td>+3</td><td>0</td><td>0</td><td>Buff liberado</td></tr>
-      <tr><td>11</td><td>+4</td><td>+10</td><td>+5</td><td>+2</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>12</td><td>+4</td><td>+10</td><td>+5</td><td>0</td><td>0</td><td>Golpe liberado</td></tr>
-      <tr><td>13</td><td>+4</td><td>+10</td><td>+5</td><td>0</td><td>0</td><td>Buff liberado</td></tr>
-      <tr><td>14</td><td>+4</td><td>+10</td><td>+5</td><td>0</td><td>+1</td><td></td></tr>
-      <tr><td>15</td><td>+4</td><td>+10</td><td>+5</td><td>0</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>16</td><td>+5</td><td>+16</td><td>+8</td><td>+3</td><td>0</td><td>Haki despertado naturalmente</td></tr>
-      <tr><td>17</td><td>+5</td><td>+16</td><td>+8</td><td>0</td><td>0</td><td>Buff liberado</td></tr>
-      <tr><td>18</td><td>+5</td><td>+16</td><td>+8</td><td>0</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>19</td><td>+5</td><td>+16</td><td>+8</td><td>0</td><td>+1</td><td></td></tr>
-      <tr><td>20</td><td>+5</td><td>+16</td><td>+8</td><td>+3</td><td>+1</td><td></td></tr>
-      <tr><td>21</td><td>+6</td><td>+20</td><td>+12</td><td>+5</td><td>0</td><td>Segundo Haki despertado naturalmente</td></tr>
-      <tr><td>22</td><td>+6</td><td>+20</td><td>+12</td><td>0</td><td>0</td><td>Golpe liberado</td></tr>
-      <tr><td>23</td><td>+6</td><td>+20</td><td>+12</td><td>0</td><td>0</td><td>Buff liberado</td></tr>
-      <tr><td>24</td><td>+6</td><td>+20</td><td>+12</td><td>0</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>25</td><td>+6</td><td>+20</td><td>+12</td><td>0</td><td>+1</td><td></td></tr>
-      <tr><td>26</td><td>+10</td><td>+24</td><td>+20</td><td>+10</td><td>0</td><td>Golpe liberado / Fruta despertada / Haki avançado</td></tr>
-      <tr><td>27</td><td>+10</td><td>+24</td><td>+20</td><td>0</td><td>0</td><td>Buff liberado</td></tr>
-      <tr><td>28</td><td>+10</td><td>+24</td><td>+20</td><td>0</td><td>0</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>29</td><td>+10</td><td>+24</td><td>+20</td><td>0</td><td>+1</td><td></td></tr>
-      <tr><td>30</td><td>+10</td><td>+24</td><td>+20</td><td>+10</td><td>+1</td><td></td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="section">
-  <h2>Liberação de Passivas e Habilidades por Nível</h2>
-  <p><strong>Nota:</strong> Alguns níveis liberam estilos, golpes ou buffs importantes.</p>
-  <table>
-    <thead>
-      <tr><th>Nível</th><th>Liberações / Notas</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>4</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>5</td><td>Golpe liberado</td></tr>
-      <tr><td>7</td><td>Golpe liberado</td></tr>
-      <tr><td>8</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>10</td><td>Buff liberado</td></tr>
-      <tr><td>11</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>12</td><td>Golpe liberado</td></tr>
-      <tr><td>13</td><td>Buff liberado</td></tr>
-      <tr><td>15</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>16</td><td>Haki despertado naturalmente</td></tr>
-      <tr><td>17</td><td>Buff liberado</td></tr>
-      <tr><td>18</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>21</td><td>Segundo Haki despertado naturalmente</td></tr>
-      <tr><td>22</td><td>Golpe liberado</td></tr>
-      <tr><td>23</td><td>Buff liberado</td></tr>
-      <tr><td>24</td><td>Liberação do Grau de Estilo</td></tr>
-      <tr><td>26</td><td>Golpe liberado / Fruta despertada / Haki avançado</td></tr>
-      <tr><td>27</td><td>Buff liberado</td></tr>
-      <tr><td>28</td><td>Liberação do Grau de Estilo</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<section class="section container-flex">
-  <div class="box">
-    <h3>Tabela XP - Akuma no Mi</h3>
+  <section class="section">
+    <h2>Tabela de XP a Atingir por Nível</h2>
     <table>
       <thead>
-        <tr><th>Nível</th><th>XP Necessária</th><th>Pontos Ganhos</th></tr>
+        <tr><th>Nível</th><th>XP Necessária</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>0</td><td>0</td></tr>
-        <tr><td>2</td><td>400</td><td>1</td></tr>
-        <tr><td>3</td><td>800</td><td>2</td></tr>
-        <tr><td>4</td><td>1.600</td><td>3</td></tr>
-        <tr><td>5</td><td>3.200</td><td>4</td></tr>
-        <tr><td>6</td><td>4.000</td><td>5</td></tr>
-        <tr><td>7</td><td>6.000</td><td>6</td></tr>
-        <tr><td>8</td><td>8.000</td><td>7</td></tr>
-        <tr><td>9</td><td>10.000</td><td>8</td></tr>
-        <tr><td>10</td><td>12.000</td><td>9</td></tr>
-        <tr><td>11</td><td>15.000</td><td>10</td></tr>
-        <tr><td>12</td><td>20.000</td><td>11</td></tr>
-        <tr><td>13</td><td>25.000</td><td>12</td></tr>
-        <tr><td>14</td><td>30.000</td><td>13</td></tr>
-        <tr><td>15</td><td>35.000</td><td>14</td></tr>
-        <tr><td>16</td><td>50.000</td><td>15</td></tr>
-        <tr><td>17</td><td>70.000</td><td>16</td></tr>
-        <tr><td>18</td><td>90.000</td><td>17</td></tr>
-        <tr><td>19</td><td>110.000</td><td>18</td></tr>
-        <tr><td>20</td><td>130.000</td><td>19</td></tr>
-        <tr><td>21</td><td>150.000</td><td>20</td></tr>
-        <tr><td>22</td><td>200.000</td><td>21</td></tr>
-        <tr><td>23</td><td>250.000</td><td>22</td></tr>
-        <tr><td>24</td><td>300.000</td><td>23</td></tr>
-        <tr><td>25</td><td>350.000</td><td>24</td></tr>
-        <tr><td>26</td><td>500.000</td><td>25</td></tr>
-        <tr><td>27</td><td>750.000</td><td>26</td></tr>
-        <tr><td>28</td><td>1.000.000</td><td>27</td></tr>
-        <tr><td>29</td><td>1.250.000</td><td>28</td></tr>
-        <tr><td>30</td><td>1.500.000</td><td>29</td></tr>
+        <tr><td>1</td><td><span class="badge-mod">0</span></td></tr>
+        <tr><td>2</td><td><span class="badge-mod">400</span></td></tr>
+        <tr><td>3</td><td><span class="badge-mod">800</span></td></tr>
+        <tr><td>4</td><td><span class="badge-mod">1.600</span></td></tr>
+        <tr><td>5</td><td><span class="badge-mod">3.200</span></td></tr>
+        <tr><td>6</td><td><span class="badge-mod">4.000</span></td></tr>
+        <tr><td>7</td><td><span class="badge-mod">6.000</span></td></tr>
+        <tr><td>8</td><td><span class="badge-mod">8.000</span></td></tr>
+        <tr><td>9</td><td><span class="badge-mod">10.000</span></td></tr>
+        <tr><td>10</td><td><span class="badge-mod">12.000</span></td></tr>
+        <tr><td>11</td><td><span class="badge-mod">15.000</span></td></tr>
+        <tr><td>12</td><td><span class="badge-mod">20.000</span></td></tr>
+        <tr><td>13</td><td><span class="badge-mod">25.000</span></td></tr>
+        <tr><td>14</td><td><span class="badge-mod">30.000</span></td></tr>
+        <tr><td>15</td><td><span class="badge-mod">35.000</span></td></tr>
+        <tr><td>16</td><td><span class="badge-mod">50.000</span></td></tr>
+        <tr><td>17</td><td><span class="badge-mod">70.000</span></td></tr>
+        <tr><td>18</td><td><span class="badge-mod">90.000</span></td></tr>
+        <tr><td>19</td><td><span class="badge-mod">110.000</span></td></tr>
+        <tr><td>20</td><td><span class="badge-mod">130.000</span></td></tr>
+        <tr><td>21</td><td><span class="badge-mod">150.000</span></td></tr>
+        <tr><td>22</td><td><span class="badge-mod">200.000</span></td></tr>
+        <tr><td>23</td><td><span class="badge-mod">250.000</span></td></tr>
+        <tr><td>24</td><td><span class="badge-mod">300.000</span></td></tr>
+        <tr><td>25</td><td><span class="badge-mod">350.000</span></td></tr>
+        <tr><td>26</td><td><span class="badge-mod">500.000</span></td></tr>
+        <tr><td>27</td><td><span class="badge-mod">750.000</span></td></tr>
+        <tr><td>28</td><td><span class="badge-mod">1.000.000</span></td></tr>
+        <tr><td>29</td><td><span class="badge-mod">1.250.000</span></td></tr>
+        <tr><td>30</td><td><span class="badge-mod">1.500.000</span></td></tr>
       </tbody>
     </table>
-  </div>
+  </section>
 
-  <div class="box">
-    <h3>Tabela XP - Haki</h3>
+  <section class="section">
+    <h2>Ganhos de Atributos por Nível</h2>
+    <p>Distribua os seguintes pontos conforme seu nível:</p>
     <table>
       <thead>
-        <tr><th>Nível</th><th>XP Necessária</th><th>Pontos Ganhos</th></tr>
+        <tr>
+          <th>Nível</th>
+          <th>Pontos de Atributo</th>
+          <th>HP</th>
+          <th>Pontos de Energia (P.E.)</th>
+          <th>Perícias</th>
+          <th>Espaços na Bolsa</th>
+          <th>Notas / Liberações</th>
+        </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>0</td><td>0</td></tr>
-        <tr><td>2</td><td>400</td><td>1</td></tr>
-        <tr><td>3</td><td>800</td><td>2</td></tr>
-        <tr><td>4</td><td>1.600</td><td>3</td></tr>
-        <tr><td>5</td><td>3.200</td><td>4</td></tr>
-        <tr><td>6</td><td>4.000</td><td>5</td></tr>
-        <tr><td>7</td><td>6.000</td><td>6</td></tr>
-        <tr><td>8</td><td>8.000</td><td>7</td></tr>
-        <tr><td>9</td><td>10.000</td><td>8</td></tr>
-        <tr><td>10</td><td>12.000</td><td>9</td></tr>
-        <tr><td>11</td><td>15.000</td><td>10</td></tr>
-        <tr><td>12</td><td>20.000</td><td>11</td></tr>
-        <tr><td>13</td><td>25.000</td><td>12</td></tr>
-        <tr><td>14</td><td>30.000</td><td>13</td></tr>
-        <tr><td>15</td><td>35.000</td><td>14</td></tr>
-        <tr><td>16</td><td>50.000</td><td>15</td></tr>
-        <tr><td>17</td><td>70.000</td><td>16</td></tr>
-        <tr><td>18</td><td>90.000</td><td>17</td></tr>
-        <tr><td>19</td><td>110.000</td><td>18</td></tr>
-        <tr><td>20</td><td>130.000</td><td>19</td></tr>
-        <tr><td>21</td><td>150.000</td><td>20</td></tr>
-        <tr><td>22</td><td>200.000</td><td>21</td></tr>
-        <tr><td>23</td><td>250.000</td><td>22</td></tr>
-        <tr><td>24</td><td>300.000</td><td>23</td></tr>
-        <tr><td>25</td><td>350.000</td><td>24</td></tr>
-        <tr><td>26</td><td>500.000</td><td>25</td></tr>
-        <tr><td>27</td><td>750.000</td><td>26</td></tr>
-        <tr><td>28</td><td>1.000.000</td><td>27</td></tr>
-        <tr><td>29</td><td>1.250.000</td><td>28</td></tr>
-        <tr><td>30</td><td>1.500.000</td><td>29</td></tr>
+        <tr><td>1</td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Valor presente na fruta base</td></tr>
+        <tr><td>2</td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+1</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>3</td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+1</span></td><td><span class="badge-mod">0</span></td><td></td></tr>
+        <tr><td>4</td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>5</td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Golpe liberado</td></tr>
+        <tr><td>6</td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+7</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+1</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>7</td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+7</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Golpe liberado</td></tr>
+        <tr><td>8</td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+7</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>9</td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+7</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td></td></tr>
+        <tr><td>10</td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+7</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Buff liberado</td></tr>
+        <tr><td>11</td><td><span class="badge-mod">+4</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">+2</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>12</td><td><span class="badge-mod">+4</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Golpe liberado</td></tr>
+        <tr><td>13</td><td><span class="badge-mod">+4</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Buff liberado</td></tr>
+        <tr><td>14</td><td><span class="badge-mod">+4</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>15</td><td><span class="badge-mod">+4</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>16</td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">+16</span></td><td><span class="badge-mod">+8</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">0</span></td><td>Haki despertado naturalmente</td></tr>
+        <tr><td>17</td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">+16</span></td><td><span class="badge-mod">+8</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Buff liberado</td></tr>
+        <tr><td>18</td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">+16</span></td><td><span class="badge-mod">+8</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>19</td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">+16</span></td><td><span class="badge-mod">+8</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>20</td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">+16</span></td><td><span class="badge-mod">+8</span></td><td><span class="badge-mod">+3</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>21</td><td><span class="badge-mod">+6</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+12</span></td><td><span class="badge-mod">+5</span></td><td><span class="badge-mod">0</span></td><td>Segundo Haki despertado naturalmente</td></tr>
+        <tr><td>22</td><td><span class="badge-mod">+6</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+12</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Golpe liberado</td></tr>
+        <tr><td>23</td><td><span class="badge-mod">+6</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+12</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Buff liberado</td></tr>
+        <tr><td>24</td><td><span class="badge-mod">+6</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+12</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>25</td><td><span class="badge-mod">+6</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+12</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>26</td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+24</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">0</span></td><td>Golpe liberado / Fruta despertada / Haki avançado</td></tr>
+        <tr><td>27</td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+24</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Buff liberado</td></tr>
+        <tr><td>28</td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+24</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>29</td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+24</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
+        <tr><td>30</td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+24</span></td><td><span class="badge-mod">+20</span></td><td><span class="badge-mod">+10</span></td><td><span class="badge-mod">+1</span></td><td></td></tr>
       </tbody>
     </table>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <h2>Considerações Finais</h2>
-  <p>Este sistema de progressão é projetado para oferecer um desenvolvimento balanceado e gradual para personagens, respeitando as fases do RPG e garantindo que habilidades e buffs sejam adquiridos em momentos apropriados do jogo.</p>
-</section>
-</main>
+  <section class="section">
+    <h2>Liberação de Passivas e Habilidades por Nível</h2>
+    <p><strong>Nota:</strong> Alguns níveis liberam estilos, golpes ou buffs importantes.</p>
+    <table>
+      <thead>
+        <tr><th>Nível</th><th>Liberações / Notas</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>4</td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>5</td><td>Golpe liberado</td></tr>
+        <tr><td>7</td><td>Golpe liberado</td></tr>
+        <tr><td>8</td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>10</td><td>Buff liberado</td></tr>
+        <tr><td>11</td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>12</td><td>Golpe liberado</td></tr>
+        <tr><td>13</td><td>Buff liberado</td></tr>
+        <tr><td>15</td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>16</td><td>Haki despertado naturalmente</td></tr>
+        <tr><td>17</td><td>Buff liberado</td></tr>
+        <tr><td>18</td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>21</td><td>Segundo Haki despertado naturalmente</td></tr>
+        <tr><td>22</td><td>Golpe liberado</td></tr>
+        <tr><td>23</td><td>Buff liberado</td></tr>
+        <tr><td>24</td><td>Liberação do Grau de Estilo</td></tr>
+        <tr><td>26</td><td>Golpe liberado / Fruta despertada / Haki avançado</td></tr>
+        <tr><td>27</td><td>Buff liberado</td></tr>
+        <tr><td>28</td><td>Liberação do Grau de Estilo</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section container-flex">
+    <div class="box">
+      <h3>Tabela XP - Akuma no Mi</h3>
+      <table>
+        <thead>
+          <tr><th>Nível</th><th>XP Necessária</th><th>Pontos Ganhos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td></tr>
+          <tr><td>2</td><td><span class="badge-mod">400</span></td><td><span class="badge-mod">1</span></td></tr>
+          <tr><td>3</td><td><span class="badge-mod">800</span></td><td><span class="badge-mod">2</span></td></tr>
+          <tr><td>4</td><td><span class="badge-mod">1.600</span></td><td><span class="badge-mod">3</span></td></tr>
+          <tr><td>5</td><td><span class="badge-mod">3.200</span></td><td><span class="badge-mod">4</span></td></tr>
+          <tr><td>6</td><td><span class="badge-mod">4.000</span></td><td><span class="badge-mod">5</span></td></tr>
+          <tr><td>7</td><td><span class="badge-mod">6.000</span></td><td><span class="badge-mod">6</span></td></tr>
+          <tr><td>8</td><td><span class="badge-mod">8.000</span></td><td><span class="badge-mod">7</span></td></tr>
+          <tr><td>9</td><td><span class="badge-mod">10.000</span></td><td><span class="badge-mod">8</span></td></tr>
+          <tr><td>10</td><td><span class="badge-mod">12.000</span></td><td><span class="badge-mod">9</span></td></tr>
+          <tr><td>11</td><td><span class="badge-mod">15.000</span></td><td><span class="badge-mod">10</span></td></tr>
+          <tr><td>12</td><td><span class="badge-mod">20.000</span></td><td><span class="badge-mod">11</span></td></tr>
+          <tr><td>13</td><td><span class="badge-mod">25.000</span></td><td><span class="badge-mod">12</span></td></tr>
+          <tr><td>14</td><td><span class="badge-mod">30.000</span></td><td><span class="badge-mod">13</span></td></tr>
+          <tr><td>15</td><td><span class="badge-mod">35.000</span></td><td><span class="badge-mod">14</span></td></tr>
+          <tr><td>16</td><td><span class="badge-mod">50.000</span></td><td><span class="badge-mod">15</span></td></tr>
+          <tr><td>17</td><td><span class="badge-mod">70.000</span></td><td><span class="badge-mod">16</span></td></tr>
+          <tr><td>18</td><td><span class="badge-mod">90.000</span></td><td><span class="badge-mod">17</span></td></tr>
+          <tr><td>19</td><td><span class="badge-mod">110.000</span></td><td><span class="badge-mod">18</span></td></tr>
+          <tr><td>20</td><td><span class="badge-mod">130.000</span></td><td><span class="badge-mod">19</span></td></tr>
+          <tr><td>21</td><td><span class="badge-mod">150.000</span></td><td><span class="badge-mod">20</span></td></tr>
+          <tr><td>22</td><td><span class="badge-mod">200.000</span></td><td><span class="badge-mod">21</span></td></tr>
+          <tr><td>23</td><td><span class="badge-mod">250.000</span></td><td><span class="badge-mod">22</span></td></tr>
+          <tr><td>24</td><td><span class="badge-mod">300.000</span></td><td><span class="badge-mod">23</span></td></tr>
+          <tr><td>25</td><td><span class="badge-mod">350.000</span></td><td><span class="badge-mod">24</span></td></tr>
+          <tr><td>26</td><td><span class="badge-mod">500.000</span></td><td><span class="badge-mod">25</span></td></tr>
+          <tr><td>27</td><td><span class="badge-mod">750.000</span></td><td><span class="badge-mod">26</span></td></tr>
+          <tr><td>28</td><td><span class="badge-mod">1.000.000</span></td><td><span class="badge-mod">27</span></td></tr>
+          <tr><td>29</td><td><span class="badge-mod">1.250.000</span></td><td><span class="badge-mod">28</span></td></tr>
+          <tr><td>30</td><td><span class="badge-mod">1.500.000</span></td><td><span class="badge-mod">29</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box">
+      <h3>Tabela XP - Haki</h3>
+      <table>
+        <thead>
+          <tr><th>Nível</th><th>XP Necessária</th><th>Pontos Ganhos</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td><span class="badge-mod">0</span></td><td><span class="badge-mod">0</span></td></tr>
+          <tr><td>2</td><td><span class="badge-mod">400</span></td><td><span class="badge-mod">1</span></td></tr>
+          <tr><td>3</td><td><span class="badge-mod">800</span></td><td><span class="badge-mod">2</span></td></tr>
+          <tr><td>4</td><td><span class="badge-mod">1.600</span></td><td><span class="badge-mod">3</span></td></tr>
+          <tr><td>5</td><td><span class="badge-mod">3.200</span></td><td><span class="badge-mod">4</span></td></tr>
+          <tr><td>6</td><td><span class="badge-mod">4.000</span></td><td><span class="badge-mod">5</span></td></tr>
+          <tr><td>7</td><td><span class="badge-mod">6.000</span></td><td><span class="badge-mod">6</span></td></tr>
+          <tr><td>8</td><td><span class="badge-mod">8.000</span></td><td><span class="badge-mod">7</span></td></tr>
+          <tr><td>9</td><td><span class="badge-mod">10.000</span></td><td><span class="badge-mod">8</span></td></tr>
+          <tr><td>10</td><td><span class="badge-mod">12.000</span></td><td><span class="badge-mod">9</span></td></tr>
+          <tr><td>11</td><td><span class="badge-mod">15.000</span></td><td><span class="badge-mod">10</span></td></tr>
+          <tr><td>12</td><td><span class="badge-mod">20.000</span></td><td><span class="badge-mod">11</span></td></tr>
+          <tr><td>13</td><td><span class="badge-mod">25.000</span></td><td><span class="badge-mod">12</span></td></tr>
+          <tr><td>14</td><td><span class="badge-mod">30.000</span></td><td><span class="badge-mod">13</span></td></tr>
+          <tr><td>15</td><td><span class="badge-mod">35.000</span></td><td><span class="badge-mod">14</span></td></tr>
+          <tr><td>16</td><td><span class="badge-mod">50.000</span></td><td><span class="badge-mod">15</span></td></tr>
+          <tr><td>17</td><td><span class="badge-mod">70.000</span></td><td><span class="badge-mod">16</span></td></tr>
+          <tr><td>18</td><td><span class="badge-mod">90.000</span></td><td><span class="badge-mod">17</span></td></tr>
+          <tr><td>19</td><td><span class="badge-mod">110.000</span></td><td><span class="badge-mod">18</span></td></tr>
+          <tr><td>20</td><td><span class="badge-mod">130.000</span></td><td><span class="badge-mod">19</span></td></tr>
+          <tr><td>21</td><td><span class="badge-mod">150.000</span></td><td><span class="badge-mod">20</span></td></tr>
+          <tr><td>22</td><td><span class="badge-mod">200.000</span></td><td><span class="badge-mod">21</span></td></tr>
+          <tr><td>23</td><td><span class="badge-mod">250.000</span></td><td><span class="badge-mod">22</span></td></tr>
+          <tr><td>24</td><td><span class="badge-mod">300.000</span></td><td><span class="badge-mod">23</span></td></tr>
+          <tr><td>25</td><td><span class="badge-mod">350.000</span></td><td><span class="badge-mod">24</span></td></tr>
+          <tr><td>26</td><td><span class="badge-mod">500.000</span></td><td><span class="badge-mod">25</span></td></tr>
+          <tr><td>27</td><td><span class="badge-mod">750.000</span></td><td><span class="badge-mod">26</span></td></tr>
+          <tr><td>28</td><td><span class="badge-mod">1.000.000</span></td><td><span class="badge-mod">27</span></td></tr>
+          <tr><td>29</td><td><span class="badge-mod">1.250.000</span></td><td><span class="badge-mod">28</span></td></tr>
+          <tr><td>30</td><td><span class="badge-mod">1.500.000</span></td><td><span class="badge-mod">29</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Considerações Finais</h2>
+    <p>Este sistema de progressão é projetado para oferecer um desenvolvimento balanceado e gradual para personagens, respeitando as fases do RPG e garantindo que habilidades e buffs sejam adquiridos em momentos apropriados do jogo.</p>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

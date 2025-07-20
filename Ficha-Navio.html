@@ -3,119 +3,192 @@
 <head>
   <meta charset="UTF-8">
   <title>Ficha de Navio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
     body {
-      background: #0c0c0c;
-      color: #f2f2f2;
-      font-family: 'Georgia', serif;
-      padding: 20px;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+      color: #2d3a4a;
+      font-family: 'Cardo', serif;
+      font-size: 15px;
     }
-    h1, h2 {
-      color: #ffd700;
-      border-bottom: 1px solid #555;
-      padding-bottom: 5px;
+    .container {
+      max-width: 980px;
+      margin: 2.5rem auto 2rem auto;
+      background: rgba(255,255,255,0.97);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+      padding: 2.5rem 2vw 2vw 2vw;
     }
-    section {
-      margin-bottom: 30px;
+    .header-modern {
+      font-family: 'Pirata One', cursive;
+      font-size: 2.2rem;
+      color: #4bb0e6;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px #b6e0f7;
+      text-align: center;
+      margin-bottom: 2.2rem;
     }
-    ul {
-      list-style: square;
-      margin-left: 20px;
+    h1 {
+      color: #4bb0e6;
+      border-bottom: 2px solid #b6e0f7;
+      padding-bottom: 6px;
+      margin-bottom: 2.2rem;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
     }
-    .compartimentos {
-      margin-left: 20px;
+    h2 {
+      color: #4bb0e6;
+      border-bottom: 2px solid #b6e0f7;
+      padding-bottom: 6px;
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+      font-weight: bold;
     }
-    .navio {
-      margin-bottom: 15px;
+    .list-group-item {
+      background: #f7fbfd !important;
+      color: #2d3a4a !important;
+      border: 1px solid #b6e0f7 !important;
+    }
+    .card {
+      background: #e3f3fb !important;
+      color: #2d3a4a !important;
+      border: 1px solid #b6e0f7 !important;
+      border-radius: 0.7rem !important;
+      box-shadow: 0 2px 8px #b6e0f722;
+    }
+    .badge-mod {
+      background: #e3f3fb;
+      color: #2196f3;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 0.35em 0.65em;
+      border-radius: 0.4em;
+      border: 1px solid #b6e0f7;
+    }
+    .campo-batalha {
+      background: #e3f3fb;
+      color: #2196f3;
+      border-radius: 0.7rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #b6e0f7;
+      text-align: center;
+    }
+    .campo-batalha .badge-mod {
+      font-size: 1.1em;
+      margin: 0 0.2em;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Ficha de Navio</h1>
 
-  <h1>Ficha de Navio</h1>
+    <section class="mb-4">
+      <h2>Classes de Navios</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Jangada:</strong> 4 homens</li>
+        <li class="list-group-item"><strong>Pesqueiro:</strong> Capacidade 10 homens, fácil de manobrar</li>
+        <li class="list-group-item"><strong>Fragata:</strong> Capacidade 70 homens, <span class="badge-mod">+1d10</span> em teste de velocidade (HP: <span class="badge-mod">50</span>)</li>
+        <li class="list-group-item"><strong>Caravela:</strong> Capacidade 150 homens, 1 gigante, <span class="badge-mod">+1d20</span> teste de velocidade, <span class="badge-mod">+35%</span> HP (HP: <span class="badge-mod">100</span>)</li>
+        <li class="list-group-item"><strong>Galeão:</strong> Capacidade 200 homens, 2 gigantes, <span class="badge-mod">+2d20</span> teste de velocidade, <span class="badge-mod">+30%</span> HP, <span class="badge-mod">+25%</span> revestimento (HP: <span class="badge-mod">200</span>)</li>
+        <li class="list-group-item"><strong>Guerra:</strong> Capacidade 500 homens, 4 gigantes, <span class="badge-mod">x2</span> HP, <span class="badge-mod">+35%</span> revestimento (HP: <span class="badge-mod">300</span>)</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Classes de Navios</h2>
-    <ul>
-      <li><strong>Jangada:</strong> 4 homens</li>
-      <li><strong>Pesqueiro:</strong> Capacidade 10 homens, fácil de manobrar</li>
-      <li><strong>Fragata:</strong> Capacidade 70 homens, +1d10 em teste de velocidade (HP: 50)</li>
-      <li><strong>Caravela:</strong> Capacidade 150 homens, 1 gigante, +1d20 teste de velocidade, +35% HP (HP: 100)</li>
-      <li><strong>Galeão:</strong> Capacidade 200 homens, 2 gigantes, +2d20 teste de velocidade, +30% HP, +25% revestimento (HP: 200)</li>
-      <li><strong>Guerra:</strong> Capacidade 500 homens, 4 gigantes, x2 HP, +35% revestimento (HP: 300)</li>
-    </ul>
-  </section>
+    <section class="mb-4">
+      <h2>Mastro e Velas (Velocidade)</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Áurica:</strong> <span class="badge-mod">25</span> Deslocamento – <span class="badge-mod">15.000.000</span> Berries</li>
+        <li class="list-group-item"><strong>Espinha:</strong> <span class="badge-mod">50</span> Deslocamento – <span class="badge-mod">400.000.000</span> Berries</li>
+        <li class="list-group-item"><strong>Platina:</strong> <span class="badge-mod">75</span> Deslocamento – <span class="badge-mod">800.000.000</span> Berries</li>
+        <li class="list-group-item"><strong>Bermudiana:</strong> <span class="badge-mod">125</span> Deslocamento – <span class="badge-mod">1.000.000.000</span> Berries</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Mastro e Velas (Velocidade)</h2>
-    <ul>
-      <li><strong>Áurica:</strong> 25 Deslocamento – 15.000.000 Berries</li>
-      <li><strong>Espinha:</strong> 50 Deslocamento – 400.000.000 Berries</li>
-      <li><strong>Platina:</strong> 75 Deslocamento – 800.000.000 Berries</li>
-      <li><strong>Bermudiana:</strong> 125 Deslocamento – 1.000.000.000 Berries</li>
-    </ul>
-  </section>
+    <section class="mb-4">
+      <h2>Madeira (HP Base)</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Cedro:</strong> <span class="badge-mod">120</span> HP – Apenas ferro e madeira | Caravela | <span class="badge-mod">30.000</span> Berries</li>
+        <li class="list-group-item"><strong>Sucupira:</strong> <span class="badge-mod">150</span> HP – Aceita revestimentos exceto Kairoseki | <span class="badge-mod">1.080.000</span> Berries</li>
+        <li class="list-group-item"><strong>Pau-d'Arco:</strong> <span class="badge-mod">170</span> HP – Aceita Kairoseki com ⅓ dos canhões | <span class="badge-mod">3.000.000</span> Berries</li>
+        <li class="list-group-item"><strong>Adan:</strong> <span class="badge-mod">200</span> HP – Suporta magia (MP: <span class="badge-mod">400</span>) | <span class="badge-mod">10.000.000.000</span> Berries</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Madeira (HP Base)</h2>
-    <ul>
-      <li><strong>Cedro:</strong> 120 HP – Apenas ferro e madeira | Caravela | 30.000 Berries</li>
-      <li><strong>Sucupira:</strong> 150 HP – Aceita revestimentos exceto Kairoseki | 1.080.000 Berries</li>
-      <li><strong>Pau-d'Arco:</strong> 170 HP – Aceita Kairoseki com ⅓ dos canhões | 3.000.000 Berries</li>
-      <li><strong>Adan:</strong> 200 HP – Suporta magia (MP: 400) | 10.000.000.000 Berries</li>
-    </ul>
-  </section>
+    <section class="mb-4">
+      <h2>Revestimento (Armadura)</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Madeira:</strong> <span class="badge-mod">25</span> Arm – <span class="badge-mod">4</span> Canhões por lado – Fraco | <span class="badge-mod">10.000</span> Berries</li>
+        <li class="list-group-item"><strong>Ferro:</strong> <span class="badge-mod">65</span> Arm – <span class="badge-mod">8</span> Canhões por lado – Médio e fraco | <span class="badge-mod">-10</span> Velocidade | <span class="badge-mod">82.000</span> Berries</li>
+        <li class="list-group-item"><strong>Aço:</strong> <span class="badge-mod">100</span> Arm – <span class="badge-mod">15</span> Canhões por lado – Médio; <span class="badge-mod">10</span> Canhões fortes | <span class="badge-mod">-25</span> Velocidade | <span class="badge-mod">2.000.000</span> Berries</li>
+        <li class="list-group-item"><strong>Kairoseki:</strong> <span class="badge-mod">200</span> Arm – <span class="badge-mod">20</span> Canhões por lado – Qualquer tipo | <span class="badge-mod">-50</span> Velocidade | <span class="badge-mod">10.000.000</span> Berries</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Revestimento (Armadura)</h2>
-    <ul>
-      <li><strong>Madeira:</strong> 25 Arm – 4 Canhões por lado – Fraco | 10.000 Berries</li>
-      <li><strong>Ferro:</strong> 65 Arm – 8 Canhões por lado – Médio e fraco | -10 Velocidade | 82.000 Berries</li>
-      <li><strong>Aço:</strong> 100 Arm – 15 Canhões por lado – Médio; 10 Canhões fortes | -25 Velocidade | 2.000.000 Berries</li>
-      <li><strong>Kairoseki:</strong> 200 Arm – 20 Canhões por lado – Qualquer tipo | -50 Velocidade | 10.000.000 Berries</li>
-    </ul>
-  </section>
+    <section class="mb-4">
+      <h2>Canhões</h2>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Lançador de Arpões:</strong> <span class="badge-mod">30</span> Dano <span class="badge-mod">+4d20</span> – <span class="badge-mod">80</span> Armadura | Alcance: <span class="badge-mod">75</span> | <span class="badge-mod">+10</span> Teste | <span class="badge-mod">75.000</span> Berries</li>
+        <li class="list-group-item"><strong>Canhão Superior:</strong> <span class="badge-mod">35</span> Dano <span class="badge-mod">+3d20</span> – <span class="badge-mod">40</span> Armadura | Alcance: <span class="badge-mod">50</span> | <span class="badge-mod">+7</span> Teste | <span class="badge-mod">50.000</span> Berries</li>
+        <li class="list-group-item"><strong>Canhão Aprimorado:</strong> <span class="badge-mod">25</span> Dano <span class="badge-mod">+2d20</span> – <span class="badge-mod">20</span> Armadura | Alcance: <span class="badge-mod">25</span> | <span class="badge-mod">+5</span> Teste | <span class="badge-mod">34.000</span> Berries</li>
+        <li class="list-group-item"><strong>Canhão Comum:</strong> <span class="badge-mod">15</span> Dano <span class="badge-mod">+1d20</span> | Alcance: <span class="badge-mod">25</span> | <span class="badge-mod">+4</span> Teste | <span class="badge-mod">12.000</span> Berries</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Canhões</h2>
-    <ul>
-      <li><strong>Lançador de Arpões:</strong> 30 Dano +4d20 – 80 Armadura | Alcance: 75 | +10 Teste | 75.000 Berries</li>
-      <li><strong>Canhão Superior:</strong> 35 Dano +3d20 – 40 Armadura | Alcance: 50 | +7 Teste | 50.000 Berries</li>
-      <li><strong>Canhão Aprimorado:</strong> 25 Dano +2d20 – 20 Armadura | Alcance: 25 | +5 Teste | 34.000 Berries</li>
-      <li><strong>Canhão Comum:</strong> 15 Dano +1d20 | Alcance: 25 | +4 Teste | 12.000 Berries</li>
-    </ul>
-  </section>
+    <section class="mb-4">
+      <h2>Compartimentos dos Navios</h2>
+      <div class="row g-2">
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <div class="card-body p-2"><strong>Jangada:</strong> Convés</div>
+          </div>
+          <div class="card mb-2">
+            <div class="card-body p-2"><strong>Pesqueiro:</strong> Convés, Sala de ferramenta, Dormitório</div>
+          </div>
+          <div class="card mb-2">
+            <div class="card-body p-2"><strong>Fragata:</strong> Convés, Aposento do capitão, Cozinha, Dormitório, Sala de máquinas, Sala de treinamento</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <div class="card-body p-2"><strong>Caravela:</strong> Convés, Aposento do capitão, Cozinha, Dormitório, Sala de máquinas, Sala de treinamento, Sala de tesouro, Sala de ferramenta</div>
+          </div>
+          <div class="card mb-2">
+            <div class="card-body p-2"><strong>Galeão:</strong> Convés, Aposento do capitão, Biblioteca, Cela, Cozinha, Despensa, Dormitório, Enfermaria, Laboratório, Quarto de vigilância, Refeitório, Sala de máquinas, Sala de ferramenta, Sala de treinamento, Sala de tesouros</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-2">
+            <div class="card-body p-2"><strong>Guerra:</strong> Convés, Aposento do capitão, Biblioteca, Cela, Cozinha x3, Despensa x3, Dormitório x5, Enfermaria x2, Laboratório x2, Quarto de vigilância x2, Refeitório x5, Sala de máquinas x2, Sala de ferramenta x3, Sala de treinamento x2, Sala de tesouros x2</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Compartimentos dos Navios</h2>
-    <div class="navio"><strong>Jangada:</strong> Convés</div>
-    <div class="navio"><strong>Pesqueiro:</strong> Convés, Sala de ferramenta, Dormitório</div>
-    <div class="navio"><strong>Fragata:</strong> Convés, Aposento do capitão, Cozinha, Dormitório, Sala de máquinas, Sala de treinamento</div>
-    <div class="navio"><strong>Caravela:</strong> Convés, Aposento do capitão, Cozinha, Dormitório, Sala de máquinas, Sala de treinamento, Sala de tesouro, Sala de ferramenta</div>
-    <div class="navio"><strong>Galeão:</strong> Convés, Aposento do capitão, Biblioteca, Cela, Cozinha, Despensa, Dormitório, Enfermaria, Laboratório, Quarto de vigilância, Refeitório, Sala de máquinas, Sala de ferramenta, Sala de treinamento, Sala de tesouros</div>
-    <div class="navio"><strong>Guerra:</strong> Convés, Aposento do capitão, Biblioteca, Cela, Cozinha x3, Despensa x3, Dormitório x5, Enfermaria x2, Laboratório x2, Quarto de vigilância x2, Refeitório x5, Sala de máquinas x2, Sala de ferramenta x3, Sala de treinamento x2, Sala de tesouros x2</div>
-  </section>
-
-  <section>
-    <h2>Campo de Batalha Naval</h2>
-    <p>A cada 25 pontos de velocidade, o navio pode mover-se uma unidade no campo.</p>
-    <p>O alcance dos canhões é fixo, porém testes de precisão são feitos contra a velocidade do navio alvo.</p>
-    <pre>
-25
-25
-25
-25
-25
-25
-25
-25
-25
-25
-25
-25
-    </pre>
-  </section>
-
+    <section class="mb-4">
+      <h2>Campo de Batalha Naval</h2>
+      <p>A cada <span class="badge-mod">25</span> pontos de velocidade, o navio pode mover-se uma unidade no campo.</p>
+      <p>O alcance dos canhões é fixo, porém testes de precisão são feitos contra a velocidade do navio alvo.</p>
+      <div class="campo-batalha">
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+        <span class="badge-mod">25</span>
+      </div>
+    </section>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

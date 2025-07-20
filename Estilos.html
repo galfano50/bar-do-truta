@@ -4,131 +4,212 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estilos de Combate</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      font-family: 'Georgia', serif;
-      background-color: #1c1b18;
-      color: #f5f5dc;
-      padding: 2rem;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #e0e7ef 0%, #c9e7f2 100%);
+      color: #2d3a4a;
+      font-family: 'Cardo', serif;
+      font-size: 15px;
     }
-
-    h1 {
+    .container {
+      max-width: 980px;
+      margin: 2.5rem auto 2rem auto;
+      background: rgba(255,255,255,0.97);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+      padding: 2.5rem 2vw 2vw 2vw;
+    }
+    .header-modern {
+      font-family: 'Pirata One', cursive;
+      font-size: 2.2rem;
+      color: #4bb0e6;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px #b6e0f7;
       text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
-      color: #d4af37;
+      margin-bottom: 2.2rem;
     }
-
-    details {
-      background-color: #2a2a24;
-      border: 1px solid #444;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    summary {
-      font-weight: bold;
+    h2 {
+      color: #4bb0e6;
+      border-bottom: 2px solid #b6e0f7;
+      padding-bottom: 6px;
+      margin-bottom: 18px;
       font-size: 1.3rem;
-      cursor: pointer;
-      color: #ffdd57;
+      font-weight: bold;
     }
-
-    ul {
-      margin-top: 0.5rem;
-      padding-left: 1.5rem;
-    }
-
-    li {
+    .accordion-item {
+      background: #f7fbfd !important;
+      border: 1px solid #b6e0f7 !important;
+      border-radius: 0.7rem !important;
       margin-bottom: 0.7rem;
-      line-height: 1.5;
+      box-shadow: 0 2px 8px #b6e0f722;
     }
-
-    .categoria {
+    .accordion-button {
+      background: #e0f7fa !important;
+      color: #4bb0e6 !important;
+      font-weight: bold;
       font-size: 1.1rem;
-      color: #87cefa;
-      margin-top: 1rem;
+      border-radius: 0.7rem 0.7rem 0 0 !important;
+      box-shadow: none !important;
+    }
+    .accordion-button:not(.collapsed) {
+      color: #2196f3 !important;
+      background: #e3f3fb !important;
+      box-shadow: none !important;
+    }
+    .accordion-body {
+      background: #f7fbfd;
+      color: #2d3a4a;
+      border-radius: 0 0 0.7rem 0.7rem;
+    }
+    .dado-destaque {
+      color: #2196f3 !important;
+      background: #e3f3fb;
+      border-radius: 0.25rem;
+      padding: 0 0.25em;
+      font-weight: bold;
+      border: 1px solid #b6e0f7;
     }
   </style>
 </head>
 <body>
-
-  <h1>🗡️ Estilos de Combate</h1>
-
-  <details open>
-    <summary>Espadachim</summary>
-    <ul>
-      <li><strong>Rounnin:</strong> Penetração de materiais físicos comuns. <code>+1d10</code> no teste de dano.</li>
-      <li><strong>Espadachim:</strong> <code>-1d20</code> contra aço/titânio/karan/kairoseki. <code>+1d20</code> acerto com Destreza. (Pode lançar rajadas cortantes)</li>
-      <li><strong>Mestre Espadachim:</strong> Converte Velocidade ↔ Destreza nos testes de dano. <code>+2d20</code> contra acerto em Destreza. (Corta poderes de Akuma no Mi com espada e Haki apropriados)</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Sensor</summary>
-    <ul>
-      <li><strong>Sensor:</strong> Contra-ataque após defesa bem-sucedida. <code>+1d10</code> em golpes corpo a corpo.</li>
-      <li><strong>Guardião:</strong> Inimigo recebe status "Enfraquecido" após defesa.</li>
-      <li><strong>Warlord:</strong> Pode atacar com a defesa. <code>+2d20</code> testes físicos (exceto espirituais/gases/toque).</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Gunner</summary>
-    <ul>
-      <li><strong>Ranger:</strong> <code>+1d10</code> precisão. Dois tiros consecutivos com um único teste.</li>
-      <li><strong>Gunner:</strong> Balas de maior calibre. <code>+1d20</code> Percepção e <code>+1d20</code> Precisão.</li>
-      <li><strong>Sniper:</strong> <code>-2d20</code> armadura externa, <code>-1d20</code> Constituição do inimigo. <code>+2d20</code> Precisão (crítico = dano base).</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Boxer</summary>
-    <ul>
-      <li><strong>Combatente:</strong> Golpes corpo a corpo -2 energia. <code>+1d10</code> Destreza.</li>
-      <li><strong>Boxer:</strong> Esquiva bem-sucedida gera golpe limpo. <code>+1d20</code> Destreza (somente físico).</li>
-      <li><strong>Monge:</strong> Destreza → Força. <code>+2d20</code> dano. -4 energia para golpes G3 corpo (sem frutas).</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Haste</summary>
-    <ul>
-      <li><strong>Haste:</strong> Um ataque contra todos num raio. <code>+1d10</code> acerto com arma (Destreza).</li>
-      <li><strong>Lanceiro:</strong> Tenta desarmar com Destreza x Destreza. <code>+1d20</code> no teste.</li>
-      <li><strong>Zilong:</strong> Redireciona projéteis com teste de Destreza. <code>+2d20</code>. (Projétil compatível com arma)</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Haki</summary>
-    <ul>
-      <li>Escolha um Haki forte: recebe <code>+1d10</code> por grau.</li>
-      <li><code>-1d20</code> dano de usuários de Akuma no Mi.</li>
-      <li><code>+1d20</code> em testes de Haki contra habilidades de frutas espirituais.</li>
-      <li>Espírito base soma-se aos testes. Custo: 2 por volta (qualquer grau).</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Akuma no Mi</summary>
-    <ul>
-      <li><code>+1d10</code> por grau em habilidades (Logia/Zoan/Paramecia) - G1.</li>
-      <li><code>-1</code> energia, <code>+4</code> recuperação (Zoan+). <code>+1d20</code> testes (exceto Zoan) - G2.</li>
-      <li><strong>Logia:</strong> <code>+2d20</code> dano vs outras frutas. +2 turnos em status - G3.</li>
-      <li><strong>Zoan:</strong> <code>+2d20</code> recuperação. +1 turno recarga - G3.</li>
-      <li><strong>Paramecia:</strong> <code>+2d20</code> dano extra final - G3.</li>
-    </ul>
-  </details>
-
-  <details>
-    <summary>Rokushiki</summary>
-    <ul>
-      <li>Golpes de nível 3+: <code>+1d10</code> no atributo teste.</li>
-      <li>Combinar 2 Rokushikis: <code>+1d20</code> dano (atributos somados).</li>
-      <li><strong>Rokugan:</strong> -4 energia em todas. <code>+2d20</code> de dano.</li>
-    </ul>
-  </details>
-
+  <div class="container">
+    <div class="header-modern">🗡️ Estilos de Combate</div>
+    <div class="accordion" id="estilosAccordion">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEspadachim">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEspadachim" aria-expanded="true" aria-controls="collapseEspadachim">
+            Espadachim
+          </button>
+        </h2>
+        <div id="collapseEspadachim" class="accordion-collapse collapse show" aria-labelledby="headingEspadachim" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Rounnin:</strong> Penetração de materiais físicos comuns. <code class="dado-destaque">+1d10</code> no teste de dano.</li>
+              <li><strong>Espadachim:</strong> <code class="dado-destaque">-1d20</code> contra aço/titânio/karan/kairoseki. <code class="dado-destaque">+1d20</code> acerto com Destreza. (Pode lançar rajadas cortantes)</li>
+              <li><strong>Mestre Espadachim:</strong> Converte Velocidade ↔ Destreza nos testes de dano. <code class="dado-destaque">+2d20</code> contra acerto em Destreza. (Corta poderes de Akuma no Mi com espada e Haki apropriados)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingSensor">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSensor" aria-expanded="false" aria-controls="collapseSensor">
+            Sensor
+          </button>
+        </h2>
+        <div id="collapseSensor" class="accordion-collapse collapse" aria-labelledby="headingSensor" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Sensor:</strong> Contra-ataque após defesa bem-sucedida. <code class="dado-destaque">+1d10</code> em golpes corpo a corpo.</li>
+              <li><strong>Guardião:</strong> Inimigo recebe status "Enfraquecido" após defesa.</li>
+              <li><strong>Warlord:</strong> Pode atacar com a defesa. <code class="dado-destaque">+2d20</code> testes físicos (exceto espirituais/gases/toque).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingGunner">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGunner" aria-expanded="false" aria-controls="collapseGunner">
+            Gunner
+          </button>
+        </h2>
+        <div id="collapseGunner" class="accordion-collapse collapse" aria-labelledby="headingGunner" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Ranger:</strong> <code class="dado-destaque">+1d10</code> precisão. Dois tiros consecutivos com um único teste.</li>
+              <li><strong>Gunner:</strong> Balas de maior calibre. <code class="dado-destaque">+1d20</code> Percepção e <code class="dado-destaque">+1d20</code> Precisão.</li>
+              <li><strong>Sniper:</strong> <code class="dado-destaque">-2d20</code> armadura externa, <code class="dado-destaque">-1d20</code> Constituição do inimigo. <code class="dado-destaque">+2d20</code> Precisão (crítico = dano base).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingBoxer">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBoxer" aria-expanded="false" aria-controls="collapseBoxer">
+            Boxer
+          </button>
+        </h2>
+        <div id="collapseBoxer" class="accordion-collapse collapse" aria-labelledby="headingBoxer" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Combatente:</strong> Golpes corpo a corpo -2 energia. <code class="dado-destaque">+1d10</code> Destreza.</li>
+              <li><strong>Boxer:</strong> Esquiva bem-sucedida gera golpe limpo. <code class="dado-destaque">+1d20</code> Destreza (somente físico).</li>
+              <li><strong>Monge:</strong> Destreza → Força. <code class="dado-destaque">+2d20</code> dano. -4 energia para golpes G3 corpo (sem frutas).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingHaste">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHaste" aria-expanded="false" aria-controls="collapseHaste">
+            Haste
+          </button>
+        </h2>
+        <div id="collapseHaste" class="accordion-collapse collapse" aria-labelledby="headingHaste" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Haste:</strong> Um ataque contra todos num raio. <code class="dado-destaque">+1d10</code> acerto com arma (Destreza).</li>
+              <li><strong>Lanceiro:</strong> Tenta desarmar com Destreza x Destreza. <code class="dado-destaque">+1d20</code> no teste.</li>
+              <li><strong>Zilong:</strong> Redireciona projéteis com teste de Destreza. <code class="dado-destaque">+2d20</code>. (Projétil compatível com arma)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingHaki">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHaki" aria-expanded="false" aria-controls="collapseHaki">
+            Haki
+          </button>
+        </h2>
+        <div id="collapseHaki" class="accordion-collapse collapse" aria-labelledby="headingHaki" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Escolha um Haki forte: recebe <code class="dado-destaque">+1d10</code> por grau.</li>
+              <li><code class="dado-destaque">-1d20</code> dano de usuários de Akuma no Mi.</li>
+              <li><code class="dado-destaque">+1d20</code> em testes de Haki contra habilidades de frutas espirituais.</li>
+              <li>Espírito base soma-se aos testes. Custo: 2 por volta (qualquer grau).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAkuma">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAkuma" aria-expanded="false" aria-controls="collapseAkuma">
+            Akuma no Mi
+          </button>
+        </h2>
+        <div id="collapseAkuma" class="accordion-collapse collapse" aria-labelledby="headingAkuma" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li><code class="dado-destaque">+1d10</code> por grau em habilidades (Logia/Zoan/Paramecia) - G1.</li>
+              <li><code class="dado-destaque">-1</code> energia, <code class="dado-destaque">+4</code> recuperação (Zoan+). <code class="dado-destaque">+1d20</code> testes (exceto Zoan) - G2.</li>
+              <li><strong>Logia:</strong> <code class="dado-destaque">+2d20</code> dano vs outras frutas. +2 turnos em status - G3.</li>
+              <li><strong>Zoan:</strong> <code class="dado-destaque">+2d20</code> recuperação. +1 turno recarga - G3.</li>
+              <li><strong>Paramecia:</strong> <code class="dado-destaque">+2d20</code> dano extra final - G3.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingRokushiki">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRokushiki" aria-expanded="false" aria-controls="collapseRokushiki">
+            Rokushiki
+          </button>
+        </h2>
+        <div id="collapseRokushiki" class="accordion-collapse collapse" aria-labelledby="headingRokushiki" data-bs-parent="#estilosAccordion">
+          <div class="accordion-body">
+            <ul>
+              <li>Golpes de nível 3+: <code class="dado-destaque">+1d10</code> no atributo teste.</li>
+              <li>Combinar 2 Rokushikis: <code class="dado-destaque">+1d20</code> dano (atributos somados).</li>
+              <li><strong>Rokugan:</strong> -4 energia em todas. <code class="dado-destaque">+2d20</code> de dano.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
